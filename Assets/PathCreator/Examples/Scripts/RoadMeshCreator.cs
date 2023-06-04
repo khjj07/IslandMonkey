@@ -60,14 +60,14 @@ namespace PathCreation.Examples {
                 Vector3 vertSideA = path.GetPoint (i) - localRight * Mathf.Abs (roadWidth);
                 Vector3 vertSideB = path.GetPoint (i) + localRight * Mathf.Abs (roadWidth);
 
-                // Add top of road vertices
+                // Add top of road destinationVertices
                 verts[vertIndex + 0] = vertSideA;
                 verts[vertIndex + 1] = vertSideB;
-                // Add bottom of road vertices
+                // Add bottom of road destinationVertices
                 verts[vertIndex + 2] = vertSideA - localUp * thickness;
                 verts[vertIndex + 3] = vertSideB - localUp * thickness;
 
-                // Duplicate vertices to get flat shading for sides of road
+                // Duplicate destinationVertices to get flat shading for sides of road
                 verts[vertIndex + 4] = verts[vertIndex + 0];
                 verts[vertIndex + 5] = verts[vertIndex + 1];
                 verts[vertIndex + 6] = verts[vertIndex + 2];
