@@ -46,13 +46,13 @@ Material:
     - _Prop: 4
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RampOffset: 1
+    - _RampOffset: 0.65
     - _RampSmooth: 0
-    - _RimLightBrightness: 12
-    - _RimPower: 13.03
-    - _outline: 0.5
+    - _RimLightBrightness: 7.57
+    - _RimPower: 13.06
+    - _outline: 0
     m_Colors:
-    - _RampTint: {r: 0.990566, g: 0.990566, b: 0.990566, a: 1}
+    - _RampTint: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &2228197248074739117
 MonoBehaviour:
