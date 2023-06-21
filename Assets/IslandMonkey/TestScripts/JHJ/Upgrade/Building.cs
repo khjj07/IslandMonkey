@@ -2,22 +2,26 @@ using System;
 using UniRx;
 using UnityEngine;
 
-public class Building : MonoBehaviour
+namespace Assets.IslandMonkey.TestScripts.JHJ.Upgrade
 {
-    [SerializeField]
-    private Subject<Unit> _upgradeSubject = new();
-
-    public int Level { get; private set; }
-
-    public IObservable<Unit> OnUpgradeAsObservable()
+    public class Building : MonoBehaviour
     {
+        [SerializeField]
+        private Subject<Unit> _upgradeSubject = new();
+
+    
+        public int buildingLevel = 1;
+
+        public IObservable<Unit> OnUpgradeAsObservable()
+        {
         
-        return _upgradeSubject;
-    }
+            return _upgradeSubject;
+        }
 
-    public void Upgrade()
-    {
-        Level++;
-        _upgradeSubject.OnNext(Unit.Default);
+        public void BuildingUpgrade()
+        {
+            buildingLevel++;
+            _upgradeSubject.OnNext(Unit.Default);
+        }
     }
 }

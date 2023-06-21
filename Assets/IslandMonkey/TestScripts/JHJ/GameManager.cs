@@ -6,6 +6,7 @@ using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
 using System.Linq;
+using Assets.IslandMonkey.TestScripts.JHJ.Upgrade;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        
+        UpdateTotalGoldText();
     }
 
     public void BuildBuilding()
@@ -53,10 +54,10 @@ public class GameManager : MonoBehaviour
         }
 
         Observable.Interval(TimeSpan.FromSeconds(1))
-            .Where(_ => building.Level > 0)
+            .Where(_ => building.buildingLevel > 0)
             .Subscribe(_ =>
             {
-                var goldIncrease = building.Level * 10;
+                var goldIncrease = building.buildingLevel * 10;
                 _totalGold += goldIncrease;
                 UpdateTotalGoldText();
             })
@@ -65,8 +66,8 @@ public class GameManager : MonoBehaviour
         building.OnUpgradeAsObservable()
             .Subscribe(_ =>
             {
-                building.Upgrade();
-                Debug.Log("Building Upgraded. Level: " + building.Level);
+                building.BuildingUpgrade();
+                Debug.Log("Building Upgraded. MonkeyLevel: " + building.buildingLevel);
             })
             .AddTo(building);
     }
@@ -79,10 +80,10 @@ public class GameManager : MonoBehaviour
 
 
         Observable.Interval(TimeSpan.FromSeconds(1))
-            .Where(_ => monkey.Level > 0)
+            .Where(_ => monkey.MonkeyLevel > 0)
             .Subscribe(_ =>
             {
-                var goldIncrease = monkey.Level * 5;
+                var goldIncrease = monkey.MonkeyLevel * 5;
                 _totalGold += goldIncrease;
                 UpdateTotalGoldText();
             })
@@ -91,8 +92,8 @@ public class GameManager : MonoBehaviour
         monkey.OnUpgradeAsObservable()
             .Subscribe(_ =>
             {
-                monkey.Upgrade();
-                Debug.Log("Monkey Upgraded. Level: " + monkey.Level);
+                monkey.MonkeyUpgrade();
+                Debug.Log("Monkey Upgraded. MonkeyLevel: " + monkey.MonkeyLevel);
             })
             .AddTo(monkey);
     }
@@ -108,14 +109,13 @@ public class GameManager : MonoBehaviour
         Observable.Interval(TimeSpan.FromSeconds(1))
             .Subscribe(_ =>
             {
-                var goldIncrease = +10;
-                _totalGold += goldIncrease;
+                if (totalGoldText != null)
+                {
+                    totalGoldText.text = " " + _totalGold;
+                }
 
             });
-        if (totalGoldText != null)
-        {
-            totalGoldText.text = "Total Gold: " + _totalGold;
-        }
+        
        
     }
 }

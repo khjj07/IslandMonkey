@@ -2,21 +2,24 @@
 using UniRx;
 using UnityEngine;
 
-public class Monkey : MonoBehaviour
+namespace Assets.IslandMonkey.TestScripts.JHJ.Upgrade
 {
-    [SerializeField]
-    private Subject<Unit> upgradeSubject = new Subject<Unit>();
-
-    public int Level { get; set; }
-
-    public IObservable<Unit> OnUpgradeAsObservable()
+    public class Monkey : MonoBehaviour
     {
-        return upgradeSubject;
-    }
+        [SerializeField]
+        private Subject<Unit> upgradeSubject = new Subject<Unit>();
 
-    public void Upgrade()
-    {
-        Level++;
-        upgradeSubject.OnNext(Unit.Default);
+        public int MonkeyLevel { get; set; }
+
+        public IObservable<Unit> OnUpgradeAsObservable()
+        {
+            return upgradeSubject;
+        }
+
+        public void MonkeyUpgrade()
+        {
+            MonkeyLevel++;
+            upgradeSubject.OnNext(Unit.Default);
+        }
     }
 }
