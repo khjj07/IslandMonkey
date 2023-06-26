@@ -14,7 +14,6 @@ namespace Assets.IslandMonkey.TestScripts.JHJ.Upgrade
 
         public IObservable<Unit> OnUpgradeAsObservable()
         {
-        
             return _upgradeSubject;
         }
 

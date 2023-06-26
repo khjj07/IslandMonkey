@@ -205,6 +205,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Squid_LOD0
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 167744f06e1cb4a4da962bbda66bcb1f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 167744f06e1cb4a4da962bbda66bcb1f,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c04a570a28d92374d8ad58a6c654aa1a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 167744f06e1cb4a4da962bbda66bcb1f, type: 3}
 --- !u!1 &330585543
@@ -343,7 +353,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!64 &738598754
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -539,6 +549,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Squid_LOD0 Toon
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ce341553797eaba44ab4231976f85a07,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: ce341553797eaba44ab4231976f85a07,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c04a570a28d92374d8ad58a6c654aa1a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce341553797eaba44ab4231976f85a07, type: 3}
 --- !u!1 &1879407275

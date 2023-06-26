@@ -47,9 +47,9 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RampOffset: 0.65
-    - _RampSmooth: 0
-    - _RimLightBrightness: 7.57
-    - _RimPower: 13.06
+    - _RampSmooth: 0.45
+    - _RimLightBrightness: 8
+    - _RimPower: 12.29
     - _outline: 0
     m_Colors:
     - _RampTint: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}

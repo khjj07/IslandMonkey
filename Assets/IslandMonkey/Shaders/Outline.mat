@@ -48,8 +48,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Crocked: -3.1
-    - _OutlineThick: 0.024
+    - _Crocked: -8.27
+    - _OutlineThick: 0.018
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
