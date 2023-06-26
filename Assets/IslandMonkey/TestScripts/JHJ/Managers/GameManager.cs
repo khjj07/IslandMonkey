@@ -43,9 +43,33 @@ public class GameManager : MonoBehaviour
         {
             var randomSlotIndex = UnityEngine.Random.Range(0, availableGroundSlots.Count);
             var selectedSlot = availableGroundSlots[randomSlotIndex];
-            building.transform.position = selectedSlot.transform.position;
+            building.transform.position = selectedSlot.transform.position + new Vector3(0f, 0.5f, 0f); // Ground의 위치에서 y축으로 1만큼 올림
             _buildings.Add(building);
             selectedSlot.SetOccupied(true);
+
+            // 원숭이 생성
+            var monkeyPrefab = monkeyPrefabs[0];
+            var monkeyObject = Instantiate(monkeyPrefab.gameObject, building.transform);
+            var monkey = monkeyObject.GetComponent<Monkey>();
+            monkey.transform.localPosition = new Vector3(1f, 0f, 0f); // 건물에 상대적인 위치 설정
+
+            Observable.Interval(TimeSpan.FromSeconds(1))
+                .Where(_ => monkey.MonkeyLevel > 0)
+                .Subscribe(_ =>
+                {
+                    var goldIncrease = monkey.MonkeyLevel * 5;
+                    _totalGold += goldIncrease;
+                    UpdateTotalGoldText();
+                })
+                .AddTo(monkey);
+
+            monkey.OnUpgradeAsObservable()
+                .Subscribe(_ =>
+                {
+                    monkey.MonkeyUpgrade();
+                    Debug.Log(" 원숭이 레벨 : " + monkey.MonkeyLevel);
+                })
+                .AddTo(monkey);
         }
         else
         {
@@ -67,7 +91,7 @@ public class GameManager : MonoBehaviour
             .Subscribe(_ =>
             {
                 building.BuildingUpgrade();
-                Debug.Log("Building Upgraded. MonkeyLevel: " + building.buildingLevel);
+                Debug.Log(" 빌딩 레벨 : " + building.buildingLevel);
             })
             .AddTo(building);
     }
