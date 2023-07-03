@@ -25,7 +25,7 @@ public class CameraMove : MonoBehaviour
         cam = GetComponent<Camera>();
         moveScaleVector = new Vector2(moveScale, moveScale);
 
-        // Swipe
+        // 스와이프
         this.UpdateAsObservable()
             .Where(_ => Input.touchCount == 1)
             .Subscribe(_ =>
@@ -52,27 +52,27 @@ public class CameraMove : MonoBehaviour
             })
             .AddTo(this);
 
-        // Pinch to Zoom
+        // 줌
         this.UpdateAsObservable()
             .Where(_ => Input.touchCount > 1)
             .Subscribe(_ =>
             {
-                // Get touches
+                // 터치 저장
                 Touch touchZero = Input.GetTouch(0);
                 Touch touchOne = Input.GetTouch(1);
 
-                // Store positions
+                // 위치 저장
                 Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
                 Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
 
-                // Calculate initial distance
+                // 거리 계산
                 float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
                 float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
 
-                // Calculate zoom amount
+                // 줌 땡기기
                 float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
 
-                // Adjust camera size
+                // 카메라 사이즈
                 float newSize = cam.orthographicSize + (deltaMagnitudeDiff * zoomSpeed);
                 newSize = Mathf.Max(newSize, 1f);
                 newSize = Mathf.Min(newSize, 6f);
@@ -81,7 +81,7 @@ public class CameraMove : MonoBehaviour
             .AddTo(this);
     }
 
-    // Check if outside the specified boundaries
+    // 아웃라인 체크
     private bool Outside()
     {
         if (transform.position.x > maxX || transform.position.x < minX ||
