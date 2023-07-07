@@ -9,11 +9,12 @@ using UnityEngine.UI;
 
 public class VoyageManager : MonoBehaviour
 {
-    [SerializeField] private float VoyageTime;
+    public float VoyageTime;
     [SerializeField] private GameObject[] Shellfishes;
     [SerializeField] private GameObject[] Helps;
     [SerializeField] private Slider VoyageBar;
     [SerializeField] private GameObject Boat;
+    [SerializeField] private GameObject VoyagePopUp;
 
     private float StartTime;
     private Shellfish ShellfishItem;
@@ -40,16 +41,38 @@ public class VoyageManager : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
-        if (VoyageBar.value > 0.0f)
+        if (VoyageTime > 0.0f)
         {
-            VoyageBar.value -= (Time.deltaTime );
-            if ((VoyageBar.value <= VoyageBar.maxValue / 2) && !isReturn)
+            VoyageBar.value -= (Time.deltaTime);
+            VoyageTime -= (Time.deltaTime);
+            if ((VoyageTime <= VoyageTime / 2) && !isReturn)
             {
                 Boat.transform.Rotate(0, 180, 0);
                 isReturn = true;
             }
-        }   
+        }
+        else
+        {
+            VoyageEnd();
+        }
+    }
+
+    private void VoyageEnd()
+    {
+        CancelInvoke("CreateShellfish");
+        foreach (GameObject shellfish in Shellfishes)
+        {
+            ShellfishItem = shellfish.GetComponent<Shellfish>();
+            if (ShellfishItem.isActiveAndEnabled)
+            {
+                ShellfishItem.gameObject.SetActive(false);
+            }
+        }
+
+        Debug.Log("항해 종료");
+        VoyagePopUp.SetActive(true);
+
     }
 }
