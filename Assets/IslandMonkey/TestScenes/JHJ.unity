@@ -3691,7 +3691,7 @@ Transform:
   m_Children:
   - {fileID: 2064976988}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &1045926103
 SpriteRenderer:
@@ -7217,7 +7217,7 @@ PrefabInstance:
     - target: {fileID: 8979710254220338853, guid: 486d5538c6e2e3841a70dfb55e7d42b2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8979710254220338853, guid: 486d5538c6e2e3841a70dfb55e7d42b2,
         type: 3}

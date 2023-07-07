@@ -58,6 +58,7 @@ public class UIManager : MonoBehaviour
     }
     public void OnClickVoyageBtn()
     {
+        GameManager.instance.CreateBuilding();
         GameManager.instance.SaveGameManagerData();
         SceneManager.LoadScene("Voyage");
     }

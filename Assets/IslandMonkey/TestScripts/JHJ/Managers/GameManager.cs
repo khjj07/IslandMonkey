@@ -34,10 +34,6 @@ public class GameManager : Singleton<GameManager>
     private ReactiveCollection<Building> _buildings = new ReactiveCollection<Building>();
     private ReactiveCollection<Monkey> _monkeys = new ReactiveCollection<Monkey>();
 
-    private void Awake()
-    {
-        CreateBuilding();
-    }
 
     private void Start()
     {

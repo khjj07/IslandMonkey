@@ -1409,7 +1409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f3e1de8b23e5140936cfb8c34b7137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VoyageTime: 30
+  VoyageTime: 15
   Shellfishes:
   - {fileID: 580781562}
   - {fileID: 1506921605}
