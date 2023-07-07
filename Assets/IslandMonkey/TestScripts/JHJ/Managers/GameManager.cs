@@ -38,7 +38,7 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         // 씬 전환이 일어났을 때 GameManager 인스턴스가 유지되도록 설정
-        DontDestroyOnLoad(gameObject);
+        // DontDestroyOnLoad(gameObject);
 
         UpdateTotalGoldText();
         UpdateTotalShellText();
@@ -55,11 +55,10 @@ public class GameManager : Singleton<GameManager>
             var randomSlotIndex = UnityEngine.Random.Range(0, availableGroundSlots.Count);
             var selectedSlot = availableGroundSlots[randomSlotIndex];
             building.transform.position = selectedSlot.transform.position + new Vector3(0f, 0.4f, 0f);
-            // Ground의 위치에서 y축으로 1만큼 올림 Grid로 하면 달라질듯
             _buildings.Add(building);
             selectedSlot.SetOccupied(true);
 
-            // 유학 시 : 원숭이 생성
+            // 유학 시: 원숭이 생성
             var monkeyPrefab = _monkeyPrefabs[0];
             var monkeyObject = Instantiate(monkeyPrefab.gameObject, building.transform);
             var monkey = monkeyObject.GetComponent<Monkey>();
@@ -106,6 +105,9 @@ public class GameManager : Singleton<GameManager>
                 Debug.Log(" 빌딩 레벨 : " + building.buildingLevel);
             })
             .AddTo(building);
+
+        // 빌딩이 지어진 후에 availableGroundSlots를 업데이트해줍니다.
+        availableGroundSlots = _builddSlots.Where(slot => !slot.IsOccupied.Value).ToList();
     }
 
     public void CreateMonkey()

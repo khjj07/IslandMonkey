@@ -1409,7 +1409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f3e1de8b23e5140936cfb8c34b7137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VoyageTime: 15
+  VoyageTime: 5
   Shellfishes:
   - {fileID: 580781562}
   - {fileID: 1506921605}
@@ -1669,6 +1669,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 793872611}
+    - target: {fileID: 1267098358776507816, guid: b41c2989bdf2a0a4ab9318e69f9cb3b6,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickAbroadEndBtn
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b41c2989bdf2a0a4ab9318e69f9cb3b6, type: 3}
 --- !u!1001 &1339306278802347860

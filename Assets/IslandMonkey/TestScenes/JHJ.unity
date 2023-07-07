@@ -2228,8 +2228,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _color: {r: 1, g: 0, b: 0, a: 1}
-  _scale: {x: 10, y: 10, z: 10}
-  _wireFrame: 1
+  _scale: {x: 1, y: 1, z: 1}
+  _wireFrame: 0
 --- !u!1 &813516776
 GameObject:
   m_ObjectHideFlags: 0
@@ -4710,6 +4710,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Building
       objectReference: {fileID: 0}
+    - target: {fileID: 5033685397656547054, guid: cdc5a2c1594f878499e93437a21598f5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6443192441495490915, guid: cdc5a2c1594f878499e93437a21598f5,
         type: 3}
       propertyPath: buildingLevelText
@@ -5325,7 +5330,7 @@ GameObject:
   - component: {fileID: 1492632623}
   - component: {fileID: 1492632626}
   - component: {fileID: 1492632625}
-  - component: {fileID: 1492632624}
+  - component: {fileID: 1492632627}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -5340,7 +5345,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1492632621}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5372,23 +5377,6 @@ MonoBehaviour:
   - {fileID: 1913334287}
   _totalGoldText: {fileID: 553525319}
   _totalShellText: {fileID: 542505440}
---- !u!114 &1492632624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1492632621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc619c5143b6c234f860118c29e11f0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bgmChanel:
-    audioSource: {fileID: 0}
-    volume: 1
-  _channels: []
-  _sounds: []
 --- !u!114 &1492632625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5417,6 +5405,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b077b34a6c5f5944fbfe2a8e3fdde4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1492632627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492632621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3a26d2a0770d4a469e50385b600184d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _totalShellText: {fileID: 542505440}
 --- !u!1 &1504461523
 GameObject:
   m_ObjectHideFlags: 0
@@ -7213,6 +7214,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Monkey
+      objectReference: {fileID: 0}
+    - target: {fileID: 8979710254220338852, guid: 486d5538c6e2e3841a70dfb55e7d42b2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8979710254220338853, guid: 486d5538c6e2e3841a70dfb55e7d42b2,
         type: 3}

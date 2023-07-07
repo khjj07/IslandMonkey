@@ -67,6 +67,7 @@ public class UIManager : MonoBehaviour
 
     }
     
+    
     public void BuildingPanelBackBtn()
     {
         BuildingPanel.SetActive(false);
