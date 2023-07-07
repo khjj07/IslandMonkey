@@ -17,6 +17,7 @@ public class VoyageUIManager : MonoBehaviour
     public void OnClickGoHomeBtn()
     {
         SceneManager.LoadScene("JHJ");
+        
     }
 
     private void UpdateTotalShellText()
