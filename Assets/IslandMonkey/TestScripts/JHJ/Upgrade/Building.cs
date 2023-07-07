@@ -16,7 +16,11 @@ namespace Assets.IslandMonkey.TestScripts.JHJ.Upgrade
         private Subject<Unit> _upgradeSubject = new Subject<Unit>();
         public IObservable<Unit> OnUpgradeAsObservable() => _upgradeSubject;
 
-
+        private void Start()
+        {
+            // 씬 전환이 일어났을 때 GameManager 인스턴스가 유지되도록 설정
+            DontDestroyOnLoad(gameObject);
+        }
         public void Upgrade()
         {
             buildingLevel++;

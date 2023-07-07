@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/IslandMonkey/TestScenes/KHJShader.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/IslandMonkey/TestScenes/JHJ.unity
+    guid: a2406a34aafb4464da9f657102b1c773
+  - enabled: 1
+    path: Assets/IslandMonkey/TestScenes/Voyage.unity
+    guid: 2a3c5498ef8096143a67ce6af6712232
   m_configObjects: {}

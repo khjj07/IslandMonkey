@@ -9,7 +9,7 @@ using System.Linq;
 using Assets.IslandMonkey.TestScripts.JHJ.Upgrade;
 using System.Collections.Generic;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     [SerializeField]
     private List<Building> _buildingPrefabs; // 다양한 종류의 빌딩 프리팹을 리스트로 선언
@@ -20,8 +20,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private List<Ground> _builddSlots; // 지면 슬롯을 리스트로 선언
 
-    [SerializeField]
-    private int _totalGold;
+    
+    public static int _totalGold;
+
+
+    public static int _totalShell;
 
     [SerializeField]
     private TextMeshProUGUI _totalGoldText; // TextMeshPro 오브젝트를 할당받을 변수
@@ -31,9 +34,11 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        // 씬 전환이 일어났을 때 GameManager 인스턴스가 유지되도록 설정
+        DontDestroyOnLoad(gameObject);
+
         UpdateTotalGoldText();
     }
-
     public void CreateBuilding()
     {
         var buildingPrefab = _buildingPrefabs[0]; // 프리팹 선택
@@ -139,5 +144,19 @@ public class GameManager : MonoBehaviour
             });
 
 
+    }
+    // 게임 매니저 데이터 저장
+    public void SaveGameManagerData()
+    {
+        PlayerPrefs.SetInt("TotalGold", _totalGold);
+        PlayerPrefs.SetInt("TotalShell", _totalShell);
+    }
+
+    // 게임 매니저 데이터 복원
+    public void LoadGameManagerData()
+    {
+        _totalGold = PlayerPrefs.GetInt("TotalGold");
+        _totalShell = PlayerPrefs.GetInt("TotalShell");
+        UpdateTotalGoldText();
     }
 }
