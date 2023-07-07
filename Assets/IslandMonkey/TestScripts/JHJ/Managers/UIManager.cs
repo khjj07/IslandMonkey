@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEngine.Rendering.DebugUI;
 
 public class UIManager : MonoBehaviour
@@ -12,6 +13,8 @@ public class UIManager : MonoBehaviour
 
     public static bool bulidingPanelOpened;
     public static bool UpgradebulidingPanelOpened;
+
+    public float delayTime = 3;
 
     public Vector3 scrollRectStart;
 
@@ -55,7 +58,7 @@ public class UIManager : MonoBehaviour
     }
     public void OnClickVoyageBtn()
     {
-
+        SceneManager.LoadScene("Voyage");
     }
     public void OnClickAbroadBtn()
     {
@@ -74,4 +77,8 @@ public class UIManager : MonoBehaviour
         //BuildingPanel.transform.localPosition = Vector3.left * 1500;
         UpgradebulidingPanelOpened = false;
     }
+    /*public void LoadVoyageScene()
+    {
+        SceneManager.LoadScene("Voyage");
+    }*/
 }

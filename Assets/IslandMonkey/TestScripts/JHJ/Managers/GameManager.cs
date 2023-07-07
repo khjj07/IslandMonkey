@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     private int _totalGold;
 
     [SerializeField]
+    private int _totalShell;
+
+    [SerializeField]
     private TextMeshProUGUI _totalGoldText; // TextMeshPro 오브젝트를 할당받을 변수
 
     private ReactiveCollection<Building> _buildings = new ReactiveCollection<Building>();
