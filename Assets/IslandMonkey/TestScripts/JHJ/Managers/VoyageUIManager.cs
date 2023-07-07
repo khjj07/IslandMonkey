@@ -17,7 +17,8 @@ public class VoyageUIManager : MonoBehaviour
     public void OnClickGoHomeBtn()
     {
         SceneManager.LoadScene("JHJ");
-        
+
+        Invoke("DelayedCreateBuilding", 1f);
     }
 
     private void UpdateTotalShellText()
@@ -35,5 +36,9 @@ public class VoyageUIManager : MonoBehaviour
 
 
 
+    }
+    private void DelayedCreateBuilding()
+    {
+        GameManager.instance.CreateBuilding();
     }
 }
