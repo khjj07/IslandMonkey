@@ -58,13 +58,14 @@ public class UIManager : MonoBehaviour
     }
     public void OnClickVoyageBtn()
     {
+        GameManager.instance.SaveGameManagerData();
         SceneManager.LoadScene("Voyage");
     }
     public void OnClickAbroadBtn()
     {
 
     }
-
+    
     public void BuildingPanelBackBtn()
     {
         BuildingPanel.SetActive(false);
