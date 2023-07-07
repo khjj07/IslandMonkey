@@ -23,11 +23,13 @@ public class GameManager : Singleton<GameManager>
     
     public static int _totalGold;
 
-
     public static int _totalShell;
 
     [SerializeField]
     private TextMeshProUGUI _totalGoldText; // TextMeshPro 오브젝트를 할당받을 변수
+
+    [SerializeField]
+    private TextMeshProUGUI _totalShellText; // TextMeshPro 오브젝트를 할당받을 변수
 
     private ReactiveCollection<Building> _buildings = new ReactiveCollection<Building>();
     private ReactiveCollection<Monkey> _monkeys = new ReactiveCollection<Monkey>();
@@ -38,6 +40,7 @@ public class GameManager : Singleton<GameManager>
         DontDestroyOnLoad(gameObject);
 
         UpdateTotalGoldText();
+        UpdateTotalShellText();
     }
     public void CreateBuilding()
     {
@@ -141,6 +144,20 @@ public class GameManager : Singleton<GameManager>
                     _totalGoldText.text = " " + _totalGold;
                 }
 
+            });
+
+
+    }
+    private void UpdateTotalShellText()
+    {
+        Observable.Interval(TimeSpan.FromSeconds(1))
+            .Subscribe(_ =>
+            {
+                if (_totalShellText != null)
+
+                {
+                    _totalShellText.text = " " + GameManager._totalShell;
+                }
             });
 
 
