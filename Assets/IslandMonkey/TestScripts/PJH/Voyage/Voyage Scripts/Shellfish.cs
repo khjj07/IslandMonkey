@@ -12,7 +12,7 @@ public class Shellfish : MonoBehaviour, IPointerClickHandler
 
     IEnumerator DestroyShellfish()
     {
-        yield return new WaitForSeconds(10.0f); // 30초 대기
+        yield return new WaitForSeconds(10.0f); // 10초 대기
         Debug.Log("Shellfish 사라짐!");
         gameObject.SetActive(false);
     }

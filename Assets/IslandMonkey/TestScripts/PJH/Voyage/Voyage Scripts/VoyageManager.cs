@@ -47,7 +47,7 @@ public class VoyageManager : MonoBehaviour
         {
             VoyageTime -= (Time.deltaTime);
             VoyageBar.value = VoyageTime;
-            if ((VoyageTime <= VoyageTime / 2) && !isReturn)
+            if ((VoyageTime <= VoyageBar.maxValue / 2) && !isReturn)
             {
                 Boat.transform.Rotate(0, 180, 0);
                 isReturn = true;
