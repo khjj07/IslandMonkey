@@ -19,9 +19,9 @@ public class Shellfish : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Obtain Shellfish!"); // 나중에 gamamanager shellfish 기능과 연결 필요
+        Debug.Log("Obtain Shellfish!"); 
         GameManager._totalShell += 50;
-        Debug.Log(GameManager._totalShell);
+        //Debug.Log(GameManager._totalShell);
         gameObject.SetActive(false);
     }
 

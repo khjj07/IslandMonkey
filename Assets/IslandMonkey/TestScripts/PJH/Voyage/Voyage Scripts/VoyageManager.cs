@@ -9,14 +9,16 @@ using UnityEngine.UI;
 
 public class VoyageManager : MonoBehaviour
 {
-    public float VoyageTime;
+    [SerializeField] public float VoyageTime;
+    [SerializeField] public float ShellfishTime;
+
     [SerializeField] private GameObject[] Shellfishes;
     [SerializeField] private GameObject[] Helps;
     [SerializeField] private Slider VoyageBar;
     [SerializeField] private GameObject Boat;
     [SerializeField] private GameObject VoyagePopUp;
 
-    private float StartTime;
+    //private float StartTime;
     private Shellfish ShellfishItem;
     private bool isReturn = false;
 
@@ -24,10 +26,10 @@ public class VoyageManager : MonoBehaviour
 
     private void Start()
     {
-        StartTime = Time.time;
+        //StartTime = Time.time;
         VoyageBar.maxValue = VoyageTime;
         VoyageBar.value = VoyageTime;
-        InvokeRepeating("CreateShellfish", 10.0f, 20.0f);
+        InvokeRepeating("CreateShellfish", 5.0f, ShellfishTime);
     }
 
     private void CreateShellfish()
