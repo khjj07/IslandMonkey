@@ -4,13 +4,12 @@ using UniRx;
 
 public class Ground : MonoBehaviour
 {
-    private bool isOccupied = false;
+    private ReactiveProperty<bool> isOccupied = new ReactiveProperty<bool>(false);
 
-    public bool IsOccupied => isOccupied;
-
+    public IReadOnlyReactiveProperty<bool> IsOccupied => isOccupied;
 
     public void SetOccupied(bool occupied)
     {
-        isOccupied = occupied;
+        isOccupied.Value = occupied;
     }
 }

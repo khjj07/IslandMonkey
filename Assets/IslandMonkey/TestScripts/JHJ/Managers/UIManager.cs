@@ -14,9 +14,15 @@ public class UIManager : MonoBehaviour
     public static bool bulidingPanelOpened;
     public static bool UpgradebulidingPanelOpened;
 
-    public float delayTime = 3;
 
-    public Vector3 scrollRectStart;
+    [SerializeField]
+    private GameObject buildingBtn; // Building 버튼 오브젝트
+    [SerializeField]
+    private GameObject storeBtn; // Store 버튼 오브젝트
+    [SerializeField]
+    private GameObject voyageBtn; // Voyage 버튼 오브젝트
+
+    private bool isRolledUp = false; // 버튼들이 숨겨진 상태인지 여부를 나타내는 변수
 
     private void Start()
     {
@@ -84,4 +90,14 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene("Voyage");
     }*/
+    public void RollupBtn()
+    {
+        isRolledUp = !isRolledUp; // 상태를 반전시킴
+
+        // 버튼들을 활성화 또는 비활성화
+        buildingBtn.SetActive(!isRolledUp);
+        storeBtn.SetActive(!isRolledUp);
+        voyageBtn.SetActive(!isRolledUp);
+    }
+    
 }

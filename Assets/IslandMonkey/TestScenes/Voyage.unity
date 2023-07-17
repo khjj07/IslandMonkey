@@ -570,7 +570,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &455039643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1506,7 +1506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f3e1de8b23e5140936cfb8c34b7137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VoyageTime: 15
+  VoyageTime: 5
   Shellfishes:
   - {fileID: 580781562}
   - {fileID: 1506921605}
@@ -1893,7 +1893,7 @@ PrefabInstance:
     - target: {fileID: 6819158703728839287, guid: 740eb14c83913294e8aedeb10fed896b,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8418962034212166822, guid: 740eb14c83913294e8aedeb10fed896b,
         type: 3}

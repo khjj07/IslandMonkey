@@ -373,8 +373,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a94c83d291b0a0142b85d6c21f23c2e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingLevel: 1
-  buildingLevelText: {fileID: 0}
+  buildingLevel: 9
+  buildingLevelText: {fileID: 1607966526769273945, guid: 79ec844076fcf994996275b9a1fd3597,
+    type: 3}
 --- !u!222 &3395686644693861408
 CanvasRenderer:
   m_ObjectHideFlags: 0
