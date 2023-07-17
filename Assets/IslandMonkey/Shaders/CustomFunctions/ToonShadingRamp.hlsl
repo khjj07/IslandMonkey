@@ -21,16 +21,17 @@ in float ToonRampOffset, out float3 ToonRampOutput, out float3 Direction)
 #else
     Light light = GetMainLight();
 #endif
- 
+
         // dot product for toonramp
     half d = dot(Normal, light.direction) * 0.5 + 0.5;
         
         // toonramp in a smoothstep
     half toonRamp = smoothstep(ToonRampOffset, ToonRampOffset + ToonRampSmoothness, d);
-        // multiply with shadows;
-    //toonRamp *= light.shadowAttenuation;
+
+	// multiply with shadows;
+    toonRamp *= light.shadowAttenuation;
         // add in lights and extra tinting
-    ToonRampOutput = light.color * (toonRamp + ToonRampTinting);
+    ToonRampOutput = light.color * ((toonRamp * 0.5) + (ToonRampTinting * 0.5));
         // output direction for rimlight
     Direction = light.direction;
 #endif

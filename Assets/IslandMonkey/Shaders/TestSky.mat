@@ -48,7 +48,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _CloudFrequency: 6.14
+    - _CloudScale: 0.55
+    - _CloudSpeed: 0.01
     - _QueueControl: 0
     - _QueueOffset: 0
-    m_Colors: []
+    m_Colors:
+    - _Color: {r: 0.12130647, g: 0.52013075, b: 0.5471698, a: 0}
   m_BuildTextureStacks: []
