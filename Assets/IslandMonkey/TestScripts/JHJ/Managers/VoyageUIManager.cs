@@ -18,8 +18,6 @@ public class VoyageUIManager : MonoBehaviour
     {
         
         SceneManager.LoadScene("JHJ");
-
-       
     }
 
     public void OnClickAbroadEndBtn()
