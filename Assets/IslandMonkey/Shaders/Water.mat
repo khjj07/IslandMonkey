@@ -63,13 +63,13 @@ Material:
     - _FoamSpeed: 0.01
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RippleDensity: 10
-    - _RippleSlimness: 500
-    - _RippleSpeed: 0
+    - _RippleDensity: 28
+    - _RippleSlimness: 26
+    - _RippleSpeed: 1
     - _WaterSpeed: 1
-    - _WaveScale: 0.3
+    - _WaveScale: 0.5
     - _depth: 0.33
-    - _width: 200
+    - _width: 10000
     m_Colors:
     - _BaseColor: {r: 0.2609914, g: 0.72430015, b: 0.8018868, a: 0.75686276}
     - _EmissiveColor: {r: 0.0007314645, g: 0.0007314645, b: 0.0007314645, a: 1}

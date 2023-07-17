@@ -34,6 +34,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _ParallaxMapping_6a3791ea417847e0a3d33022b784b4bf_Heightmap_1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -48,11 +52,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CloudFrequency: 6.14
-    - _CloudScale: 0.55
-    - _CloudSpeed: 0.01
+    - _CloudFrequency: 0.88
+    - _CloudScale: 11.87
+    - _CloudSpeed: 0.04
+    - _DayTime: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color: {r: 0.12130647, g: 0.52013075, b: 0.5471698, a: 0}
+    - _Color: {r: 0.28235292, g: 0.72056323, b: 0.8980392, a: 0}
   m_BuildTextureStacks: []
