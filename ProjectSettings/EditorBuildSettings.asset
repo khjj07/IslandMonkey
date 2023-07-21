@@ -6,12 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/IslandMonkey/TestScenes/JHJ.unity
-    guid: a2406a34aafb4464da9f657102b1c773
+    path: Assets/IslandMonkey/Scenes/IngameScene.unity
+    guid: 967460b038bc40a49b30a986dfa51bee
   - enabled: 1
-    path: Assets/IslandMonkey/TestScenes/Voyage.unity
+    path: Assets/IslandMonkey/Scenes/Voyage.unity
     guid: 2a3c5498ef8096143a67ce6af6712232
-  - enabled: 1
-    path: Assets/IslandMonkey/TestScenes/KHJShader.unity
-    guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects: {}

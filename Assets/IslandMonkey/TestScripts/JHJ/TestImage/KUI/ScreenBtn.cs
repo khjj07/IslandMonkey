@@ -12,3 +12,4 @@ public class ScreenBtn : MonoBehaviour
         //uiManager.SetScreenState(linkedScreenState);
     }
 }
+//이것도 난해해..ㅠㅠ..

@@ -3,13 +3,7 @@ using TMPro;
 using UniRx;
 using UnityEngine;
 
-interface IUpgradable
-{
-    IObservable<Unit> OnUpgradeAsObservable();
-    void Upgrade();
-}
-
-
+//인터페이스가 있던 자리 인터페이스도 파일을 분리해줘
 
 namespace Assets.IslandMonkey.TestScripts.JHJ.Upgrade
 {
@@ -20,10 +14,8 @@ namespace Assets.IslandMonkey.TestScripts.JHJ.Upgrade
         public int BuildingLevel;
         public Vector3 BuildingPosition;
         // 여기에 다른 필요한 빌딩 데이터를 추가할 수 있습니다.
+        // 이거 뭐할라고 만든건지 모름
     }
-
-
-
 
     public class Building : MonoBehaviour
     {
