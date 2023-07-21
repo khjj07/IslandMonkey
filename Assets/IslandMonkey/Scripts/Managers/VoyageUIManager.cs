@@ -17,7 +17,7 @@ public class VoyageUIManager : MonoBehaviour
     public void OnClickGoHomeBtn()
     {
         
-        SceneManager.LoadScene("JHJ");
+        SceneManager.LoadScene("InGameScene");
     }
 
     public void OnClickAbroadEndBtn()

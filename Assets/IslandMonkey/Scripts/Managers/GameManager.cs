@@ -71,7 +71,8 @@ public class GameManager : Singleton<GameManager>
             var monkey = monkeyObject.GetComponent<Monkey>();
             _totalMonkey = _totalMonkey + 1;
             
-            monkey.transform.localPosition = new Vector3(-0.5f, 0.5f, 0f); // 건물에 상대적인 위치 설정
+            monkey.transform.localPosition = new Vector3(-0.25f, 0f, 0f); // 건물에 상대적인 위치 설정
+            monkey.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
 
             Observable.Interval(TimeSpan.FromSeconds(1))
                 .Where(_ => monkey.MonkeyLevel > 0)
