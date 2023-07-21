@@ -1,19 +1,31 @@
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEngine.Rendering.DebugUI;
+using UnityEngine.UI;
+
+public enum ScreenState
+{
+    VoyageFacilityScreen,
+    FunctialFacilityScreen,
+    SpecialFacilityScreen
+}
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] 
+    [SerializeField]
+    private GameObject SettingPanel;
+
+
+    [SerializeField]
     private GameObject BuildingPanel;
     [SerializeField]
     private GameObject UpgradeBuildingPanel;
+    [SerializeField]
+    private GameObject voyageSplash;
 
     public static bool bulidingPanelOpened;
     public static bool UpgradebulidingPanelOpened;
-
 
     [SerializeField]
     private GameObject buildingBtn; // Building 버튼 오브젝트
@@ -22,74 +34,152 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject voyageBtn; // Voyage 버튼 오브젝트
 
+    [SerializeField]
+    private GameObject voyageFacilityScreen;
+    [SerializeField]
+    private GameObject functialFacilityScreen;
+    [SerializeField]
+    private GameObject specialFacilityScreen;
+
+    private ScreenState currentScreenState;
+
     private bool isRolledUp = false; // 버튼들이 숨겨진 상태인지 여부를 나타내는 변수
+
+
+    //나중에 수정
+    public static int buildingLevel=1;
+    [SerializeField]
+    private TextMeshProUGUI _buildingLevelText; // TextMeshPro 오브젝트를 할당받을 변수
+
 
     private void Start()
     {
         bulidingPanelOpened = false;
+       
     }
 
     void Update()
     {
-        // 마우스 왼쪽 버튼 클릭 시 Raycast를 수행합니다.
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            // Building 태그를 가진 오브젝트를 감지하면 패널을 활성화합니다.
-            if (Physics.Raycast(ray, out hit) && hit.collider.CompareTag("Building"))
+            Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow, 1f); // Draw the ray for 1 second.
+
+            if (Physics.Raycast(ray, out hit))
             {
-                UpgradeBuildingPanel.SetActive(true);
-                UpgradebulidingPanelOpened = true;
+                Debug.Log("Ray hit: " + hit.collider.gameObject.name); // Print the name of the hit object.
+
+                if (hit.collider.CompareTag("Building"))
+                {
+                    UpgradeBuildingPanel.SetActive(true);
+                    UpgradebulidingPanelOpened = true;
+                }
             }
         }
     }
+    public void OnClickSettingBtn()
+    {
+        SettingPanel.SetActive(true);
+        
+    }
+    public void OnClickSettingBackBtn()
+    {
+        SettingPanel.SetActive(false);
 
+    }
     public void OnClickBuildingBtn()
     {
-        //BuildingPanel.transform.localPosition = Vector3.zero;   // recttransform 쓰기
-        BuildingPanel.SetActive(true);
-        bulidingPanelOpened = true;
+         BuildingPanel.SetActive(true);
+         bulidingPanelOpened = true;
+         SetVoyageFacilityScreen();
+         //SetScreenState(ScreenState.VoyageFacilityScreen);
     }
+
     public void OnClickUpgradeBuildingBtn()
     {
-        //BuildingPanel.transform.localPosition = Vector3.zero;   // recttransform 쓰기
-        //UpgradeBuildingPanel.SetActive(true);
-        //UpgradebulidingPanelOpened = true;
+        UpgradeBuildingPanel.SetActive(true);
+        UpgradebulidingPanelOpened = true;
     }
+
     public void OnClickStoreBtn()
     {
-
     }
+
     public void OnClickVoyageBtn()
     {
-        GameManager.instance.CreateBuilding();
-        GameManager.instance.SaveGameManagerData();
-        SceneManager.LoadScene("Voyage");
+        StartCoroutine(TransitionToVoyageScene());
     }
+
     public void OnClickAbroadBtn()
     {
-
     }
-    
-    
+
     public void BuildingPanelBackBtn()
     {
         BuildingPanel.SetActive(false);
-        //BuildingPanel.transform.localPosition = Vector3.left * 1500;
         bulidingPanelOpened = false;
     }
+
     public void UpgradeBuildingPanelBackBtn()
     {
         UpgradeBuildingPanel.SetActive(false);
-        //BuildingPanel.transform.localPosition = Vector3.left * 1500;
         UpgradebulidingPanelOpened = false;
     }
-    /*public void LoadVoyageScene()
+    public void BuildingUpgradeBtn()
     {
-        SceneManager.LoadScene("Voyage");
-    }*/
+        buildingLevel++;
+        _buildingLevelText.text = " " + buildingLevel;
+        
+    }
+
+
+    /* public void SetScreenState(ScreenState newState)
+     {
+         currentScreenState = newState;
+
+         voyageFacilityScreen.SetActive(false);
+         functialFacilityScreen.SetActive(false);
+         specialFacilityScreen.SetActive(false);
+
+         switch (currentScreenState)
+         {
+             case ScreenState.VoyageFacilityScreen:
+                 voyageFacilityScreen.SetActive(true);
+                 break;
+             case ScreenState.FunctialFacilityScreen:
+                 functialFacilityScreen.SetActive(true);
+                 break;
+             case ScreenState.SpecialFacilityScreen:
+                 specialFacilityScreen.SetActive(true);
+                 break;
+             default:
+                 Debug.LogError("Unrecognized screen state: " + currentScreenState);
+                 break;
+         }
+     }*/
+
+    public void SetVoyageFacilityScreen()
+    {
+        voyageFacilityScreen.SetActive(true);
+        functialFacilityScreen.SetActive(false);
+        specialFacilityScreen.SetActive(false);
+    }
+    public void SetFunctialFacilityScreen()
+    {
+        voyageFacilityScreen.SetActive(false);
+        functialFacilityScreen.SetActive(true);
+        specialFacilityScreen.SetActive(false);
+    }
+    public void SetSpecialFacilityScreen()
+    {
+        voyageFacilityScreen.SetActive(false);
+        functialFacilityScreen.SetActive(false);
+        specialFacilityScreen.SetActive(true);
+    }
+
+
     public void RollupBtn()
     {
         isRolledUp = !isRolledUp; // 상태를 반전시킴
@@ -99,5 +189,18 @@ public class UIManager : MonoBehaviour
         storeBtn.SetActive(!isRolledUp);
         voyageBtn.SetActive(!isRolledUp);
     }
-    
+
+    private IEnumerator TransitionToVoyageScene()
+    {
+
+        // Show the VoyageSplash game object.
+        voyageSplash.SetActive(true);
+        GameManager.instance.CreateBuilding();
+        GameManager.instance.SaveGameManagerData();
+        // Wait for 2 seconds.
+        yield return new WaitForSeconds(2);
+
+        // Load the Voyage scene.
+        SceneManager.LoadScene("Voyage");
+    }
 }

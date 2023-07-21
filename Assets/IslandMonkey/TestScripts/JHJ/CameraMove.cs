@@ -3,6 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
+using System;
+
+[Serializable]
+public class BuildingData
+{
+    public int BuildingType;
+    public int BuildingLevel;
+    public Vector3 BuildingPosition;
+    // 여기에 다른 필요한 빌딩 데이터를 추가할 수 있습니다.
+}
+
+
+
+
 
 public class CameraMove : MonoBehaviour
 {

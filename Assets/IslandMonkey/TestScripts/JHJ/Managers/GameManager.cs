@@ -28,6 +28,7 @@ public class GameManager : Singleton<GameManager>
 
     public static int _totalMonkey;
 
+
     [SerializeField]
     private TextMeshProUGUI _totalGoldText; // TextMeshPro 오브젝트를 할당받을 변수
 
@@ -60,7 +61,7 @@ public class GameManager : Singleton<GameManager>
         {
             var randomSlotIndex = UnityEngine.Random.Range(0, availableGroundSlots.Count);
             var selectedSlot = availableGroundSlots[randomSlotIndex];
-            building.transform.position = selectedSlot.transform.position + new Vector3(0f, 0.4f, 0f);
+            building.transform.position = selectedSlot.transform.position + new Vector3(0f, 0.2f, -0.8f);
             _buildings.Add(building);
             selectedSlot.SetOccupied(false);
 
@@ -70,7 +71,7 @@ public class GameManager : Singleton<GameManager>
             var monkey = monkeyObject.GetComponent<Monkey>();
             _totalMonkey = _totalMonkey + 1;
             
-            monkey.transform.localPosition = new Vector3(1f, 0.1f, 0f); // 건물에 상대적인 위치 설정
+            monkey.transform.localPosition = new Vector3(-0.5f, 0.5f, 0f); // 건물에 상대적인 위치 설정
 
             Observable.Interval(TimeSpan.FromSeconds(1))
                 .Where(_ => monkey.MonkeyLevel > 0)
@@ -153,12 +154,32 @@ public class GameManager : Singleton<GameManager>
         {
             if (_totalGoldText != null)
             {
-                _totalGoldText.text = " " + _totalGold;
+                _totalGoldText.text = FormatGoldText(_totalGold);
             }
         })
         .AddTo(this); // 옵저버블에 GameManager를 연결하여 OnDestroy() 시 옵저버블 구독 해지
-
     }
+    private string FormatGoldText(int gold)
+    {
+        string[] suffixes = { "", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k",
+            "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+        if (gold <= 0)
+        {
+            return "0";
+        }
+
+        int suffixIndex = 0;
+        decimal goldValue = gold;
+
+        while (goldValue >= 1000)
+        {
+            goldValue /= 1000;
+            suffixIndex++;
+        }
+
+        return $"{goldValue:F1}{suffixes[suffixIndex]}";
+    }
+    // gold 표시
     private void UpdateTotalShellText()
     {
         Observable.Interval(TimeSpan.FromSeconds(1))
@@ -186,6 +207,10 @@ public class GameManager : Singleton<GameManager>
         .AddTo(this); // 옵저버블에 GameManager를 연결하여 OnDestroy() 시 옵저버블 구독 해지
 
     }
+
+
+
+
     // 게임 매니저 데이터 저장
     public void SaveGameManagerData()
     {
