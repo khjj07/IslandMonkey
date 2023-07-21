@@ -20,6 +20,17 @@ namespace Assets.IslandMonkey.TestScripts.JHJ.Upgrade
         {
             // 씬 전환이 일어났을 때 GameManager 인스턴스가 유지되도록 설정
             DontDestroyOnLoad(gameObject);
+
+                Observable.Interval(TimeSpan.FromSeconds(1))
+                .Subscribe(_ =>
+                {
+                    
+                        BuildingLevelText();
+                    
+                })
+                .AddTo(this); // 옵저버블에 GameManager를 연결하여 OnDestroy() 시 옵저버블 구독 해지
+
+           
         }
         public void Upgrade()
         {
@@ -31,19 +42,12 @@ namespace Assets.IslandMonkey.TestScripts.JHJ.Upgrade
         [SerializeField]
         private TextMeshProUGUI buildingLevelText;
 
-        public int BuildingLevel
-        {
-            get => buildingLevel;
-            private set
-            {
-                buildingLevel = value;
-                BuildingLevelText();
-            }
-        }
+        public int BuildingLevel;
 
         public void BuildingUpgrade()
         {
             BuildingLevel++;
+            
             _upgradeSubject.OnNext(Unit.Default);
         }
 

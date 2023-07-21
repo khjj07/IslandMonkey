@@ -25,23 +25,24 @@ public class CameraMove : MonoBehaviour
         cam = GetComponent<Camera>();
         moveScaleVector = new Vector2(moveScale, moveScale);
 
-        // 스와이프
+       // 스와이프
         this.UpdateAsObservable()
-            .Where(_ => Input.touchCount == 1)
+            .Where(_ => Input.touchCount > 0)
             .Subscribe(_ =>
             {
-                if (Input.GetMouseButtonDown(0))
+                Touch touch = Input.GetTouch(0);
+                if (touch.phase == TouchPhase.Began)
                 {
                     this.hold = true;
-                    this.startPos = Input.mousePosition;
+                    this.startPos = touch.position;
                 }
-                else if (Input.GetMouseButtonUp(0))
+                else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
                 {
                     this.hold = false;
                 }
                 if (this.hold)
                 {
-                    this.curPos = Input.mousePosition;
+                    this.curPos = touch.position;
                     transform.Translate((cam.orthographicSize / 5) * moveScaleVector * (startPos - curPos));
                     if (Outside())
                     {
@@ -52,28 +53,34 @@ public class CameraMove : MonoBehaviour
             })
             .AddTo(this);
 
+
         // 줌
         this.UpdateAsObservable()
-            .Where(_ => Input.touchCount > 1)
+            .Where(_ => Input.touchCount > 1 || Input.mouseScrollDelta.y != 0f) // 터치 또는 마우스 휠 입력 확인
             .Subscribe(_ =>
             {
-                // 터치 저장
-                Touch touchZero = Input.GetTouch(0);
-                Touch touchOne = Input.GetTouch(1);
+                float zoomInput = Input.mouseScrollDelta.y; // 마우스 휠 입력 값
+                if (Input.touchCount > 1)
+                {
+                    // 터치 입력 처리
+                    // 터치 저장
+                    Touch touchZero = Input.GetTouch(0);
+                    Touch touchOne = Input.GetTouch(1);
 
-                // 위치 저장
-                Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
-                Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
+                    // 위치 저장
+                    Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
+                    Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
 
-                // 거리 계산
-                float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
-                float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
+                    // 거리 계산
+                    float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
+                    float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
 
-                // 줌 땡기기
-                float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
+                    // 줌 땡기기
+                    zoomInput = prevTouchDeltaMag - touchDeltaMag;
+                }
 
                 // 카메라 사이즈
-                float newSize = cam.orthographicSize + (deltaMagnitudeDiff * zoomSpeed);
+                float newSize = cam.orthographicSize + (zoomInput * zoomSpeed);
                 newSize = Mathf.Max(newSize, 1f);
                 newSize = Mathf.Min(newSize, 6f);
                 cam.orthographicSize = newSize;

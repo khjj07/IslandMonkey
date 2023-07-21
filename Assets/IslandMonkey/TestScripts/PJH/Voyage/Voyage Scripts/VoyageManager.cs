@@ -29,7 +29,11 @@ public class VoyageManager : MonoBehaviour
         //StartTime = Time.time;
         VoyageBar.maxValue = VoyageTime;
         VoyageBar.value = VoyageTime;
+<<<<<<< HEAD
         InvokeRepeating("CreateShellfish", 5.0f, ShellfishTime);
+=======
+        InvokeRepeating("CreateShellfish", 5.0f, 5.0f);
+>>>>>>> cac01061c0f3e38ad13bec957dbd0773ca253161
     }
 
     private void CreateShellfish()
