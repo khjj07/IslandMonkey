@@ -2,10 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UniRx;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 using UnityEngine.UI;
-
-
 
 public class VoyageManager : MonoBehaviour
 {
@@ -21,6 +20,7 @@ public class VoyageManager : MonoBehaviour
     //private float StartTime;
     private Shellfish ShellfishItem;
     private bool isReturn = false;
+    private bool isEnd = false;
 
     private System.Random randomObj = new System.Random();
 
@@ -29,12 +29,12 @@ public class VoyageManager : MonoBehaviour
         //StartTime = Time.time;
         VoyageBar.maxValue = VoyageTime;
         VoyageBar.value = VoyageTime;
-        InvokeRepeating("CreateShellfish", 5.0f, ShellfishTime);
+        InvokeRepeating("CreateShellfish", ShellfishTime, ShellfishTime);
     }
 
     private void CreateShellfish()
     {
-        int index = randomObj.Next(3);
+        int index = randomObj.Next(7);
         ShellfishItem = Shellfishes[index].GetComponent<Shellfish>();
         if (!ShellfishItem.isActiveAndEnabled)
         {
@@ -55,9 +55,10 @@ public class VoyageManager : MonoBehaviour
                 isReturn = true;
             }
         }
-        else
+        else if (!isEnd)
         {
             VoyageEnd();
+            isEnd = true;
         }
     }
 
