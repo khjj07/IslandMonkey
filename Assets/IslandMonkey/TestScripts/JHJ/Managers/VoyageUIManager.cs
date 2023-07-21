@@ -18,10 +18,13 @@ public class VoyageUIManager : MonoBehaviour
     {
         
         SceneManager.LoadScene("JHJ");
-
-        //Invoke("DelayedCreateBuilding", 1f);
     }
 
+    public void OnClickAbroadEndBtn()
+    {
+        SceneManager.LoadScene("JHJ");
+        //Invoke("DelayedCreateBuilding", 1f);
+    }
     private void UpdateTotalShellText()
     {
         Observable.Interval(TimeSpan.FromSeconds(1))

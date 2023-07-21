@@ -11,6 +11,7 @@ using System.Collections.Generic;
 
 public class GameManager : Singleton<GameManager>
 {
+
     [SerializeField]
     private List<Building> _buildingPrefabs; // 다양한 종류의 빌딩 프리팹을 리스트로 선언
 
@@ -20,16 +21,22 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private List<Ground> _builddSlots; // 지면 슬롯을 리스트로 선언
 
-    
+
     public static int _totalGold;
 
     public static int _totalShell;
+
+    public static int _totalMonkey;
+
 
     [SerializeField]
     private TextMeshProUGUI _totalGoldText; // TextMeshPro 오브젝트를 할당받을 변수
 
     [SerializeField]
     private TextMeshProUGUI _totalShellText; // TextMeshPro 오브젝트를 할당받을 변수
+
+    [SerializeField]
+    private TextMeshProUGUI _totalMonkeyText; // TextMeshPro 오브젝트를 할당받을 변수
 
     private ReactiveCollection<Building> _buildings = new ReactiveCollection<Building>();
     private ReactiveCollection<Monkey> _monkeys = new ReactiveCollection<Monkey>();
@@ -38,8 +45,8 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         // 씬 전환이 일어났을 때 GameManager 인스턴스가 유지되도록 설정
-        DontDestroyOnLoad(gameObject);
-
+        // DontDestroyOnLoad(gameObject);
+        UpdateTotalMonkeyText();
         UpdateTotalGoldText();
         UpdateTotalShellText();
     }
@@ -54,16 +61,17 @@ public class GameManager : Singleton<GameManager>
         {
             var randomSlotIndex = UnityEngine.Random.Range(0, availableGroundSlots.Count);
             var selectedSlot = availableGroundSlots[randomSlotIndex];
-            building.transform.position = selectedSlot.transform.position + new Vector3(0f, 0.4f, 0f);
-            // Ground의 위치에서 y축으로 1만큼 올림 Grid로 하면 달라질듯
+            building.transform.position = selectedSlot.transform.position + new Vector3(0f, 0.2f, -0.8f);
             _buildings.Add(building);
-            selectedSlot.SetOccupied(true);
+            selectedSlot.SetOccupied(false);
 
-            // 유학 시 : 원숭이 생성
+            // 유학 시: 원숭이 생성
             var monkeyPrefab = _monkeyPrefabs[0];
             var monkeyObject = Instantiate(monkeyPrefab.gameObject, building.transform);
             var monkey = monkeyObject.GetComponent<Monkey>();
-            monkey.transform.localPosition = new Vector3(1f, 0.1f, 0f); // 건물에 상대적인 위치 설정
+            _totalMonkey = _totalMonkey + 1;
+            
+            monkey.transform.localPosition = new Vector3(-0.5f, 0.5f, 0f); // 건물에 상대적인 위치 설정
 
             Observable.Interval(TimeSpan.FromSeconds(1))
                 .Where(_ => monkey.MonkeyLevel > 0)
@@ -103,9 +111,13 @@ public class GameManager : Singleton<GameManager>
             .Subscribe(_ =>
             {
                 building.BuildingUpgrade();
+                _totalGold = _totalGold - 100;
                 Debug.Log(" 빌딩 레벨 : " + building.buildingLevel);
             })
             .AddTo(building);
+
+        // 빌딩이 지어진 후에 availableGroundSlots를 업데이트
+        availableGroundSlots = _builddSlots.Where(slot => !slot.IsOccupied.Value).ToList();
     }
 
     public void CreateMonkey()
@@ -138,17 +150,36 @@ public class GameManager : Singleton<GameManager>
     private void UpdateTotalGoldText()
     {
         Observable.Interval(TimeSpan.FromSeconds(1))
-            .Subscribe(_ =>
+        .Subscribe(_ =>
+        {
+            if (_totalGoldText != null)
             {
-                if (_totalGoldText != null)
-                {
-                    _totalGoldText.text = " " + _totalGold;
-                }
-
-            });
-
-
+                _totalGoldText.text = FormatGoldText(_totalGold);
+            }
+        })
+        .AddTo(this); // 옵저버블에 GameManager를 연결하여 OnDestroy() 시 옵저버블 구독 해지
     }
+    private string FormatGoldText(int gold)
+    {
+        string[] suffixes = { "", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k",
+            "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+        if (gold <= 0)
+        {
+            return "0";
+        }
+
+        int suffixIndex = 0;
+        decimal goldValue = gold;
+
+        while (goldValue >= 1000)
+        {
+            goldValue /= 1000;
+            suffixIndex++;
+        }
+
+        return $"{goldValue:F1}{suffixes[suffixIndex]}";
+    }
+    // gold 표시
     private void UpdateTotalShellText()
     {
         Observable.Interval(TimeSpan.FromSeconds(1))
@@ -163,18 +194,66 @@ public class GameManager : Singleton<GameManager>
 
 
     }
+    private void UpdateTotalMonkeyText()
+    {
+        Observable.Interval(TimeSpan.FromSeconds(1))
+        .Subscribe(_ =>
+        {
+            if (_totalMonkeyText != null)
+            {
+                _totalMonkeyText.text = " " + _totalMonkey;
+            }
+        })
+        .AddTo(this); // 옵저버블에 GameManager를 연결하여 OnDestroy() 시 옵저버블 구독 해지
+
+    }
+
+
+
+
     // 게임 매니저 데이터 저장
     public void SaveGameManagerData()
     {
+        // 빌딩과 지면 슬롯의 상태를 저장
+        foreach (var building in _buildings)
+        {
+            PlayerPrefs.SetInt($"BuildingOccupied_{building.name}", 1); // 빌딩이 점유된 상태를 1로 저장
+        }
+
+       /* foreach (var slot in _builddSlots)
+        {
+            PlayerPrefs.SetInt($"GroundOccupied_{slot.name}", slot.IsOccupied ? 1 : 0); // 슬롯의 점유 여부를 1 또는 0으로 저장
+        }*/
+
         PlayerPrefs.SetInt("TotalGold", _totalGold);
         PlayerPrefs.SetInt("TotalShell", _totalShell);
+
+        // 저장된 데이터를 디스크에 기록
+        PlayerPrefs.Save();
+
     }
 
     // 게임 매니저 데이터 복원
     public void LoadGameManagerData()
     {
-        _totalGold = PlayerPrefs.GetInt("TotalGold");
-        _totalShell = PlayerPrefs.GetInt("TotalShell");
+        // 저장된 빌딩과 지면 슬롯의 상태를 복원
+        foreach (var building in _buildings)
+        {
+            var isOccupied = PlayerPrefs.GetInt($"BuildingOccupied_{building.name}", 0) == 1;
+            building.gameObject.SetActive(isOccupied); // 저장된 상태에 따라 빌딩을 활성화 또는 비활성화
+        }
+
+        foreach (var slot in _builddSlots)
+        {
+            var isOccupied = PlayerPrefs.GetInt($"GroundOccupied_{slot.name}", 0) == 1;
+            slot.SetOccupied(isOccupied); // 저장된 상태에 따라 슬롯의 점유 여부를 설정
+        }
+
+        _totalGold = PlayerPrefs.GetInt("TotalGold", 0);
+        _totalShell = PlayerPrefs.GetInt("TotalShell", 0);
+        
         UpdateTotalGoldText();
+        UpdateTotalShellText();
+
     }
 }
