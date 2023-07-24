@@ -56,17 +56,17 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FoamAlpha: 0.51
+    - _FoamAlpha: 0.136
     - _FoamAmount: 0.2
     - _FoamCutOff: 1
     - _FoamScale: 20
-    - _FoamSpeed: 0.1
+    - _FoamSpeed: 0.001
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RippleDensity: 209
     - _RippleSlimness: 26
     - _RippleSpeed: 2
-    - _WaterSpeed: 0.01
+    - _WaterSpeed: 0.02
     - _WaveScale: 30
     - _depth: 0.33
     - _width: 10000

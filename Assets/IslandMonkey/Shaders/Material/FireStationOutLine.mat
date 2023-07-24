@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MonkeyOutline
+  m_Name: FireStationOutLine
   m_Shader: {fileID: -6465566751694194690, guid: c74c7eb0b4eeb8a44a359d4eb74e327e,
     type: 3}
   m_ValidKeywords: []
@@ -49,7 +49,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Crocked: 1
-    - _OutlineThick: 0.035
+    - _OutlineThick: 0.062
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
