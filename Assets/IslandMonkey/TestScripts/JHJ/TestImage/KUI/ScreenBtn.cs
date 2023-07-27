@@ -4,7 +4,7 @@ using UnityEngine;
 public class ScreenBtn : MonoBehaviour
 {
     public UIManager uiManager;
-    public ScreenState linkedScreenState;
+    //public ScreenState linkedScreenState;
 
     public void OnScreenButtonClick()
     {
