@@ -4,19 +4,24 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UniRx;
 
-public enum ScreenState
-{
-    VoyageFacilityScreen,
-    FunctialFacilityScreen,
-    SpecialFacilityScreen
-}
 
 public class UIManager : MonoBehaviour
 {
     //컨밴션..맞춰줘..
     //그리고 여기에는 UI의 FSM이 들어가는게 맞을듯.. A상태 B상태 C상태에 따라서 UI 전체 형태가 바뀌고
     //현재 상태를 버튼 누르면 바꾸는게 깔끔할거 같아
+    public enum State
+    {
+        basic,
+        Voyage,
+        Functial,
+        Special
+
+    }
+        
+
 
     [SerializeField]
     private Image _settingPanel;
@@ -49,7 +54,6 @@ public class UIManager : MonoBehaviour
     private Image _specialFacilityScreen;
     //이것도 적어도 Panel 객체로
 
-    private ScreenState currentScreenState;
 
     private bool isRolledUp = false; // 버튼들이 숨겨진 상태인지 여부를 나타내는 변수
 
@@ -63,6 +67,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         bulidingPanelOpened = false;
+
     }
 
     void Update()
