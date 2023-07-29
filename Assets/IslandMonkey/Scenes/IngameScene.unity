@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18387067, g: 0.22901738, b: 0.30311197, a: 1}
+  m_IndirectSpecularColor: {r: 0.18387115, g: 0.22901794, b: 0.30311325, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -419,7 +419,7 @@ Transform:
   m_GameObject: {fileID: 50800714}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1594000692}
@@ -2032,7 +2032,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiManager: {fileID: 1953255371}
-  linkedScreenState: 1
 --- !u!1001 &200245664
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3303,7 +3302,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiManager: {fileID: 1953255371}
-  linkedScreenState: 2
 --- !u!1 &279104033
 GameObject:
   m_ObjectHideFlags: 0
@@ -4972,7 +4970,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiManager: {fileID: 1953255371}
-  linkedScreenState: 1
 --- !u!114 &381907934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6063,7 +6060,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiManager: {fileID: 1953255371}
-  linkedScreenState: 0
 --- !u!114 &459222491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13207,14 +13203,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1144538961}
-  m_LocalRotation: {x: 0.08715578, y: -0, z: -0, w: 0.9961947}
+  m_LocalRotation: {x: 0.10886683, y: 0, z: 0, w: 0.9940564}
   m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1455999593}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 12.5, y: 0, z: 0}
 --- !u!1 &1147419550
 GameObject:
   m_ObjectHideFlags: 0
@@ -13637,7 +13633,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiManager: {fileID: 1953255371}
-  linkedScreenState: 2
 --- !u!114 &1171858932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14267,7 +14262,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiManager: {fileID: 1953255371}
-  linkedScreenState: 0
 --- !u!1 &1208963320
 GameObject:
   m_ObjectHideFlags: 0
@@ -23044,7 +23038,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiManager: {fileID: 1953255371}
-  linkedScreenState: 0
 --- !u!114 &1953255371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23060,7 +23053,7 @@ MonoBehaviour:
   _settingPanel: {fileID: 2011800782}
   _buildingGroup: {fileID: 933547366}
   _upgradeBuildingPanel: {fileID: 1168142993}
-  _voyageSplash: {fileID: 153434675}
+  _voyageSplash: {fileID: 416292137}
   bulidingPanelOpened: 0
   upgradebulidingPanelOpened: 0
   _buildingBtn: {fileID: 605848126}
@@ -23464,6 +23457,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1968295045}
+  - component: {fileID: 1968295046}
   m_Layer: 0
   m_Name: Data
   m_TagString: Untagged
@@ -23486,6 +23480,19 @@ Transform:
   m_Father: {fileID: 2143043496}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1968295046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968295044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 882b37d6235b10d45889bf016fbd111c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  facilityList: 
 --- !u!1 &1982482677
 GameObject:
   m_ObjectHideFlags: 0

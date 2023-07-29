@@ -5,12 +5,16 @@ using UnityEngine.Playables;
 
 using System;
 
+
+
+// 수정 예정
+
 [Serializable]
 public class GameData
 {
     public int TotalGold;
     public int TotalShell;
-    // 여기에 더 많은 게임 데이터를 추가할 수 있습니다.
+    // 여기에 더 많은 게임 데이터를 추가
 }
 
 public class SaveSystem
