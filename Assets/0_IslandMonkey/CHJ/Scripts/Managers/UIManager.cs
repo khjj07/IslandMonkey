@@ -9,14 +9,12 @@ using UniRx;
 
 public class UIManager : MonoBehaviour
 {
-    //컨밴션..맞춰줘..
-    //그리고 여기에는 UI의 FSM이 들어가는게 맞을듯.. A상태 B상태 C상태에 따라서 UI 전체 형태가 바뀌고
-    //현재 상태를 버튼 누르면 바꾸는게 깔끔할거 같아
-    public enum State
+
+    public enum UIState
     {
         basic,
         Voyage,
-        Functial,
+        Functional,
         Special
 
     }
@@ -44,15 +42,16 @@ public class UIManager : MonoBehaviour
     private Button _storeBtn; // Store 버튼 오브젝트
     [SerializeField]
     private Button _voyageBtn; // Voyage 버튼 오브젝트
-    //적어도 Button 객체로 받아줘..
 
+    [SerializeField]
+    private Image _basicScreen;
     [SerializeField]
     private Image _voyageFacilityScreen;
     [SerializeField]
     private Image _functialFacilityScreen;
     [SerializeField]
     private Image _specialFacilityScreen;
-    //이것도 적어도 Panel 객체로
+
 
 
     private bool isRolledUp = false; // 버튼들이 숨겨진 상태인지 여부를 나타내는 변수
@@ -77,11 +76,11 @@ public class UIManager : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow, 1f); // Draw the ray for 1 second.
+            Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow, 1f); 
 
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.Log("Ray hit: " + hit.collider.gameObject.name); // Print the name of the hit object.
+                Debug.Log("Ray hit: " + hit.collider.gameObject.name); 
 
                 if (hit.collider.CompareTag("Building"))
                 {
@@ -105,14 +104,14 @@ public class UIManager : MonoBehaviour
     {
          _buildingGroup.gameObject.SetActive(true);
          bulidingPanelOpened = true;
-         SetVoyageFacilityScreen();
-         //SetScreenState(ScreenState.VoyageFacilityScreen);
+        SetFacilityScreen(UIState.Voyage);
     }
 
     public void OnClickUpgradeBuildingBtn()
     {
         _upgradeBuildingPanel.gameObject.SetActive(true);
         upgradebulidingPanelOpened = true;
+        
     }
 
     public void OnClickStoreBtn()
@@ -123,10 +122,36 @@ public class UIManager : MonoBehaviour
     {
         StartCoroutine(TransitionToVoyageScene());
     }
+    public void OnClickVoyageEx1Btn()
+    {
+        StartCoroutine(TransitionToVoyageSceneEx1());
+    }
 
     public void OnClickAbroadBtn()
     {
     }
+
+    public void SetFacilityScreen(UIState screen)
+    {
+        _basicScreen.gameObject.SetActive(screen == UIState.basic);
+        _voyageFacilityScreen.gameObject.SetActive(screen == UIState.Voyage);
+        _functialFacilityScreen.gameObject.SetActive(screen == UIState.Functional);
+        _specialFacilityScreen.gameObject.SetActive(screen == UIState.Special);
+    }
+    public void SetVoyageFacilityScreen()
+    {
+        SetFacilityScreen(UIState.Voyage);
+    }
+    public void SetFunctialFacilityScreen()
+    {
+        SetFacilityScreen(UIState.Functional);
+    }
+    public void SetSpecialFacilityScreen()
+    {
+        SetFacilityScreen(UIState.Special);
+    }
+
+
 
     public void BuildingPanelBackBtn()
     {
@@ -147,49 +172,7 @@ public class UIManager : MonoBehaviour
     }
 
 
-    /* public void SetScreenState(ScreenState newState)
-     {
-         currentScreenState = newState;
-
-         _voyageFacilityScreen.SetActive(false);
-         _functialFacilityScreen.SetActive(false);
-         _specialFacilityScreen.SetActive(false);
-
-         switch (currentScreenState)
-         {
-             case ScreenState.VoyageFacilityScreen:
-                 _voyageFacilityScreen.SetActive(true);
-                 break;
-             case ScreenState.FunctialFacilityScreen:
-                 _functialFacilityScreen.SetActive(true);
-                 break;
-             case ScreenState.SpecialFacilityScreen:
-                 _specialFacilityScreen.SetActive(true);
-                 break;
-             default:
-                 Debug.LogError("Unrecognized screen state: " + currentScreenState);
-                 break;
-         }
-     }*/
-
-    public void SetVoyageFacilityScreen()
-    {
-        _voyageFacilityScreen.gameObject.SetActive(true);
-        _functialFacilityScreen.gameObject.SetActive(false);
-        _specialFacilityScreen.gameObject.SetActive(false);
-    }
-    public void SetFunctialFacilityScreen()
-    {
-        _voyageFacilityScreen.gameObject.SetActive(false);
-        _functialFacilityScreen.gameObject.SetActive(true);
-        _specialFacilityScreen.gameObject.SetActive(false);
-    }
-    public void SetSpecialFacilityScreen()
-    {
-        _voyageFacilityScreen.gameObject.SetActive(false);
-        _functialFacilityScreen.gameObject.SetActive(false);
-        _specialFacilityScreen.gameObject.SetActive(true);
-    }
+    
 
 
     public void RollupBtn()
@@ -205,14 +188,25 @@ public class UIManager : MonoBehaviour
     private IEnumerator TransitionToVoyageScene()
     {
 
-        // Show the VoyageSplash game object.
         _voyageSplash.gameObject.SetActive(true);
         GameManager.instance.CreateBuilding();
         GameManager.instance.SaveGameManagerData();
-        // Wait for 2 seconds.
+        // 2초 기다리기
         yield return new WaitForSeconds(2);
 
-        // Load the Voyage scene.
+        // Voyage 씬 로드하기
+        SceneManager.LoadScene("Voyage");
+    }
+    private IEnumerator TransitionToVoyageSceneEx1()
+    {
+
+        _voyageSplash.gameObject.SetActive(true);
+        GameManager.instance.CreateBuildingEx1();
+        GameManager.instance.SaveGameManagerData();
+        // 2초 기다리기
+        yield return new WaitForSeconds(2);
+
+        // Voyage 씬 로드하기
         SceneManager.LoadScene("Voyage");
     }
 }

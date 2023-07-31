@@ -2,7 +2,7 @@
 using UnityEngine;
 using UniRx;
 
-public class Ground : MonoBehaviour
+public class InstallablePlace : MonoBehaviour
 {
     private ReactiveProperty<bool> isOccupied = new ReactiveProperty<bool>(false);
 

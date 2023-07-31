@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 7045629095658454679}
   - component: {fileID: 1026131762138081656}
   - component: {fileID: 5592776702470549948}
-  - component: {fileID: 7178817978349587609}
+  - component: {fileID: 2516162592792017692}
   - component: {fileID: -6571535415655857326}
   m_Layer: 0
-  m_Name: Ground
+  m_Name: InstallablePlace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,7 +85,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7178817978349587609
+--- !u!114 &2516162592792017692
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
