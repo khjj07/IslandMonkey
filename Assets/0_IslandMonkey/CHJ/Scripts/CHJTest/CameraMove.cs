@@ -9,7 +9,7 @@ public class CameraMove : MonoBehaviour
     [SerializeField] private float maxY = 11f;
     [SerializeField] private float minY = 5f;
     [SerializeField] private float moveScale = 1f;
-    [SerializeField] private float zoomSpeed = 5f;
+    [SerializeField] private float zoomSpeed = 50f;
 
     private Camera cam;
 

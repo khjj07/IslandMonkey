@@ -1,4 +1,5 @@
 using System.Collections;
+using Assets._0_IslandMonkey.CHJ.Scripts.Upgrade;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -27,8 +28,13 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject _buildingGroup;
 
+
+    [SerializeField] 
+    private Image _upgradePanel;
     [SerializeField]
     private Image _upgradeBuildingPanel;
+    [SerializeField]
+    private Image _upgradeMonkeyPanel;
 
     [SerializeField]
     private Image _voyageSplash;
@@ -84,7 +90,7 @@ public class UIManager : MonoBehaviour
 
                 if (hit.collider.CompareTag("Building"))
                 {
-                    _upgradeBuildingPanel.gameObject.SetActive(true);
+                    OnClickUpgradeBuildingBtn();
                     upgradebulidingPanelOpened = true;
                 }
             }
@@ -109,9 +115,8 @@ public class UIManager : MonoBehaviour
 
     public void OnClickUpgradeBuildingBtn()
     {
-        _upgradeBuildingPanel.gameObject.SetActive(true);
-        upgradebulidingPanelOpened = true;
-        
+        _upgradePanel.gameObject.SetActive(true);
+
     }
 
     public void OnClickStoreBtn()
@@ -130,6 +135,21 @@ public class UIManager : MonoBehaviour
     public void OnClickAbroadBtn()
     {
     }
+
+
+    public void OnClickBuildingUpgrade()
+    {
+        _upgradeBuildingPanel.gameObject.SetActive(true);
+        _upgradeMonkeyPanel.gameObject.SetActive(false);
+    }
+    public void OnClickMonkeyUpgrade()
+    {
+        _upgradeBuildingPanel.gameObject.SetActive(false);
+        _upgradeMonkeyPanel.gameObject.SetActive(true);
+    }
+
+
+
 
     public void SetFacilityScreen(UIState screen)
     {
@@ -161,18 +181,25 @@ public class UIManager : MonoBehaviour
 
     public void UpgradeBuildingPanelBackBtn()
     {
-        _upgradeBuildingPanel.gameObject.SetActive(false);
-        upgradebulidingPanelOpened = false;
+        _upgradePanel.gameObject.SetActive(false);
+
     }
     public void BuildingUpgradeBtn()
     {
-        buildingLevel++;
-        _buildingLevelText.text = " " + buildingLevel;
-        
+        Building.instance.BuildingUpgrade();
+
+    }
+    public void MonkeyUpgradeBtn()
+    {
+        Monkey.instance.MonkeyUpgrade();
+
     }
 
 
-    
+
+
+
+
 
 
     public void RollupBtn()

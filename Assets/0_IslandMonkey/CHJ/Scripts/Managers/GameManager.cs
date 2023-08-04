@@ -6,8 +6,8 @@ using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
 using System.Linq;
-using Assets.IslandMonkey.TestScripts.JHJ.Upgrade;
 using System.Collections.Generic;
+using Assets._0_IslandMonkey.CHJ.Scripts.Upgrade;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -23,9 +23,7 @@ public class GameManager : Singleton<GameManager>
 
 
     public static int _totalGold;
-
     public static int _totalShell;
-
     public static int _totalMonkey;
 
 
@@ -55,6 +53,14 @@ public class GameManager : Singleton<GameManager>
         var buildingPrefab = _buildingPrefabs[0]; // 프리팹 선택
         var buildingObject = Instantiate(buildingPrefab.gameObject);
         var building = buildingObject.GetComponent<Building>();
+        // 유학 시: 원숭이 생성
+        var monkeyPrefab = _monkeyPrefabs[0];
+        var monkeyObject = Instantiate(monkeyPrefab.gameObject, building.transform);
+        var monkey = monkeyObject.GetComponent<Monkey>();
+        _totalMonkey = _totalMonkey + 1;
+
+        monkey.transform.localPosition = new Vector3(-0.25f, 0f, 0f); // 건물에 상대적인 위치 설정
+        monkey.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
 
         var availableGroundSlots = _InstallablePlaceSlots.Where(slot => !slot.IsOccupied.Value).ToList();
         if (availableGroundSlots.Count > 0)
@@ -64,39 +70,30 @@ public class GameManager : Singleton<GameManager>
             building.transform.position = selectedSlot.transform.position + new Vector3(-0.5f, 0.01f, 0.5f);
             _buildings.Add(building);
             selectedSlot.SetOccupied(false);
-
-            // 유학 시: 원숭이 생성
-            var monkeyPrefab = _monkeyPrefabs[0];
-            var monkeyObject = Instantiate(monkeyPrefab.gameObject, building.transform);
-            var monkey = monkeyObject.GetComponent<Monkey>();
-            _totalMonkey = _totalMonkey + 1;
-            
-            monkey.transform.localPosition = new Vector3(-0.25f, 0f, 0f); // 건물에 상대적인 위치 설정
-            monkey.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
-
-            Observable.Interval(TimeSpan.FromSeconds(1))
-                .Where(_ => monkey.MonkeyLevel > 0)
-                .Subscribe(_ =>
-                {
-                    var goldIncrease = monkey.MonkeyLevel * 5;
-                    _totalGold += goldIncrease;
-                    UpdateTotalGoldText();
-                })
-                .AddTo(monkey);
-
-            monkey.OnUpgradeAsObservable()
-                .Subscribe(_ =>
-                {
-                    monkey.MonkeyUpgrade();
-                    Debug.Log(" 원숭이 레벨 : " + monkey.MonkeyLevel);
-                })
-                .AddTo(monkey);
         }
         else
         {
             Debug.LogWarning("빌딩을 건설할 자리가 없습니다..");
             Destroy(buildingObject);
         }
+
+        Observable.Interval(TimeSpan.FromSeconds(1))
+            .Where(_ => monkey.monkeyLevel > 0)
+            .Subscribe(_ =>
+            {
+                var goldIncrease = monkey.monkeyLevel * 5;
+                _totalGold += goldIncrease;
+                UpdateTotalGoldText();
+            })
+            .AddTo(monkey);
+
+        monkey.OnUpgradeAsObservable()
+            .Subscribe(_ =>
+            {
+                monkey.MonkeyUpgrade();
+                Debug.Log(" 원숭이 레벨 : " + monkey.monkeyLevel);
+            })
+            .AddTo(monkey);
 
         Observable.Interval(TimeSpan.FromSeconds(1))
             .Where(_ => building.buildingLevel > 0)
@@ -112,7 +109,6 @@ public class GameManager : Singleton<GameManager>
             .Subscribe(_ =>
             {
                 building.BuildingUpgrade();
-                _totalGold = _totalGold - 100;
                 Debug.Log(" 빌딩 레벨 : " + building.buildingLevel);
             })
             .AddTo(building);
@@ -145,10 +141,10 @@ public class GameManager : Singleton<GameManager>
             monkey.transform.localScale = new Vector3(1f, 1f, 1f);
 
             Observable.Interval(TimeSpan.FromSeconds(1))
-                .Where(_ => monkey.MonkeyLevel > 0)
+                .Where(_ => monkey.monkeyLevel > 0)
                 .Subscribe(_ =>
                 {
-                    var goldIncrease = monkey.MonkeyLevel * 5;
+                    var goldIncrease = monkey.monkeyLevel * 5;
                     _totalGold += goldIncrease;
                     UpdateTotalGoldText();
                 })
@@ -158,7 +154,7 @@ public class GameManager : Singleton<GameManager>
                 .Subscribe(_ =>
                 {
                     monkey.MonkeyUpgrade();
-                    Debug.Log(" 원숭이 레벨 : " + monkey.MonkeyLevel);
+                    Debug.Log(" 원숭이 레벨 : " + monkey.monkeyLevel);
                 })
                 .AddTo(monkey);
         }
@@ -182,7 +178,6 @@ public class GameManager : Singleton<GameManager>
             .Subscribe(_ =>
             {
                 building.BuildingUpgrade();
-                _totalGold = _totalGold - 100;
                 Debug.Log(" 빌딩 레벨 : " + building.buildingLevel);
             })
             .AddTo(building);
@@ -218,6 +213,7 @@ public class GameManager : Singleton<GameManager>
                     .AddTo(monkey);*/
     }
 
+
     private void UpdateTotalGoldText()
     {
         Observable.Interval(TimeSpan.FromSeconds(1))
@@ -251,6 +247,7 @@ public class GameManager : Singleton<GameManager>
         return $"{goldValue:F1}{suffixes[suffixIndex]}";
     }
     // gold 표시
+
     private void UpdateTotalShellText()
     {
         Observable.Interval(TimeSpan.FromSeconds(1))
@@ -290,11 +287,6 @@ public class GameManager : Singleton<GameManager>
         {
             PlayerPrefs.SetInt($"BuildingOccupied_{building.name}", 1); // 빌딩이 점유된 상태를 1로 저장
         }
-
-       /* foreach (var slot in _builddSlots)
-        {
-            PlayerPrefs.SetInt($"GroundOccupied_{slot.name}", slot.IsOccupied ? 1 : 0); // 슬롯의 점유 여부를 1 또는 0으로 저장
-        }*/
 
         PlayerPrefs.SetInt("TotalGold", _totalGold);
         PlayerPrefs.SetInt("TotalShell", _totalShell);

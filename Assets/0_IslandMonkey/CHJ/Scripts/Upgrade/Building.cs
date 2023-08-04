@@ -3,63 +3,45 @@ using TMPro;
 using UniRx;
 using UnityEngine;
 
-//인터페이스가 있던 자리 인터페이스도 파일을 분리해줘
+// 인터페이스가 있던 자리 인터페이스도 파일을 분리해줘
+// 오케이
 
-namespace Assets.IslandMonkey.TestScripts.JHJ.Upgrade
+namespace Assets._0_IslandMonkey.CHJ.Scripts.Upgrade
 {
-    [Serializable]
-    public class BuildingData
-    {
-        public int BuildingType;
-        public int BuildingLevel;
-        public Vector3 BuildingPosition;
-        // 여기에 다른 필요한 빌딩 데이터를 추가할 수 있습니다.
-        // 이거 뭐할라고 만든건지 모름
-    }
 
-    public class Building : MonoBehaviour
+    public class Building : Singleton<Building>
     {
         private Subject<Unit> _upgradeSubject = new Subject<Unit>();
         public IObservable<Unit> OnUpgradeAsObservable() => _upgradeSubject;
-
 
         public int buildingLevel = 1;
 
         [SerializeField]
         private TextMeshProUGUI buildingLevelText;
 
-
         private void Start()
         {
-            // 씬 전환이 일어났을 때 GameManager 인스턴스가 유지되도록 설정
             DontDestroyOnLoad(gameObject);
+        }
 
-            Observable.Interval(TimeSpan.FromSeconds(1))
-            .Subscribe(_ =>
-            {
+        private void Update()
+        {
+            // 씬 전환이 일어났을 때 GameManager 인스턴스가 유지되도록 설정
 
                 if (buildingLevelText != null)
 
                 {
                     buildingLevelText.text = " " + buildingLevel;
                 }
-
-
-            })
-            .AddTo(this); // 옵저버블에 GameManager를 연결하여 OnDestroy() 시 옵저버블 구독 해지
-
-
+                
         }
 
 
         public void BuildingUpgrade()
         {
             buildingLevel++;
-            if (buildingLevelText != null)
-
-            {
-                buildingLevelText.text = " " + buildingLevel;
-            }
+            GameManager._totalGold -= 100;
+            Debug.Log("레벨업");
             //_upgradeSubject.OnNext(Unit.Default);
         }
 

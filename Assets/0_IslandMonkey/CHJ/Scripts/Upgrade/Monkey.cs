@@ -1,30 +1,44 @@
 ﻿using System;
+using TMPro;
 using UniRx;
 using UnityEngine;
 
-namespace Assets.IslandMonkey.TestScripts.JHJ.Upgrade
+namespace Assets._0_IslandMonkey.CHJ.Scripts.Upgrade
 {
-    public class Monkey : MonoBehaviour
+    public class Monkey : Singleton<Monkey>
     {
+        private Subject<Unit> _upgradeSubject = new Subject<Unit>();
+        public IObservable<Unit> OnUpgradeAsObservable() => _upgradeSubject;
+
+        public int monkeyLevel = 1;
+
         [SerializeField]
-        private Subject<Unit> upgradeSubject = new Subject<Unit>();
+        private TextMeshProUGUI monkeyLevelText;
 
-        public int MonkeyLevel { get; set; }
-
-        public IObservable<Unit> OnUpgradeAsObservable()
-        {
-            return upgradeSubject;
-        }
         private void Start()
         {
             // 씬 전환이 일어났을 때 GameManager 인스턴스가 유지되도록 설정
             DontDestroyOnLoad(gameObject);
         }
+        private void Update()
+        {
+            // 씬 전환이 일어났을 때 GameManager 인스턴스가 유지되도록 설정
+
+
+            if (monkeyLevelText != null)
+
+            {
+                monkeyLevelText.text = " " + monkeyLevel;
+            }
+
+
+        }
 
         public void MonkeyUpgrade()
         {
-            MonkeyLevel++;
-            upgradeSubject.OnNext(Unit.Default);
+            monkeyLevel++;
+            GameManager._totalGold -= 100;
+            Debug.Log("레벨업");
         }
     }
 }

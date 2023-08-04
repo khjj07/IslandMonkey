@@ -14,11 +14,8 @@ public class FacilityListReader : Singleton<FacilityListReader>
     public void Load(string facilityList)
     {
         TextAsset dataAsset = Resources.Load<TextAsset>("Data/facility_list");
+        // 파일 경로로 데이터 에셋 불러오기
         string[] lines = dataAsset.text.Split('\n');
-        for (int i = 2; i < lines.Length; i++)  // 헤더 줄 생략
-        {
-            string[] row = lines[i].Split(',');
-            rowData.Add(row);
-        }
+        
     }
 }
