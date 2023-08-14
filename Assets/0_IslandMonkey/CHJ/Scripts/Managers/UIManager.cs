@@ -60,6 +60,11 @@ public class UIManager : MonoBehaviour
 
 
 
+    [SerializeField]
+    private Image _cookingScreen;
+
+
+
     private bool isRolledUp = false; // 버튼들이 숨겨진 상태인지 여부를 나타내는 변수
 
 
@@ -196,6 +201,10 @@ public class UIManager : MonoBehaviour
     }
 
 
+    public void OnClickCookingScreen()
+    {
+        _cookingScreen.gameObject.SetActive(true);
+    }
 
 
 
@@ -212,6 +221,7 @@ public class UIManager : MonoBehaviour
         _voyageBtn.gameObject.SetActive(!isRolledUp);
     }
 
+ 
     private IEnumerator TransitionToVoyageScene()
     {
 
