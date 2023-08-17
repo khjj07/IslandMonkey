@@ -128,6 +128,8 @@ public class UIManager : MonoBehaviour
     {
     }
 
+
+
     public void OnClickVoyageBtn()
     {
         StartCoroutine(TransitionToVoyageScene());
@@ -136,6 +138,14 @@ public class UIManager : MonoBehaviour
     {
         StartCoroutine(TransitionToVoyageSceneEx1());
     }
+    public void OnClickVoyageEx2Btn()
+    {
+        StartCoroutine(TransitionToVoyageSceneEx2());
+    }
+
+
+
+
 
     public void OnClickAbroadBtn()
     {
@@ -239,6 +249,18 @@ public class UIManager : MonoBehaviour
 
         _voyageSplash.gameObject.SetActive(true);
         GameManager.instance.CreateBuildingEx1();
+        GameManager.instance.SaveGameManagerData();
+        // 2초 기다리기
+        yield return new WaitForSeconds(2);
+
+        // Voyage 씬 로드하기
+        SceneManager.LoadScene("Voyage");
+    }
+    private IEnumerator TransitionToVoyageSceneEx2()
+    {
+
+        _voyageSplash.gameObject.SetActive(true);
+        GameManager.instance.CreateBuildingEx2();
         GameManager.instance.SaveGameManagerData();
         // 2초 기다리기
         yield return new WaitForSeconds(2);
