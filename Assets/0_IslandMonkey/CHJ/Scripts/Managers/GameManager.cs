@@ -24,12 +24,16 @@ public class GameManager : Singleton<GameManager>
 
 
     public static int _totalGold;
+    public static int _totalBanana;
     public static int _totalShell;
     public static int _totalMonkey;
 
 
     [SerializeField]
     private TextMeshProUGUI _totalGoldText; // TextMeshPro 오브젝트를 할당받을 변수
+
+    [SerializeField]
+    private TextMeshProUGUI _totalBananaText; // TextMeshPro 오브젝트를 할당받을 변수
 
     [SerializeField]
     private TextMeshProUGUI _totalShellText; // TextMeshPro 오브젝트를 할당받을 변수
@@ -47,7 +51,9 @@ public class GameManager : Singleton<GameManager>
         // DontDestroyOnLoad(gameObject);
         UpdateTotalMonkeyText();
         UpdateTotalGoldText();
+        UpdateTotalBananaText();
         UpdateTotalShellText();
+        
     }
     public void CreateBuilding()
     {
@@ -222,9 +228,9 @@ public class GameManager : Singleton<GameManager>
                 .Where(_ => monkey.monkeyLevel > 0)
                 .Subscribe(_ =>
                 {
-                    var goldIncrease = monkey.monkeyLevel * 5;
-                    _totalGold += goldIncrease;
-                    UpdateTotalGoldText();
+                    var bananaIncrease = monkey.monkeyLevel * 5;
+                    _totalBanana += bananaIncrease;
+                    UpdateTotalBananaText();
                 })
                 .AddTo(monkey);
 
@@ -235,6 +241,13 @@ public class GameManager : Singleton<GameManager>
                     Debug.Log(" 원숭이 레벨 : " + monkey.monkeyLevel);
                 })
                 .AddTo(monkey);
+            building.OnUpgradeAsObservable()
+                .Subscribe(_ =>
+                {
+                    building.BuildingUpgrade();
+                    Debug.Log(" 빌딩 레벨 : " + building.buildingLevel);
+                })
+                .AddTo(building);
         }
         else
         {
@@ -246,8 +259,8 @@ public class GameManager : Singleton<GameManager>
             .Where(_ => building.buildingLevel > 0)
             .Subscribe(_ =>
             {
-                var goldIncrease = building.buildingLevel * 10;
-                _totalGold += goldIncrease;
+                var bananaIncrease = building.buildingLevel * 10;
+                _totalBanana += bananaIncrease;
                 UpdateTotalGoldText();
             })
             .AddTo(building);
@@ -306,6 +319,19 @@ public class GameManager : Singleton<GameManager>
         })
         .AddTo(this); // 옵저버블에 GameManager를 연결하여 OnDestroy() 시 옵저버블 구독 해지
     }
+
+    private void UpdateTotalBananaText()
+    {
+        Observable.Interval(TimeSpan.FromSeconds(1))
+            .Subscribe(_ =>
+        {
+            if (_totalBananaText != null)
+            {
+                _totalBananaText.text = FormatBananaText(_totalBanana);
+            }
+        })
+        .AddTo(this);
+    }
     private string FormatGoldText(int gold)
     {
         string[] suffixes = { "", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k",
@@ -327,6 +353,27 @@ public class GameManager : Singleton<GameManager>
         return $"{goldValue:F1}{suffixes[suffixIndex]}";
     }
     // gold 표시
+    private string FormatBananaText(int banana)
+    {
+        string[] suffixes = { "", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k",
+            "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+        if (banana <= 0)
+        {
+            return "0";
+        }
+
+        int suffixIndex = 0;
+        decimal bananaValue = banana;
+
+        while (bananaValue >= 1000)
+        {
+            bananaValue /= 1000;
+            suffixIndex++;
+        }
+
+        return $"{bananaValue:F1}{suffixes[suffixIndex]}";
+    }
+    //바나나 표시
 
     private void UpdateTotalShellText()
     {
