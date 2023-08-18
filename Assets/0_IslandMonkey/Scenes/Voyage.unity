@@ -2727,6 +2727,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monkey
       objectReference: {fileID: 0}
+    - target: {fileID: 672996715495296494, guid: 8a0c7d01255a47840b9359811f688e52,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 92d7495c8f5e5a44884e89d8d0224f5d, type: 2}
+    - target: {fileID: 3376147183735006646, guid: 8a0c7d01255a47840b9359811f688e52,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 92d7495c8f5e5a44884e89d8d0224f5d, type: 2}
     - target: {fileID: 3523384111466645744, guid: 8a0c7d01255a47840b9359811f688e52,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -2762,6 +2772,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4313084914388497497, guid: 8a0c7d01255a47840b9359811f688e52,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 92d7495c8f5e5a44884e89d8d0224f5d, type: 2}
+    - target: {fileID: 4618397781335642303, guid: 8a0c7d01255a47840b9359811f688e52,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 92d7495c8f5e5a44884e89d8d0224f5d, type: 2}
+    - target: {fileID: 5319990431558074313, guid: 8a0c7d01255a47840b9359811f688e52,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 92d7495c8f5e5a44884e89d8d0224f5d, type: 2}
+    - target: {fileID: 6299923089365715553, guid: 8a0c7d01255a47840b9359811f688e52,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 92d7495c8f5e5a44884e89d8d0224f5d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a0c7d01255a47840b9359811f688e52, type: 3}
 --- !u!1 &2007839037 stripped
