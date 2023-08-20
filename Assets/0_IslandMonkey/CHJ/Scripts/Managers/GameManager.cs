@@ -64,9 +64,10 @@ public class GameManager : Singleton<GameManager>
         var availableGroundSlots = _InstallablePlaceSlots.Where(slot => !slot.IsOccupied.Value).ToList();
         if (availableGroundSlots.Count > 0)
         {
-            var randomSlotIndex = UnityEngine.Random.Range(0, availableGroundSlots.Count);
+            //var randomSlotIndex = UnityEngine.Random.Range(0, availableGroundSlots.Count);
+            var randomSlotIndex = 2;
             var selectedSlot = availableGroundSlots[randomSlotIndex];
-            building.transform.position = selectedSlot.transform.position + new Vector3(0f, 0.01f, 0.0f);
+            building.transform.position = selectedSlot.transform.position + new Vector3(0f, -0.15f, -0.5f);
             _buildings.Add(building);
             selectedSlot.SetOccupied(false);
 
@@ -136,7 +137,8 @@ public class GameManager : Singleton<GameManager>
         var availableGroundSlots = _InstallablePlaceSlots.Where(slot => !slot.IsOccupied.Value).ToList();
         if (availableGroundSlots.Count > 0)
         {
-            var randomSlotIndex = UnityEngine.Random.Range(0, availableGroundSlots.Count);
+            //var randomSlotIndex = UnityEngine.Random.Range(0, availableGroundSlots.Count);
+            var randomSlotIndex =1;
             var selectedSlot = availableGroundSlots[randomSlotIndex];
             building.transform.position = selectedSlot.transform.position + new Vector3(0f, 0.01f, 0.0f);
             _buildings.Add(building);
@@ -208,14 +210,15 @@ public class GameManager : Singleton<GameManager>
         var availableGroundSlots = _InstallablePlaceSlots.Where(slot => !slot.IsOccupied.Value).ToList();
         if (availableGroundSlots.Count > 0)
         {
-            var randomSlotIndex = UnityEngine.Random.Range(0, availableGroundSlots.Count);
+            //var randomSlotIndex = UnityEngine.Random.Range(0, availableGroundSlots.Count);
+            var randomSlotIndex = 0;
             var selectedSlot = availableGroundSlots[randomSlotIndex];
             building.transform.position = selectedSlot.transform.position + new Vector3(0f, 0.01f, 0.0f);
             _buildings.Add(building);
             selectedSlot.SetOccupied(false);
 
             // 유학 시: 원숭이 생성
-            var monkeyPrefab = _monkeyPrefabs[0];
+            var monkeyPrefab = _monkeyPrefabs[1];
             var monkeyObject = Instantiate(monkeyPrefab.gameObject, building.transform);
             var monkey = monkeyObject.GetComponent<Monkey>();
             _totalMonkey = _totalMonkey + 1;

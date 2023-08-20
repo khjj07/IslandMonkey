@@ -97,6 +97,7 @@ public class UIManager : MonoBehaviour
                 {
                     OnClickUpgradeBuildingBtn();
                     upgradebulidingPanelOpened = true;
+                    Debug.Log("½Ã¹Ù");
                 }
             }
         }
