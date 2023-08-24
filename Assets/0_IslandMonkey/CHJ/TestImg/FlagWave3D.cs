@@ -3,31 +3,42 @@ using UnityEngine;
 [RequireComponent(typeof(MeshFilter))]
 public class FlagWave3D : MonoBehaviour
 {
-    public float waveSpeed = 1.0f;
-    public float waveHeight = 0.5f;
-    public float waveLength = 2.0f;
+    Mesh mesh;
+    Vector3[] originalVertices;
+    Vector3[] displacedVertices;
 
-    private Mesh mesh;
-    private Vector3[] initialVertices;
-    private Vector3[] currentVertices;
+    public float waveSpeed = 1f;
+    public float waveHeight = 0.1f;
+    public float waveFrequency = 1f;
+    public float rotationSpeed = 0.5f;
+
+    private float accumulatedRotation = 0f; // Track the accumulated rotation
 
     void Start()
     {
         mesh = GetComponent<MeshFilter>().mesh;
-        initialVertices = mesh.vertices;
-        currentVertices = new Vector3[initialVertices.Length];
+        originalVertices = mesh.vertices;
+        displacedVertices = new Vector3[originalVertices.Length];
     }
 
     void Update()
     {
-        for (int i = 0; i < initialVertices.Length; i++)
+        // Vertex movement along the z-axis based on the x position
+        for (int i = 0; i < originalVertices.Length; i++)
         {
-            Vector3 vertex = initialVertices[i];
-            vertex.y += Mathf.Sin(Time.time * waveSpeed + initialVertices[i].x * waveLength) * waveHeight;
-            currentVertices[i] = vertex;
+            Vector3 vertex = originalVertices[i];
+            vertex.z += waveHeight * Mathf.Sin(vertex.x * waveFrequency + Time.time * waveSpeed);
+            displacedVertices[i] = vertex;
         }
 
-        mesh.vertices = currentVertices;
+        mesh.vertices = displacedVertices;
         mesh.RecalculateNormals();
+
+        // Rotation around the y-axis using accumulated rotation
+        accumulatedRotation += rotationSpeed * Time.deltaTime;
+        float rotationAmount = 20f * Mathf.Sin(accumulatedRotation); // Rotates between -20 and 20
+
+        transform.localEulerAngles = new Vector3(0, rotationAmount, 0);
     }
+
 }

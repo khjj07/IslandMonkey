@@ -48,15 +48,19 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         // 씬 전환이 일어났을 때 GameManager 인스턴스가 유지되도록 설정
-        // DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
         UpdateTotalMonkeyText();
         UpdateTotalGoldText();
         UpdateTotalBananaText();
         UpdateTotalShellText();
-        
+
+        CreateBuildingEx2();
+
+
     }
     public void CreateBuilding()
     {
+        // 유학 시설 예시 1
         var buildingPrefab = _buildingPrefabs[0]; // 프리팹 선택
         var buildingObject = Instantiate(buildingPrefab.gameObject);
         var building = buildingObject.GetComponent<Building>();
@@ -130,6 +134,7 @@ public class GameManager : Singleton<GameManager>
     }
     public void CreateBuildingEx1()
     {
+        // 유학 시설 예시 2
         var buildingPrefab = _buildingPrefabs[1]; // 프리팹 선택
         var buildingObject = Instantiate(buildingPrefab.gameObject);
         var building = buildingObject.GetComponent<Building>();
@@ -203,6 +208,7 @@ public class GameManager : Singleton<GameManager>
     }
     public void CreateBuildingEx2()
     {
+        // 기능 시설 예시 1
         var buildingPrefab = _buildingPrefabs[2]; // 프리팹 선택
         var buildingObject = Instantiate(buildingPrefab.gameObject);
         var building = buildingObject.GetComponent<Building>();
@@ -281,6 +287,54 @@ public class GameManager : Singleton<GameManager>
 
 
     }
+    public void CreateBuildingEx3()
+    {
+        // 특수 시설 예시 1
+
+        var buildingPrefab = _buildingPrefabs[3]; // 프리팹 선택
+        var buildingObject = Instantiate(buildingPrefab.gameObject);
+        var building = buildingObject.GetComponent<Building>();
+
+        var availableGroundSlots = _InstallablePlaceSlots.Where(slot => !slot.IsOccupied.Value).ToList();
+        if (availableGroundSlots.Count > 0)
+        {
+            //var randomSlotIndex = UnityEngine.Random.Range(0, availableGroundSlots.Count);
+            var randomSlotIndex = 3;
+            var selectedSlot = availableGroundSlots[randomSlotIndex];
+            building.transform.position = selectedSlot.transform.position + new Vector3(0f, 0.01f, 0.0f);
+            _buildings.Add(building);
+            selectedSlot.SetOccupied(false);
+
+        }
+        else
+        {
+            Debug.LogWarning("빌딩을 건설할 자리가 없습니다..");
+            Destroy(buildingObject);
+        }
+        Observable.Interval(TimeSpan.FromSeconds(1))
+            .Where(_ => building.buildingLevel > 0)
+            .Subscribe(_ =>
+            {
+                var goldIncrease = building.buildingLevel * 10;
+                _totalGold += goldIncrease;
+                UpdateTotalGoldText();
+            })
+            .AddTo(building);
+
+        building.OnUpgradeAsObservable()
+            .Subscribe(_ =>
+            {
+                building.BuildingUpgrade();
+                Debug.Log(" 빌딩 레벨 : " + building.buildingLevel);
+            })
+            .AddTo(building);
+
+        // 빌딩이 지어진 후에 availableGroundSlots를 업데이트
+        availableGroundSlots = _InstallablePlaceSlots.Where(slot => !slot.IsOccupied.Value).ToList();
+
+
+    }
+
 
     public void CreateMonkey()
     {

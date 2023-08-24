@@ -105,7 +105,7 @@ Material:
     - _RampOffset: 0
     - _RampSmooth: 1
     - _RimLightBrightness: 0.5
-    - _RimPower: 3
+    - _RimPower: 3.6
     - _SmoothnessTextureChannel: 1
     - _SpecularEnable: 0
     - _SpecularHighlights: 1

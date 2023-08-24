@@ -48,6 +48,13 @@ public class UIManager : MonoBehaviour
     private Button _storeBtn; // Store 버튼 오브젝트
     [SerializeField]
     private Button _voyageBtn; // Voyage 버튼 오브젝트
+    [SerializeField]
+    private Button _manageBtn; // Voyage 버튼 오브젝트
+    [SerializeField]
+    private Button _rollupBtn; // Voyage 버튼 오브젝트
+    private Quaternion initialRotation;
+
+
 
     [SerializeField]
     private Image _basicScreen;
@@ -61,7 +68,7 @@ public class UIManager : MonoBehaviour
 
 
     [SerializeField]
-    private Image _cookingScreen;
+    private Image _manageScreen;
 
 
 
@@ -77,7 +84,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         bulidingPanelOpened = false;
-
+        initialRotation = _rollupBtn.transform.rotation;
     }
 
     void Update()
@@ -97,7 +104,6 @@ public class UIManager : MonoBehaviour
                 {
                     OnClickUpgradeBuildingBtn();
                     upgradebulidingPanelOpened = true;
-                    Debug.Log("시바");
                 }
             }
         }
@@ -143,6 +149,11 @@ public class UIManager : MonoBehaviour
     {
         StartCoroutine(TransitionToVoyageSceneEx2());
     }
+    public void OnClickVoyageEx3Btn()
+    {
+        StartCoroutine(TransitionToVoyageSceneEx3());
+    }
+
 
 
 
@@ -194,6 +205,11 @@ public class UIManager : MonoBehaviour
         _buildingGroup.gameObject.SetActive(false);
         bulidingPanelOpened = false;
     }
+    public void ManagePanelBackBtn()
+    {
+        _manageScreen.gameObject.SetActive(false);
+        bulidingPanelOpened = false;
+    }
 
     public void UpgradeBuildingPanelBackBtn()
     {
@@ -214,7 +230,7 @@ public class UIManager : MonoBehaviour
 
     public void OnClickCookingScreen()
     {
-        _cookingScreen.gameObject.SetActive(true);
+        _manageScreen.gameObject.SetActive(true);
     }
 
 
@@ -230,9 +246,22 @@ public class UIManager : MonoBehaviour
         _buildingBtn.gameObject.SetActive(!isRolledUp);
         _storeBtn.gameObject.SetActive(!isRolledUp);
         _voyageBtn.gameObject.SetActive(!isRolledUp);
-    }
+        _manageBtn.gameObject.SetActive(!isRolledUp);
 
- 
+        RectTransform btnTransform = _rollupBtn.GetComponent<RectTransform>();
+        // Y 위치 조절
+        Vector2 currentPos = btnTransform.anchoredPosition;
+        if (isRolledUp)
+        {
+            btnTransform.anchoredPosition = new Vector2(currentPos.x, currentPos.y - 250);
+            btnTransform.localEulerAngles = new Vector3(0, 0, 180);
+        }
+        else
+        {
+            btnTransform.anchoredPosition = new Vector2(currentPos.x, currentPos.y + 250);
+            btnTransform.localEulerAngles = Vector3.zero;
+        }
+    }
     private IEnumerator TransitionToVoyageScene()
     {
 
@@ -262,6 +291,18 @@ public class UIManager : MonoBehaviour
 
         _voyageSplash.gameObject.SetActive(true);
         GameManager.instance.CreateBuildingEx2();
+        GameManager.instance.SaveGameManagerData();
+        // 2초 기다리기
+        yield return new WaitForSeconds(2);
+
+        // Voyage 씬 로드하기
+        SceneManager.LoadScene("Voyage");
+    }
+    private IEnumerator TransitionToVoyageSceneEx3()
+    {
+
+        _voyageSplash.gameObject.SetActive(true);
+        GameManager.instance.CreateBuildingEx3();
         GameManager.instance.SaveGameManagerData();
         // 2초 기다리기
         yield return new WaitForSeconds(2);

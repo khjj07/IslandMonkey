@@ -248,3 +248,5 @@ MonoBehaviour:
   buildingLevel: 1
   buildingLevelText: {fileID: 1607966526769273945, guid: 79ec844076fcf994996275b9a1fd3597,
     type: 3}
+  buildingNextLevelText: {fileID: 7892847788807983726, guid: 38fb4c4e5d44b3946b81f3efb4d21ba6,
+    type: 3}

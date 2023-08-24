@@ -9,7 +9,7 @@ public class CameraMove : MonoBehaviour
     [SerializeField] private float maxY = 11f;
     [SerializeField] private float minY = 5f;
     [SerializeField] private float moveScale = 1f;
-    [SerializeField] private float zoomSpeed = 50f;
+    [SerializeField] private float zoomSpeed = 10000000f;
 
     private Camera cam;
 
@@ -62,6 +62,9 @@ public class CameraMove : MonoBehaviour
                     // 줌 땡기기
                     zoomInput = prevTouchDeltaMag - touchDeltaMag;
                 }
+
+                // zoomInput 크기를 조절 (예: 2배 증가)
+                zoomInput = zoomInput * 2.0f;
 
                 // 카메라 사이즈
                 float newSize = cam.orthographicSize - (zoomInput * zoomSpeed);

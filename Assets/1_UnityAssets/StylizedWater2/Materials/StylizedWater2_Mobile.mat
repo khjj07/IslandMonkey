@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -10,9 +10,22 @@ Material:
   m_Name: StylizedWater2_Mobile
   m_Shader: {fileID: -6465566751694194690, guid: d7b0192b9bf19c949900035fa781fdc4,
     type: 3}
-  m_ShaderKeywords: ADVANCED_LIGHTING _CROSSPAN_INTERSECTION _DEPTHEXP_ON _DEPTH_TEX
-    _ENVIRONMENTREFLECTIONS_OFF _FOAM _NORMALMAP _RECEIVE_SHADOWS_OFF _SHARP_INERSECTION
-    _SIMPLE_LIGHTING _UNLIT _WORLDSPACEUV_ON
+  m_ValidKeywords:
+  - _ENVIRONMENTREFLECTIONS_OFF
+  - _FOAM
+  - _NORMALMAP
+  - _RECEIVE_SHADOWS_OFF
+  - _SHARP_INERSECTION
+  - _UNLIT
+  - _WAVES
+  m_InvalidKeywords:
+  - ADVANCED_LIGHTING
+  - _CROSSPAN_INTERSECTION
+  - _DEPTHEXP_ON
+  - _DEPTH_TEX
+  - _SIMPLE_LIGHTING
+  - _WORLDSPACEUV_ON
+  - _ZCLIP_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -106,6 +119,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - Vector1_1942CF3A: 1
     - Vector1_BE75C478: 32
@@ -131,10 +145,10 @@ Material:
     - _Cutoff: 0.5
     - _Depth: 5.01
     - _DepthExp: 1
-    - _DepthHorizontal: 1
+    - _DepthHorizontal: 5.18
     - _DepthMode: 0
     - _DepthTexture: 1
-    - _DepthVertical: 4
+    - _DepthVertical: 12.83
     - _DisableDepthTexture: 0
     - _DistanceNormalsOn: 0
     - _DistanceNormalsTiling: 0.25
@@ -180,7 +194,7 @@ Material:
     - _NormalMap: 1
     - _NormalMapOn: 1
     - _NormalSpeed: 0.2
-    - _NormalStrength: 1
+    - _NormalStrength: 0.556
     - _NormalSubSpeed: -0.5
     - _NormalSubTiling: 0.5
     - _NormalTiling: 0.29999992
@@ -247,18 +261,18 @@ Material:
     - _VertexColorWaveFlattening: 0
     - _WaveCount: 1
     - _WaveDistance: 0.763
-    - _WaveHeight: 0
+    - _WaveHeight: 0.1
     - _WaveNormalStr: 0.291
-    - _WaveSpeed: 1
+    - _WaveSpeed: 2
     - _WaveSteepness: 0
     - _WaveTint: 0.029
-    - _WavesOn: 0
+    - _WavesOn: 1
     - _WorkflowMode: 1
     - _WorldSpaceUV: 1
     - _ZClip: 1
     - _ZWrite: 0
     m_Colors:
-    - _BaseColor: {r: 0, g: 0.16451614, b: 0.34, a: 0.9647059}
+    - _BaseColor: {r: 0, g: 0.2008521, b: 0.41509432, a: 0.9647059}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _DepthMapBounds: {r: -402.3, g: -459.43, b: 0.0012693577, a: 0}
     - _Direction: {r: 1, g: 1, b: 0, a: 0}
