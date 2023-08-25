@@ -165,7 +165,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ffa428fe70571564c986f2d75c9546cd,
         type: 3}
       propertyPath: m_TagString
-      value: Building
+      value: BuildingFacility0
       objectReference: {fileID: 0}
     - target: {fileID: 2010763880727225807, guid: ffa428fe70571564c986f2d75c9546cd,
         type: 3}
@@ -220,7 +220,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1903799916070284396}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &7337712665201320709
+--- !u!65 &8463520434760573700
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -231,8 +231,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 1}
-  m_Center: {x: 0, y: 0.75, z: 0}
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &647834835862722636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,3 +250,15 @@ MonoBehaviour:
     type: 3}
   buildingNextLevelText: {fileID: 7892847788807983726, guid: 38fb4c4e5d44b3946b81f3efb4d21ba6,
     type: 3}
+--- !u!114 &6318489039211888856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633344581578035517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb219b23cdf4b314f94a27bca3cc8012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

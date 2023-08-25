@@ -23,10 +23,10 @@ public class GameManager : Singleton<GameManager>
     private List<InstallablePlace> _InstallablePlaceSlots; // 지면 슬롯을 리스트로 선언
 
 
-    public static int _totalGold;
-    public static int _totalBanana;
-    public static int _totalShell;
-    public static int _totalMonkey;
+    public static int _totalGold = 0;
+    public static int _totalBanana = 0;
+    public static int _totalShell = 0;
+    public static int _totalMonkey = 1;
 
 
     [SerializeField]
@@ -71,7 +71,7 @@ public class GameManager : Singleton<GameManager>
             //var randomSlotIndex = UnityEngine.Random.Range(0, availableGroundSlots.Count);
             var randomSlotIndex = 2;
             var selectedSlot = availableGroundSlots[randomSlotIndex];
-            building.transform.position = selectedSlot.transform.position + new Vector3(0f, -0.15f, -0.5f);
+            building.transform.position = selectedSlot.transform.position + new Vector3(0f, 0.15f, -1.5f);
             _buildings.Add(building);
             selectedSlot.SetOccupied(false);
 
@@ -145,7 +145,7 @@ public class GameManager : Singleton<GameManager>
             //var randomSlotIndex = UnityEngine.Random.Range(0, availableGroundSlots.Count);
             var randomSlotIndex =1;
             var selectedSlot = availableGroundSlots[randomSlotIndex];
-            building.transform.position = selectedSlot.transform.position + new Vector3(0f, 0.01f, 0.0f);
+            building.transform.position = selectedSlot.transform.position + new Vector3(0f, 0.01f, 0f);
             _buildings.Add(building);
             selectedSlot.SetOccupied(false);
 
@@ -210,30 +210,31 @@ public class GameManager : Singleton<GameManager>
     {
         // 기능 시설 예시 1
         var buildingPrefab = _buildingPrefabs[2]; // 프리팹 선택
-        var buildingObject = Instantiate(buildingPrefab.gameObject);
-        var building = buildingObject.GetComponent<Building>();
+        //var buildingObject = Instantiate(buildingPrefab.gameObject);
+        var building = buildingPrefab.GetComponent<Building>();
 
         var availableGroundSlots = _InstallablePlaceSlots.Where(slot => !slot.IsOccupied.Value).ToList();
         if (availableGroundSlots.Count > 0)
         {
             //var randomSlotIndex = UnityEngine.Random.Range(0, availableGroundSlots.Count);
-            var randomSlotIndex = 0;
-            var selectedSlot = availableGroundSlots[randomSlotIndex];
-            building.transform.position = selectedSlot.transform.position + new Vector3(0f, 0.01f, 0.0f);
-            _buildings.Add(building);
-            selectedSlot.SetOccupied(false);
+            //var randomSlotIndex = 0;
+            //var selectedSlot = availableGroundSlots[randomSlotIndex];
+            //building.transform.position = selectedSlot.transform.position + new Vector3(0f, 0.01f, 0.0f);
+            //_buildings.Add(building);
+            //selectedSlot.SetOccupied(false);
 
             // 유학 시: 원숭이 생성
-            var monkeyPrefab = _monkeyPrefabs[1];
+            /*var monkeyPrefab = _monkeyPrefabs[1];
             var monkeyObject = Instantiate(monkeyPrefab.gameObject, building.transform);
             var monkey = monkeyObject.GetComponent<Monkey>();
-            _totalMonkey = _totalMonkey + 1;
+            _totalMonkey = _totalMonkey + 1;*/
 
             // 원숭이 애니메이션 작동 시 제거
-            monkey.transform.localPosition = new Vector3(2f, 0f, 0f); // 건물에 상대적인 위치 설정
-            monkey.transform.localScale = new Vector3(1f, 1f, 1f);
+            /*monkey.transform.localPosition = new Vector3(2f, 0f, 0f); // 건물에 상대적인 위치 설정
+            monkey.transform.localScale = new Vector3(1f, 1f, 1f);*/
 
-            Observable.Interval(TimeSpan.FromSeconds(1))
+            //바나나 재화 획득 아님!
+            /*Observable.Interval(TimeSpan.FromSeconds(1))
                 .Where(_ => monkey.monkeyLevel > 0)
                 .Subscribe(_ =>
                 {
@@ -241,15 +242,18 @@ public class GameManager : Singleton<GameManager>
                     _totalBanana += bananaIncrease;
                     UpdateTotalBananaText();
                 })
-                .AddTo(monkey);
+                .AddTo(monkey);*/
 
-            monkey.OnUpgradeAsObservable()
+            Observable.Interval(TimeSpan.FromSeconds(1))
+                .Where(_ => building.buildingLevel > 0)
                 .Subscribe(_ =>
                 {
-                    monkey.MonkeyUpgrade();
-                    Debug.Log(" 원숭이 레벨 : " + monkey.monkeyLevel);
+                    var goldIncrease = building.buildingLevel * 10;
+                    _totalGold += goldIncrease;
+                    UpdateTotalGoldText();
                 })
-                .AddTo(monkey);
+                .AddTo(building);
+
             building.OnUpgradeAsObservable()
                 .Subscribe(_ =>
                 {
@@ -258,32 +262,6 @@ public class GameManager : Singleton<GameManager>
                 })
                 .AddTo(building);
         }
-        else
-        {
-            Debug.LogWarning("빌딩을 건설할 자리가 없습니다..");
-            Destroy(buildingObject);
-        }
-
-        Observable.Interval(TimeSpan.FromSeconds(1))
-            .Where(_ => building.buildingLevel > 0)
-            .Subscribe(_ =>
-            {
-                var bananaIncrease = building.buildingLevel * 10;
-                _totalBanana += bananaIncrease;
-                UpdateTotalGoldText();
-            })
-            .AddTo(building);
-
-        building.OnUpgradeAsObservable()
-            .Subscribe(_ =>
-            {
-                building.BuildingUpgrade();
-                Debug.Log(" 빌딩 레벨 : " + building.buildingLevel);
-            })
-            .AddTo(building);
-
-        // 빌딩이 지어진 후에 availableGroundSlots를 업데이트
-        availableGroundSlots = _InstallablePlaceSlots.Where(slot => !slot.IsOccupied.Value).ToList();
 
 
     }
@@ -304,7 +282,6 @@ public class GameManager : Singleton<GameManager>
             building.transform.position = selectedSlot.transform.position + new Vector3(0f, 0.01f, 0.0f);
             _buildings.Add(building);
             selectedSlot.SetOccupied(false);
-
         }
         else
         {

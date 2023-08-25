@@ -32,7 +32,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] 
     private Image _upgradePanel;
     [SerializeField]
-    private Image _upgradeBuildingPanel;
+    private Image _upgradeBuildingFacility0Panel;
+    [SerializeField]
+    private Image _upgradeBuildingVoyage0Panel;
+    [SerializeField]
+    private Image _upgradeBuildingVoyage1Panel;
     [SerializeField]
     private Image _upgradeMonkeyPanel;
 
@@ -100,9 +104,24 @@ public class UIManager : MonoBehaviour
             {
                 Debug.Log("Ray hit: " + hit.collider.gameObject.name); 
 
-                if (hit.collider.CompareTag("Building"))
+                if (hit.collider.CompareTag("BuildingFacility0"))
                 {
                     OnClickUpgradeBuildingBtn();
+                    _upgradeBuildingFacility0Panel.gameObject.SetActive(true);
+                    upgradebulidingPanelOpened = true;
+                }
+                if (hit.collider.CompareTag("BuildingVoyage0"))
+                {
+                    
+                    _upgradeBuildingVoyage0Panel.gameObject.SetActive(true);
+                    _upgradeMonkeyPanel.gameObject.SetActive(false);
+                    upgradebulidingPanelOpened = true;
+                }
+                if (hit.collider.CompareTag("BuildingVoyage1"))
+                {
+                    
+                    _upgradeBuildingVoyage1Panel.gameObject.SetActive(true);
+                    _upgradeMonkeyPanel.gameObject.SetActive(false);
                     upgradebulidingPanelOpened = true;
                 }
             }
@@ -127,8 +146,8 @@ public class UIManager : MonoBehaviour
 
     public void OnClickUpgradeBuildingBtn()
     {
-        _upgradePanel.gameObject.SetActive(true);
-
+        _upgradeBuildingFacility0Panel.gameObject.SetActive(true);
+        _upgradeMonkeyPanel.gameObject.SetActive(false);
     }
 
     public void OnClickStoreBtn()
@@ -166,12 +185,12 @@ public class UIManager : MonoBehaviour
 
     public void OnClickBuildingUpgrade()
     {
-        _upgradeBuildingPanel.gameObject.SetActive(true);
+        _upgradeBuildingFacility0Panel.gameObject.SetActive(true);
         _upgradeMonkeyPanel.gameObject.SetActive(false);
     }
     public void OnClickMonkeyUpgrade()
     {
-        _upgradeBuildingPanel.gameObject.SetActive(false);
+        _upgradeBuildingFacility0Panel.gameObject.SetActive(false);
         _upgradeMonkeyPanel.gameObject.SetActive(true);
     }
 
