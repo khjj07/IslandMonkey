@@ -64,6 +64,8 @@ public class GameManager : Singleton<GameManager>
         var buildingPrefab = _buildingPrefabs[0]; // 프리팹 선택
         var buildingObject = Instantiate(buildingPrefab.gameObject);
         var building = buildingObject.GetComponent<Building>();
+        // BuildingManager의 인스턴스르 찾아서 리스트에 추가
+        BuildingManager.instance.AddBuildingToList(building);
 
         var availableGroundSlots = _InstallablePlaceSlots.Where(slot => !slot.IsOccupied.Value).ToList();
         if (availableGroundSlots.Count > 0)
@@ -139,6 +141,9 @@ public class GameManager : Singleton<GameManager>
         var buildingObject = Instantiate(buildingPrefab.gameObject);
         var building = buildingObject.GetComponent<Building>();
 
+        // BuildingManager의 인스턴스르 찾아서 리스트에 추가
+        BuildingManager.instance.AddBuildingToList(building);
+
         var availableGroundSlots = _InstallablePlaceSlots.Where(slot => !slot.IsOccupied.Value).ToList();
         if (availableGroundSlots.Count > 0)
         {
@@ -213,6 +218,9 @@ public class GameManager : Singleton<GameManager>
         //var buildingObject = Instantiate(buildingPrefab.gameObject);
         var building = buildingPrefab.GetComponent<Building>();
 
+        // BuildingManager의 인스턴스르 찾아서 리스트에 추가
+        BuildingManager.instance.AddBuildingToList(building);
+
         var availableGroundSlots = _InstallablePlaceSlots.Where(slot => !slot.IsOccupied.Value).ToList();
         if (availableGroundSlots.Count > 0)
         {
@@ -272,6 +280,9 @@ public class GameManager : Singleton<GameManager>
         var buildingPrefab = _buildingPrefabs[3]; // 프리팹 선택
         var buildingObject = Instantiate(buildingPrefab.gameObject);
         var building = buildingObject.GetComponent<Building>();
+
+        // BuildingManager의 인스턴스르 찾아서 리스트에 추가
+        BuildingManager.instance.AddBuildingToList(building);
 
         var availableGroundSlots = _InstallablePlaceSlots.Where(slot => !slot.IsOccupied.Value).ToList();
         if (availableGroundSlots.Count > 0)

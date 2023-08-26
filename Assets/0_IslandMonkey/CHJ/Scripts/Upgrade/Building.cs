@@ -13,8 +13,13 @@ namespace Assets._0_IslandMonkey.CHJ.Scripts.Upgrade
     {
         private Subject<Unit> _upgradeSubject = new Subject<Unit>();
         public IObservable<Unit> OnUpgradeAsObservable() => _upgradeSubject;
-
         public int buildingLevel = 1;
+
+        public bool IsInMonkey { get { return _isInMonkey; } set { _isInMonkey = value; } }
+        private bool _isInMonkey = false;
+
+        // Building에 도착했을때 원숭이의 animator로가 아래의 animator로 바뀜(새로운 건물 도착할 때마다 다른 애니메이션 필요하기 때문)
+        public RuntimeAnimatorController MonkeyWithBuildingAnimatorController;
 
         [SerializeField]
         private TextMeshProUGUI buildingLevelText;
@@ -39,6 +44,22 @@ namespace Assets._0_IslandMonkey.CHJ.Scripts.Upgrade
             }
                 
         }
+
+
+        public void changeIsInMonkey()
+        {
+            if (_isInMonkey)
+            {
+                _isInMonkey = true;
+            }
+            else
+            {
+                _isInMonkey = false;
+            }
+        }
+
+
+
 
 
         public void BuildingUpgrade()

@@ -235,6 +235,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1657935300002892791}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &877010129819895962
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000515841116731046}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 2.5, z: 1}
+  m_Center: {x: 0, y: 1.25, z: 0}
 --- !u!95 &183851015
 Animator:
   serializedVersion: 5
@@ -269,20 +282,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingLevel: 1
+  MonkeyWithBuildingAnimatorController: {fileID: 0}
   buildingLevelText: {fileID: 1607966526769273945, guid: 79ec844076fcf994996275b9a1fd3597,
     type: 3}
   buildingNextLevelText: {fileID: 7892847788807983726, guid: 38fb4c4e5d44b3946b81f3efb4d21ba6,
     type: 3}
---- !u!65 &877010129819895962
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2000515841116731046}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.5, y: 2.5, z: 1}
-  m_Center: {x: 0, y: 1.25, z: 0}

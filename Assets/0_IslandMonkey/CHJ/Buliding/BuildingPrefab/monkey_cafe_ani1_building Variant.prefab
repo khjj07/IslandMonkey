@@ -270,7 +270,7 @@ PrefabInstance:
     - target: {fileID: 5233112405309087440, guid: ad896e7250917ec448c6241b3df9c795,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8222557554149521117, guid: ad896e7250917ec448c6241b3df9c795,
         type: 3}
@@ -297,6 +297,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[3]
       value: 
       objectReference: {fileID: 2100000, guid: 59510d4575266894db5c85291c94da67, type: 2}
+    - target: {fileID: 8442510506162454399, guid: ad896e7250917ec448c6241b3df9c795,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad896e7250917ec448c6241b3df9c795, type: 3}
 --- !u!1 &1329914054150647408 stripped
@@ -352,7 +357,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingLevel: 1
+  MonkeyWithBuildingAnimatorController: {fileID: 0}
   buildingLevelText: {fileID: 1607966526769273945, guid: 79ec844076fcf994996275b9a1fd3597,
     type: 3}
   buildingNextLevelText: {fileID: 7892847788807983726, guid: 38fb4c4e5d44b3946b81f3efb4d21ba6,
     type: 3}
+--- !u!1 &6208885096890273265 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5233112405309087440, guid: ad896e7250917ec448c6241b3df9c795,
+    type: 3}
+  m_PrefabInstance: {fileID: 2212855218658333473}
+  m_PrefabAsset: {fileID: 0}
+--- !u!208 &5904971097220828911
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6208885096890273265}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.6, y: 0.015, z: 0.6}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
