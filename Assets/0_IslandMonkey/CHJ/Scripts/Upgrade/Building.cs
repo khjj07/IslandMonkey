@@ -18,6 +18,8 @@ namespace Assets._0_IslandMonkey.CHJ.Scripts.Upgrade
 
         [SerializeField]
         private TextMeshProUGUI buildingLevelText;
+        [SerializeField]
+        private TextMeshProUGUI buildingNextLevelText;
 
         private void Start()
         {
@@ -32,7 +34,9 @@ namespace Assets._0_IslandMonkey.CHJ.Scripts.Upgrade
 
                 {
                     buildingLevelText.text = " " + buildingLevel;
-                }
+                    int _nextBuildingLevel = buildingLevel + 1;
+                    buildingNextLevelText.text = " " + _nextBuildingLevel;
+            }
                 
         }
 
@@ -40,7 +44,7 @@ namespace Assets._0_IslandMonkey.CHJ.Scripts.Upgrade
         public void BuildingUpgrade()
         {
             buildingLevel++;
-            GameManager._totalGold -= 100;
+            GameManager._totalGold -= 1000;
             Debug.Log("·¹º§¾÷");
             //_upgradeSubject.OnNext(Unit.Default);
         }

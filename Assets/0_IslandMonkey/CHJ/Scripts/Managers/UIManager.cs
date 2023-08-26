@@ -32,7 +32,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] 
     private Image _upgradePanel;
     [SerializeField]
-    private Image _upgradeBuildingPanel;
+    private Image _upgradeBuildingFacility0Panel;
+    [SerializeField]
+    private Image _upgradeBuildingVoyage0Panel;
+    [SerializeField]
+    private Image _upgradeBuildingVoyage1Panel;
     [SerializeField]
     private Image _upgradeMonkeyPanel;
 
@@ -48,6 +52,13 @@ public class UIManager : MonoBehaviour
     private Button _storeBtn; // Store 버튼 오브젝트
     [SerializeField]
     private Button _voyageBtn; // Voyage 버튼 오브젝트
+    [SerializeField]
+    private Button _manageBtn; // Voyage 버튼 오브젝트
+    [SerializeField]
+    private Button _rollupBtn; // Voyage 버튼 오브젝트
+    private Quaternion initialRotation;
+
+
 
     [SerializeField]
     private Image _basicScreen;
@@ -57,6 +68,11 @@ public class UIManager : MonoBehaviour
     private Image _functialFacilityScreen;
     [SerializeField]
     private Image _specialFacilityScreen;
+
+
+
+    [SerializeField]
+    private Image _manageScreen;
 
 
 
@@ -72,7 +88,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         bulidingPanelOpened = false;
-
+        initialRotation = _rollupBtn.transform.rotation;
     }
 
     void Update()
@@ -88,9 +104,24 @@ public class UIManager : MonoBehaviour
             {
                 Debug.Log("Ray hit: " + hit.collider.gameObject.name); 
 
-                if (hit.collider.CompareTag("Building"))
+                if (hit.collider.CompareTag("BuildingFacility0"))
                 {
                     OnClickUpgradeBuildingBtn();
+                    _upgradeBuildingFacility0Panel.gameObject.SetActive(true);
+                    upgradebulidingPanelOpened = true;
+                }
+                if (hit.collider.CompareTag("BuildingVoyage0"))
+                {
+                    
+                    _upgradeBuildingVoyage0Panel.gameObject.SetActive(true);
+                    _upgradeMonkeyPanel.gameObject.SetActive(false);
+                    upgradebulidingPanelOpened = true;
+                }
+                if (hit.collider.CompareTag("BuildingVoyage1"))
+                {
+                    
+                    _upgradeBuildingVoyage1Panel.gameObject.SetActive(true);
+                    _upgradeMonkeyPanel.gameObject.SetActive(false);
                     upgradebulidingPanelOpened = true;
                 }
             }
@@ -115,13 +146,15 @@ public class UIManager : MonoBehaviour
 
     public void OnClickUpgradeBuildingBtn()
     {
-        _upgradePanel.gameObject.SetActive(true);
-
+        _upgradeBuildingFacility0Panel.gameObject.SetActive(true);
+        _upgradeMonkeyPanel.gameObject.SetActive(false);
     }
 
     public void OnClickStoreBtn()
     {
     }
+
+
 
     public void OnClickVoyageBtn()
     {
@@ -131,6 +164,19 @@ public class UIManager : MonoBehaviour
     {
         StartCoroutine(TransitionToVoyageSceneEx1());
     }
+    public void OnClickVoyageEx2Btn()
+    {
+        StartCoroutine(TransitionToVoyageSceneEx2());
+    }
+    public void OnClickVoyageEx3Btn()
+    {
+        StartCoroutine(TransitionToVoyageSceneEx3());
+    }
+
+
+
+
+
 
     public void OnClickAbroadBtn()
     {
@@ -139,12 +185,12 @@ public class UIManager : MonoBehaviour
 
     public void OnClickBuildingUpgrade()
     {
-        _upgradeBuildingPanel.gameObject.SetActive(true);
+        _upgradeBuildingFacility0Panel.gameObject.SetActive(true);
         _upgradeMonkeyPanel.gameObject.SetActive(false);
     }
     public void OnClickMonkeyUpgrade()
     {
-        _upgradeBuildingPanel.gameObject.SetActive(false);
+        _upgradeBuildingFacility0Panel.gameObject.SetActive(false);
         _upgradeMonkeyPanel.gameObject.SetActive(true);
     }
 
@@ -178,6 +224,11 @@ public class UIManager : MonoBehaviour
         _buildingGroup.gameObject.SetActive(false);
         bulidingPanelOpened = false;
     }
+    public void ManagePanelBackBtn()
+    {
+        _manageScreen.gameObject.SetActive(false);
+        bulidingPanelOpened = false;
+    }
 
     public void UpgradeBuildingPanelBackBtn()
     {
@@ -196,6 +247,10 @@ public class UIManager : MonoBehaviour
     }
 
 
+    public void OnClickCookingScreen()
+    {
+        _manageScreen.gameObject.SetActive(true);
+    }
 
 
 
@@ -210,8 +265,22 @@ public class UIManager : MonoBehaviour
         _buildingBtn.gameObject.SetActive(!isRolledUp);
         _storeBtn.gameObject.SetActive(!isRolledUp);
         _voyageBtn.gameObject.SetActive(!isRolledUp);
-    }
+        _manageBtn.gameObject.SetActive(!isRolledUp);
 
+        RectTransform btnTransform = _rollupBtn.GetComponent<RectTransform>();
+        // Y 위치 조절
+        Vector2 currentPos = btnTransform.anchoredPosition;
+        if (isRolledUp)
+        {
+            btnTransform.anchoredPosition = new Vector2(currentPos.x, currentPos.y - 250);
+            btnTransform.localEulerAngles = new Vector3(0, 0, 180);
+        }
+        else
+        {
+            btnTransform.anchoredPosition = new Vector2(currentPos.x, currentPos.y + 250);
+            btnTransform.localEulerAngles = Vector3.zero;
+        }
+    }
     private IEnumerator TransitionToVoyageScene()
     {
 
@@ -229,6 +298,30 @@ public class UIManager : MonoBehaviour
 
         _voyageSplash.gameObject.SetActive(true);
         GameManager.instance.CreateBuildingEx1();
+        GameManager.instance.SaveGameManagerData();
+        // 2초 기다리기
+        yield return new WaitForSeconds(2);
+
+        // Voyage 씬 로드하기
+        SceneManager.LoadScene("Voyage");
+    }
+    private IEnumerator TransitionToVoyageSceneEx2()
+    {
+
+        _voyageSplash.gameObject.SetActive(true);
+        GameManager.instance.CreateBuildingEx2();
+        GameManager.instance.SaveGameManagerData();
+        // 2초 기다리기
+        yield return new WaitForSeconds(2);
+
+        // Voyage 씬 로드하기
+        SceneManager.LoadScene("Voyage");
+    }
+    private IEnumerator TransitionToVoyageSceneEx3()
+    {
+
+        _voyageSplash.gameObject.SetActive(true);
+        GameManager.instance.CreateBuildingEx3();
         GameManager.instance.SaveGameManagerData();
         // 2초 기다리기
         yield return new WaitForSeconds(2);

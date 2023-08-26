@@ -19,10 +19,10 @@ namespace PathCreationEditor {
         const float screenPolylineMinVertexDst = .01f;
 
         // Help messages:
-        const string helpInfo = "Shift-click to add or insert new points. Control-click to delete points. For more detailed infomation, please refer to the documentation.";
+        const string helpInfo = "Shift-click to add or insert new Points. Control-click to delete Points. For more detailed infomation, please refer to the documentation.";
         static readonly string[] spaceNames = { "3D (xyz)", "2D (xy)", "Top-down (xz)" };
         static readonly string[] tabNames = { "Bézier Path", "Vertex Path" };
-        const string constantSizeTooltip = "If true, anchor and control points will keep a constant size when zooming in the editor.";
+        const string constantSizeTooltip = "If true, anchor and control Points will keep a constant size when zooming in the editor.";
 
         // Display
         const int inspectorSectionSpacing = 10;
@@ -120,7 +120,7 @@ namespace PathCreationEditor {
                         handleIndexToDisplayAsTransform = -1;
                     }
 
-                    // If a point has been selected
+                    // If a Point has been selected
                     if (handleIndexToDisplayAsTransform != -1) {
                         EditorGUILayout.LabelField ("Selected Point:");
 
@@ -128,10 +128,10 @@ namespace PathCreationEditor {
                             var currentPosition = creator.bezierPath[handleIndexToDisplayAsTransform];
                             var newPosition = EditorGUILayout.Vector3Field ("Position", currentPosition);
                             if (newPosition != currentPosition) {
-                                Undo.RecordObject (creator, "Move point");
+                                Undo.RecordObject (creator, "Move Point");
                                 creator.bezierPath.MovePoint (handleIndexToDisplayAsTransform, newPosition);
                             }
-                            // Don't draw the angle field if we aren't selecting an anchor point/not in 3d space
+                            // Don't draw the angle field if we aren't selecting an anchor Point/not in 3d space
                             if (handleIndexToDisplayAsTransform % 3 == 0 && creator.bezierPath.Space == PathSpace.xyz) {
                                 var anchorIndex = handleIndexToDisplayAsTransform / 3;
                                 var currentAngle = creator.bezierPath.GetAnchorNormalAngle (anchorIndex);
@@ -315,11 +315,11 @@ namespace PathCreationEditor {
 
             if (data.showBezierPathInVertexMode) {
                 for (int i = 0; i < bezierPath.NumSegments; i++) {
-                    Vector3[] points = bezierPath.GetPointsInSegment (i);
-                    for (int j = 0; j < points.Length; j++) {
-                        points[j] = MathUtility.TransformPoint (points[j], creator.transform, bezierPath.Space);
+                    Vector3[] Points = bezierPath.GetPointsInSegment (i);
+                    for (int j = 0; j < Points.Length; j++) {
+                        Points[j] = MathUtility.TransformPoint (Points[j], creator.transform, bezierPath.Space);
                     }
-                    Handles.DrawBezier (points[0], points[3], points[1], points[2], bezierCol, null, 2);
+                    Handles.DrawBezier (Points[0], Points[3], Points[1], Points[2], bezierCol, null, 2);
                 }
             }
 
@@ -363,18 +363,18 @@ namespace PathCreationEditor {
             if (mouseOverHandleIndex == -1) {
                 if (e.type == EventType.MouseDown && e.button == 0 && e.shift) {
                     UpdatePathMouseInfo ();
-                    // Insert point along selected segment
+                    // Insert Point along selected segment
                     if (selectedSegmentIndex != -1 && selectedSegmentIndex < bezierPath.NumSegments) {
                         Vector3 newPathPoint = pathMouseInfo.closestWorldPointToMouse;
                         newPathPoint = MathUtility.InverseTransformPoint (newPathPoint, creator.transform, bezierPath.Space);
                         Undo.RecordObject (creator, "Split segment");
                         bezierPath.SplitSegment (newPathPoint, selectedSegmentIndex, pathMouseInfo.timeOnBezierSegment);
                     }
-                    // If path is not a closed loop, add new point on to the end of the path
+                    // If path is not a closed loop, add new Point on to the end of the path
                     else if (!bezierPath.IsClosed) {
-                        // insert new point at same dst from scene camera as the point that comes before it (for a 3d path)
-                        float dstCamToEndpoint = (Camera.current.transform.position - bezierPath[bezierPath.NumPoints - 1]).magnitude;
-                        Vector3 newPathPoint = MouseUtility.GetMouseWorldPosition (bezierPath.Space, dstCamToEndpoint);
+                        // insert new Point at same dst from scene camera as the Point that comes before it (for a 3d path)
+                        float dstCamToEndPoint = (Camera.current.transform.position - bezierPath[bezierPath.NumPoints - 1]).magnitude;
+                        Vector3 newPathPoint = MouseUtility.GetMouseWorldPosition (bezierPath.Space, dstCamToEndPoint);
                         newPathPoint = MathUtility.InverseTransformPoint (newPathPoint, creator.transform, bezierPath.Space);
 
                         Undo.RecordObject (creator, "Add segment");
@@ -389,7 +389,7 @@ namespace PathCreationEditor {
                 }
             }
 
-            // Control click or backspace/delete to remove point
+            // Control click or backspace/delete to remove Point
             if (e.keyCode == KeyCode.Backspace || e.keyCode == KeyCode.Delete || ((e.control || e.command) && e.type == EventType.MouseDown && e.button == 0)) {
 
                 if (mouseOverHandleIndex != -1) {
@@ -434,28 +434,28 @@ namespace PathCreationEditor {
 
             if (Event.current.type == EventType.Repaint) {
                 for (int i = 0; i < bezierPath.NumSegments; i++) {
-                    Vector3[] points = bezierPath.GetPointsInSegment (i);
-                    for (int j = 0; j < points.Length; j++) {
-                        points[j] = MathUtility.TransformPoint (points[j], creator.transform, bezierPath.Space);
+                    Vector3[] Points = bezierPath.GetPointsInSegment (i);
+                    for (int j = 0; j < Points.Length; j++) {
+                        Points[j] = MathUtility.TransformPoint (Points[j], creator.transform, bezierPath.Space);
                     }
 
                     if (data.showPerSegmentBounds) {
-                        Bounds segmentBounds = CubicBezierUtility.CalculateSegmentBounds (points[0], points[1], points[2], points[3]);
+                        Bounds segmentBounds = CubicBezierUtility.CalculateSegmentBounds (Points[0], Points[1], Points[2], Points[3]);
                         Handles.color = globalDisplaySettings.segmentBounds;
                         Handles.DrawWireCube (segmentBounds.center, segmentBounds.size);
                     }
 
-                    // Draw lines between control points
+                    // Draw lines between control Points
                     if (displayControlPoints) {
                         Handles.color = (bezierPath.ControlPointMode == BezierPath.ControlMode.Automatic) ? globalDisplaySettings.handleDisabled : globalDisplaySettings.controlLine;
-                        Handles.DrawLine (points[1], points[0]);
-                        Handles.DrawLine (points[2], points[3]);
+                        Handles.DrawLine (Points[1], Points[0]);
+                        Handles.DrawLine (Points[2], Points[3]);
                     }
 
                     // Draw path
                     bool highlightSegment = (i == selectedSegmentIndex && Event.current.shift && draggingHandleIndex == -1 && mouseOverHandleIndex == -1);
                     Color segmentCol = (highlightSegment) ? globalDisplaySettings.highlightedPath : globalDisplaySettings.bezierPath;
-                    Handles.DrawBezier (points[0], points[3], points[1], points[2], segmentCol, null, 2);
+                    Handles.DrawBezier (Points[0], Points[3], Points[1], Points[2], segmentCol, null, 2);
                 }
 
                 if (data.showPathBounds) {
@@ -564,10 +564,10 @@ namespace PathCreationEditor {
                 case PathHandle.HandleInputType.LMBClick:
                     draggingHandleIndex = -1;
                     if (Event.current.shift) {
-                        handleIndexToDisplayAsTransform = -1; // disable move tool if new point added
+                        handleIndexToDisplayAsTransform = -1; // disable move tool if new Point added
                     } else {
                         if (handleIndexToDisplayAsTransform == i) {
-                            handleIndexToDisplayAsTransform = -1; // disable move tool if clicking on point under move tool
+                            handleIndexToDisplayAsTransform = -1; // disable move tool if clicking on Point under move tool
                         } else {
                             handleIndexToDisplayAsTransform = i;
                         }
@@ -585,7 +585,7 @@ namespace PathCreationEditor {
             Vector3 localHandlePosition = MathUtility.InverseTransformPoint (handlePosition, creator.transform, bezierPath.Space);
 
             if (bezierPath[i] != localHandlePosition) {
-                Undo.RecordObject (creator, "Move point");
+                Undo.RecordObject (creator, "Move Point");
                 bezierPath.MovePoint (i, localHandlePosition);
 
             }

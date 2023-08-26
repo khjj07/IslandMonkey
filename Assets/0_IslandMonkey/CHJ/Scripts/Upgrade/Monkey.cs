@@ -30,8 +30,6 @@ namespace Assets._0_IslandMonkey.CHJ.Scripts.Upgrade
             {
                 monkeyLevelText.text = " " + monkeyLevel;
             }
-
-
         }
 
         public void MonkeyUpgrade()

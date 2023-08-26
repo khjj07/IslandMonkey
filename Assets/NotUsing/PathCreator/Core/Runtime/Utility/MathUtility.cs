@@ -130,11 +130,11 @@ namespace PathCreation.Utility {
             return s >= 0 && t >= 0 && (s + t) <= 1;
         }
 
-        public static bool PointsAreClockwise (Vector2[] points) {
+        public static bool PointsAreClockwise (Vector2[] Points) {
             float signedArea = 0;
-            for (int i = 0; i < points.Length; i++) {
-                int nextIndex = (i + 1) % points.Length;
-                signedArea += (points[nextIndex].x - points[i].x) * (points[nextIndex].y + points[i].y);
+            for (int i = 0; i < Points.Length; i++) {
+                int nextIndex = (i + 1) % Points.Length;
+                signedArea += (Points[nextIndex].x - Points[i].x) * (Points[nextIndex].y + Points[i].y);
             }
 
             return signedArea >= 0;
