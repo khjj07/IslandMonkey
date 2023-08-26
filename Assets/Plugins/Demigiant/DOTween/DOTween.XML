@@ -239,8 +239,8 @@
         </member>
         <member name="M:DG.Tweening.Core.DOTweenUtils.GetPointOnCircle(UnityEngine.Vector2,System.Single,System.Single)">
             <summary>
-            Returns a point on a circle with the given center and radius,
-            using Unity's circle coordinates (0° points up and increases clockwise)
+            Returns a Point on a circle with the given center and radius,
+            using Unity's circle coordinates (0° Points up and increases clockwise)
             </summary>
         </member>
         <member name="M:DG.Tweening.Core.DOTweenUtils.Vector3AreApproximatelyEqual(UnityEngine.Vector3,UnityEngine.Vector3)">
@@ -352,32 +352,32 @@
         </member>
         <member name="M:DG.Tweening.DOCurve.CubicBezier.GetPointOnSegment(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,System.Single)">
             <summary>
-            Calculates a point along the given Cubic Bezier segment-curve.<para/>
+            Calculates a Point along the given Cubic Bezier segment-curve.<para/>
             </summary>
-            <param name="startPoint">Segment start point</param>
-            <param name="startControlPoint">Start point's control point/handle</param>
-            <param name="endPoint">Segment end point</param>
-            <param name="endControlPoint">End point's control point/handle</param>
-            <param name="factor">0-1 percentage along which to retrieve point</param>
+            <param name="startPoint">Segment start Point</param>
+            <param name="startControlPoint">Start Point's control Point/handle</param>
+            <param name="endPoint">Segment end Point</param>
+            <param name="endControlPoint">End Point's control Point/handle</param>
+            <param name="factor">0-1 percentage along which to retrieve Point</param>
         </member>
         <member name="M:DG.Tweening.DOCurve.CubicBezier.GetSegmentPointCloud(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,System.Int32)">
             <summary>
-            Returns an array containing a series of points along the given Cubic Bezier segment-curve.<para/>
+            Returns an array containing a series of Points along the given Cubic Bezier segment-curve.<para/>
             </summary>
-            <param name="startPoint">Start point</param>
-            <param name="startControlPoint">Start point's control point/handle</param>
-            <param name="endPoint">End point</param>
-            <param name="endControlPoint">End point's control point/handle</param>
+            <param name="startPoint">Start Point</param>
+            <param name="startControlPoint">Start Point's control Point/handle</param>
+            <param name="endPoint">End Point</param>
+            <param name="endControlPoint">End Point's control Point/handle</param>
             <param name="resolution">Cloud resolution (min: 2)</param>
         </member>
         <member name="M:DG.Tweening.DOCurve.CubicBezier.GetSegmentPointCloud(System.Collections.Generic.List{UnityEngine.Vector3},UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,System.Int32)">
             <summary>
-            Calculates a series of points along the given Cubic Bezier segment-curve and adds them to the given list.<para/>
+            Calculates a series of Points along the given Cubic Bezier segment-curve and adds them to the given list.<para/>
             </summary>
-            <param name="startPoint">Start point</param>
-            <param name="startControlPoint">Start point's control point/handle</param>
-            <param name="endPoint">End point</param>
-            <param name="endControlPoint">End point's control point/handle</param>
+            <param name="startPoint">Start Point</param>
+            <param name="startControlPoint">Start Point's control Point/handle</param>
+            <param name="endPoint">End Point</param>
+            <param name="endControlPoint">End Point's control Point/handle</param>
             <param name="resolution">Cloud resolution (min: 2)</param>
         </member>
         <member name="T:DG.Tweening.DOTween">
@@ -1225,13 +1225,13 @@
             </summary>
         </member>
         <member name="F:DG.Tweening.PathType.Linear">
-            <summary>Linear, composed of straight segments between each waypoint</summary>
+            <summary>Linear, composed of straight segments between each wayPoint</summary>
         </member>
         <member name="F:DG.Tweening.PathType.CatmullRom">
             <summary>Curved path (which uses Catmull-Rom curves)</summary>
         </member>
         <member name="F:DG.Tweening.PathType.CubicBezier">
-            <summary><code>EXPERIMENTAL: </code>Curved path (which uses Cubic Bezier curves, where each point requires two extra control points)</summary>
+            <summary><code>EXPERIMENTAL: </code>Curved path (which uses Cubic Bezier curves, where each Point requires two extra control Points)</summary>
         </member>
         <member name="T:DG.Tweening.Plugins.CirclePlugin">
             <summary>
@@ -1242,24 +1242,24 @@
         </member>
         <member name="T:DG.Tweening.Plugins.Core.PathCore.ControlPoint">
             <summary>
-            Path control point
+            Path control Point
             </summary>
         </member>
         <member name="F:DG.Tweening.Plugins.Core.PathCore.Path.wps">
             <summary>
-            Path waypoints (modified by PathPlugin when setting relative end/change value or by CubicBezierDecoder) and by DOTweenPathInspector
+            Path wayPoints (modified by PathPlugin when setting relative end/change value or by CubicBezierDecoder) and by DOTweenPathInspector
             </summary>
         </member>
-        <member name="P:DG.Tweening.Plugins.Core.PathCore.Path.minInputWaypoints">
+        <member name="P:DG.Tweening.Plugins.Core.PathCore.Path.minInputWayPoints">
             <summary>
-            Minimum input points necessary to create the path (doesn't correspond to actual waypoints required)
+            Minimum input Points necessary to create the path (doesn't correspond to actual wayPoints required)
             </summary>
         </member>
         <member name="M:DG.Tweening.Plugins.Core.PathCore.Path.GetPoint(System.Single,System.Boolean)">
             <summary>
-            Gets the point on the path at the given percentage (0 to 1)
+            Gets the Point on the path at the given percentage (0 to 1)
             </summary>
-            <param name="perc">The percentage (0 to 1) at which to get the point</param>
+            <param name="perc">The percentage (0 to 1) at which to get the Point</param>
             <param name="convertToConstantPerc">If TRUE constant speed is taken into account, otherwise not</param>
         </member>
         <member name="T:DG.Tweening.Plugins.Options.IPlugOptions">
@@ -1431,15 +1431,15 @@
         <member name="M:DG.Tweening.TweenExtensions.TogglePause(DG.Tweening.Tween)">
             <summary>Plays the tween if it was paused, pauses it if it was playing</summary>
         </member>
-        <member name="M:DG.Tweening.TweenExtensions.GotoWaypoint(DG.Tweening.Tween,System.Int32,System.Boolean)">
-            <summary>Send a path tween to the given waypoint.
+        <member name="M:DG.Tweening.TweenExtensions.GotoWayPoint(DG.Tweening.Tween,System.Int32,System.Boolean)">
+            <summary>Send a path tween to the given wayPoint.
             Has no effect if this is not a path tween.
             <para>BEWARE, this is a special utility method:
             it works only with Linear eases. Also, the lookAt direction might be wrong after calling this and might need to be set manually
             (because it relies on a smooth path movement and doesn't work well with jumps that encompass dramatic direction changes)</para></summary>
-            <param name="waypointIndex">Waypoint index to reach
-            (if higher than the max waypoint index the tween will simply go to the last one)</param>
-            <param name="andPlay">If TRUE will play the tween after reaching the given waypoint, otherwise it will pause it</param>
+            <param name="wayPointIndex">WayPoint index to reach
+            (if higher than the max wayPoint index the tween will simply go to the last one)</param>
+            <param name="andPlay">If TRUE will play the tween after reaching the given wayPoint, otherwise it will pause it</param>
         </member>
         <member name="M:DG.Tweening.TweenExtensions.WaitForCompletion(DG.Tweening.Tween)">
             <summary>
@@ -1541,22 +1541,22 @@
         </member>
         <member name="M:DG.Tweening.TweenExtensions.PathGetPoint(DG.Tweening.Tween,System.Single)">
             <summary>
-            Returns a point on a path based on the given path percentage.
+            Returns a Point on a path based on the given path percentage.
             Returns <code>Vector3.zero</code> if this is not a path tween, if the tween is invalid, or if the path is not yet initialized.
             A path is initialized after its tween starts, or immediately if the tween was created with the Path Editor (DOTween Pro feature).
             You can force a path to be initialized by calling <code>myTween.ForceInit()</code>.
             </summary>
-            <param name="pathPercentage">Percentage of the path (0 to 1) on which to get the point</param>
+            <param name="pathPercentage">Percentage of the path (0 to 1) on which to get the Point</param>
         </member>
         <member name="M:DG.Tweening.TweenExtensions.PathGetDrawPoints(DG.Tweening.Tween,System.Int32)">
             <summary>
-            Returns an array of points that can be used to draw the path.
+            Returns an array of Points that can be used to draw the path.
             Note that this method generates allocations, because it creates a new array.
             Returns <code>NULL</code> if this is not a path tween, if the tween is invalid, or if the path is not yet initialized.
             A path is initialized after its tween starts, or immediately if the tween was created with the Path Editor (DOTween Pro feature).
             You can force a path to be initialized by calling <code>myTween.ForceInit()</code>.
             </summary>
-            <param name="subdivisionsXSegment">How many points to create for each path segment (waypoint to waypoint).
+            <param name="subdivisionsXSegment">How many Points to create for each path segment (wayPoint to wayPoint).
             Only used in case of non-Linear paths</param>
         </member>
         <member name="M:DG.Tweening.TweenExtensions.PathLength(DG.Tweening.Tween)">
@@ -2038,25 +2038,25 @@
             <param name="snapping">If TRUE the tween will smoothly snap all values to integers</param>
         </member>
         <member name="M:DG.Tweening.ShortcutExtensions.DOPath(UnityEngine.Transform,UnityEngine.Vector3[],System.Single,DG.Tweening.PathType,DG.Tweening.PathMode,System.Int32,System.Nullable{UnityEngine.Color})">
-            <summary>Tweens a Transform's position through the given path waypoints, using the chosen path algorithm.
+            <summary>Tweens a Transform's position through the given path wayPoints, using the chosen path algorithm.
             Also stores the transform as the tween's target so it can be used for filtered operations</summary>
-            <param name="path">The waypoints to go through</param>
+            <param name="path">The wayPoints to go through</param>
             <param name="duration">The duration of the tween</param>
-            <param name="pathType">The type of path: Linear (straight path), CatmullRom (curved CatmullRom path) or CubicBezier (curved with control points)</param>
+            <param name="pathType">The type of path: Linear (straight path), CatmullRom (curved CatmullRom path) or CubicBezier (curved with control Points)</param>
             <param name="pathMode">The path mode: 3D, side-scroller 2D, top-down 2D</param>
             <param name="resolution">The resolution of the path (useless in case of Linear paths): higher resolutions make for more detailed curved paths but are more expensive.
-            Defaults to 10, but a value of 5 is usually enough if you don't have dramatic long curves between waypoints</param>
+            Defaults to 10, but a value of 5 is usually enough if you don't have dramatic long curves between wayPoints</param>
             <param name="gizmoColor">The color of the path (shown when gizmos are active in the Play panel and the tween is running)</param>
         </member>
         <member name="M:DG.Tweening.ShortcutExtensions.DOLocalPath(UnityEngine.Transform,UnityEngine.Vector3[],System.Single,DG.Tweening.PathType,DG.Tweening.PathMode,System.Int32,System.Nullable{UnityEngine.Color})">
-            <summary>Tweens a Transform's localPosition through the given path waypoints, using the chosen path algorithm.
+            <summary>Tweens a Transform's localPosition through the given path wayPoints, using the chosen path algorithm.
             Also stores the transform as the tween's target so it can be used for filtered operations</summary>
-            <param name="path">The waypoint to go through</param>
+            <param name="path">The wayPoint to go through</param>
             <param name="duration">The duration of the tween</param>
-            <param name="pathType">The type of path: Linear (straight path), CatmullRom (curved CatmullRom path) or CubicBezier (curved with control points)</param>
+            <param name="pathType">The type of path: Linear (straight path), CatmullRom (curved CatmullRom path) or CubicBezier (curved with control Points)</param>
             <param name="pathMode">The path mode: 3D, side-scroller 2D, top-down 2D</param>
             <param name="resolution">The resolution of the path: higher resolutions make for more detailed curved paths but are more expensive.
-            Defaults to 10, but a value of 5 is usually enough if you don't have dramatic long curves between waypoints</param>
+            Defaults to 10, but a value of 5 is usually enough if you don't have dramatic long curves between wayPoints</param>
             <param name="gizmoColor">The color of the path (shown when gizmos are active in the Play panel and the tween is running)</param>
         </member>
         <member name="M:DG.Tweening.ShortcutExtensions.DOPath(UnityEngine.Transform,DG.Tweening.Plugins.Core.PathCore.Path,System.Single,DG.Tweening.PathMode)">
@@ -2451,9 +2451,9 @@
             <summary>Sets the onKill callback for the tween.
             Called the moment the tween is killed</summary>
         </member>
-        <member name="M:DG.Tweening.TweenParams.OnWaypointChange(DG.Tweening.TweenCallback{System.Int32})">
-            <summary>Sets the onWaypointChange callback for the tween.
-            Called when a path tween reaches a new waypoint</summary>
+        <member name="M:DG.Tweening.TweenParams.OnWayPointChange(DG.Tweening.TweenCallback{System.Int32})">
+            <summary>Sets the onWayPointChange callback for the tween.
+            Called when a path tween reaches a new wayPoint</summary>
         </member>
         <member name="M:DG.Tweening.TweenParams.SetDelay(System.Single)">
             <summary>Sets a delayed startup for the tween.
@@ -2628,9 +2628,9 @@
             <summary>Sets the <code>onKill</code> callback for the tween, clearing any previous <code>onKill</code> callback that was set.
             Called the moment the tween is killed</summary>
         </member>
-        <member name="M:DG.Tweening.TweenSettingsExtensions.OnWaypointChange``1(``0,DG.Tweening.TweenCallback{System.Int32})">
-            <summary>Sets the <code>onWaypointChange</code> callback for the tween, clearing any previous <code>onWaypointChange</code> callback that was set.
-            Called when a path tween's current waypoint changes</summary>
+        <member name="M:DG.Tweening.TweenSettingsExtensions.OnWayPointChange``1(``0,DG.Tweening.TweenCallback{System.Int32})">
+            <summary>Sets the <code>onWayPointChange</code> callback for the tween, clearing any previous <code>onWayPointChange</code> callback that was set.
+            Called when a path tween's current wayPoint changes</summary>
         </member>
         <member name="M:DG.Tweening.TweenSettingsExtensions.SetAs``1(``0,DG.Tweening.Tween)">
             <summary>Sets the parameters of the tween (id, ease, loops, delay, timeScale, callbacks, etc) as the parameters of the given one.
@@ -2968,8 +2968,8 @@
         <member name="F:DG.Tweening.Tween.onKill">
             <summary>Called the moment the tween is killed</summary>
         </member>
-        <member name="F:DG.Tweening.Tween.onWaypointChange">
-            <summary>Called when a path tween's current waypoint changes</summary>
+        <member name="F:DG.Tweening.Tween.onWayPointChange">
+            <summary>Called when a path tween's current wayPoint changes</summary>
         </member>
         <member name="P:DG.Tweening.Tween.isRelative">
             <summary>Tweeners-only (ignored by Sequences), returns TRUE if the tween was set as relative</summary>

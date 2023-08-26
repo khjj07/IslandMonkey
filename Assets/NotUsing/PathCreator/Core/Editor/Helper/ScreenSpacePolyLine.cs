@@ -13,15 +13,15 @@ namespace PathCreationEditor
         const float intermediaryThreshold = .2f;
 
         public readonly List<Vector3> verticesWorld;
-        // For each point in the polyline, says which bezier segment it belongs to
+        // For each Point in the polyline, says which bezier segment it belongs to
         readonly List<int> vertexToPathSegmentMap;
-        // Stores the index in the vertices list where the start point of each segment is
+        // Stores the index in the vertices list where the start Point of each segment is
         readonly int[] segmentStartIndices;
 
         readonly float pathLengthWorld;
         readonly float[] cumululativeLengthWorld;
 
-        Vector2[] points;
+        Vector2[] Points;
 
         Vector3 prevCamPos;
         Quaternion prevCamRot;
@@ -69,13 +69,13 @@ namespace PathCreationEditor
 
                 for (float t = increment; t <= 1; t += increment)
                 {
-                    Vector3 pointOnPath = CubicBezierUtility.EvaluateCurve(segmentPoints[0], segmentPoints[1], segmentPoints[2], segmentPoints[3], t);
+                    Vector3 PointOnPath = CubicBezierUtility.EvaluateCurve(segmentPoints[0], segmentPoints[1], segmentPoints[2], segmentPoints[3], t);
                     Vector3 nextPointOnPath = CubicBezierUtility.EvaluateCurve(segmentPoints[0], segmentPoints[1], segmentPoints[2], segmentPoints[3], t + increment);
 
-                    // angle at current point on path
-                    float localAngle = 180 - MathUtility.MinAngle(prevPointOnPath, pointOnPath, nextPointOnPath);
-                    // angle between the last added vertex, the current point on the path, and the next point on the path
-                    float angleFromPrevVertex = 180 - MathUtility.MinAngle(lastAddedPoint, pointOnPath, nextPointOnPath);
+                    // angle at current Point on path
+                    float localAngle = 180 - MathUtility.MinAngle(prevPointOnPath, PointOnPath, nextPointOnPath);
+                    // angle between the last added vertex, the current Point on the path, and the next Point on the path
+                    float angleFromPrevVertex = 180 - MathUtility.MinAngle(lastAddedPoint, PointOnPath, nextPointOnPath);
                     float angleError = Mathf.Max(localAngle, angleFromPrevVertex);
 
 
@@ -83,31 +83,31 @@ namespace PathCreationEditor
                     {
                         dstSinceLastVertex = 0;
                         dstSinceLastIntermediary = 0;
-                        verticesWorld.Add(pointOnPath);
+                        verticesWorld.Add(PointOnPath);
                         vertexToPathSegmentMap.Add(segmentIndex);
-                        lastAddedPoint = pointOnPath;
+                        lastAddedPoint = PointOnPath;
                     }
                     else
                     {
                         if (dstSinceLastIntermediary > intermediaryThreshold)
                         {
-                            verticesWorld.Add(pointOnPath);
+                            verticesWorld.Add(PointOnPath);
                             vertexToPathSegmentMap.Add(segmentIndex);
                             dstSinceLastIntermediary = 0;
                         }
                         else
                         {
-                            dstSinceLastIntermediary += (pointOnPath - prevPointOnPath).magnitude;
+                            dstSinceLastIntermediary += (PointOnPath - prevPointOnPath).magnitude;
                         }
-                        dstSinceLastVertex += (pointOnPath - prevPointOnPath).magnitude;
+                        dstSinceLastVertex += (PointOnPath - prevPointOnPath).magnitude;
                     }
-                    prevPointOnPath = pointOnPath;
+                    prevPointOnPath = PointOnPath;
                 }
             }
 
             segmentStartIndices[bezierPath.NumSegments] = verticesWorld.Count;
 
-            // ensure final point gets added (unless path is closed loop)
+            // ensure final Point gets added (unless path is closed loop)
             if (!bezierPath.IsClosed)
             {
                 verticesWorld.Add(bezierPath[bezierPath.NumPoints - 1]);
@@ -134,10 +134,10 @@ namespace PathCreationEditor
         {
             if (Camera.current.transform.position != prevCamPos || Camera.current.transform.rotation != prevCamRot || Camera.current.orthographic != premCamIsOrtho)
             {
-                points = new Vector2[verticesWorld.Count];
+                Points = new Vector2[verticesWorld.Count];
                 for (int i = 0; i < verticesWorld.Count; i++)
                 {
-                    points[i] = HandleUtility.WorldToGUIPoint(verticesWorld[i]);
+                    Points[i] = HandleUtility.WorldToGUIPoint(verticesWorld[i]);
                 }
 
                 prevCamPos = Camera.current.transform.position;
@@ -155,9 +155,9 @@ namespace PathCreationEditor
             int closestPolyLineSegmentIndex = 0;
             int closestBezierSegmentIndex = 0;
 
-            for (int i = 0; i < points.Length - 1; i++)
+            for (int i = 0; i < Points.Length - 1; i++)
             {
-                float dst = HandleUtility.DistancePointToLineSegment(mousePos, points[i], points[i + 1]);
+                float dst = HandleUtility.DistancePointToLineSegment(mousePos, Points[i], Points[i + 1]);
 
                 if (dst < minDst)
                 {
@@ -167,15 +167,15 @@ namespace PathCreationEditor
                 }
             }
 
-            Vector2 closestPointOnLine = MathUtility.ClosestPointOnLineSegment(mousePos, points[closestPolyLineSegmentIndex], points[closestPolyLineSegmentIndex + 1]);
-            float dstToPointOnLine = (points[closestPolyLineSegmentIndex] - closestPointOnLine).magnitude;
-            float percentBetweenVertices = dstToPointOnLine / (points[closestPolyLineSegmentIndex] - points[closestPolyLineSegmentIndex + 1]).magnitude;
+            Vector2 closestPointOnLine = MathUtility.ClosestPointOnLineSegment(mousePos, Points[closestPolyLineSegmentIndex], Points[closestPolyLineSegmentIndex + 1]);
+            float dstToPointOnLine = (Points[closestPolyLineSegmentIndex] - closestPointOnLine).magnitude;
+            float percentBetweenVertices = dstToPointOnLine / (Points[closestPolyLineSegmentIndex] - Points[closestPolyLineSegmentIndex + 1]).magnitude;
             Vector3 closestPoint3D = Vector3.Lerp(verticesWorld[closestPolyLineSegmentIndex], verticesWorld[closestPolyLineSegmentIndex + 1], percentBetweenVertices);
 
             float distanceAlongPathWorld = cumululativeLengthWorld[closestPolyLineSegmentIndex] + Vector3.Distance(verticesWorld[closestPolyLineSegmentIndex], closestPoint3D);
             float timeAlongPath = distanceAlongPathWorld / pathLengthWorld;
 
-            // Calculate how far between the current bezier segment the closest point on the line is
+            // Calculate how far between the current bezier segment the closest Point on the line is
             
             int bezierSegmentStartIndex = segmentStartIndices[closestBezierSegmentIndex];
             int bezierSegmentEndIndex = segmentStartIndices[closestBezierSegmentIndex+1];

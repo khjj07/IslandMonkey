@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 namespace PathCreation {
-    /// A vertex path is a collection of points (vertices) that lie along a bezier path.
+    /// A vertex path is a collection of Points (vertices) that lie along a bezier path.
     /// This allows one to do things like move at a constant speed along the path,
     /// which is not possible with a bezier path directly due to how they're constructed mathematically.
 
@@ -174,7 +174,7 @@ namespace PathCreation {
             return MathUtility.TransformPoint (localPoints[index], transform, space);
         }
 
-        /// Gets point on path based on distance travelled.
+        /// Gets Point on path based on distance travelled.
         public Vector3 GetPointAtDistance (float dst, EndOfPathInstruction endOfPathInstruction = EndOfPathInstruction.Loop) {
             float t = dst / length;
             return GetPointAtTime (t, endOfPathInstruction);
@@ -192,13 +192,13 @@ namespace PathCreation {
             return GetNormal (t, endOfPathInstruction);
         }
 
-        /// Gets a rotation that will orient an object in the direction of the path at this point, with local up point along the path's normal
+        /// Gets a rotation that will orient an object in the direction of the path at this Point, with local up Point along the path's normal
         public Quaternion GetRotationAtDistance (float dst, EndOfPathInstruction endOfPathInstruction = EndOfPathInstruction.Loop) {
             float t = dst / length;
             return GetRotation (t, endOfPathInstruction);
         }
 
-        /// Gets point on path based on 'time' (where 0 is start, and 1 is end of path).
+        /// Gets Point on path based on 'time' (where 0 is start, and 1 is end of path).
         public Vector3 GetPointAtTime (float t, EndOfPathInstruction endOfPathInstruction = EndOfPathInstruction.Loop) {
             var data = CalculatePercentOnPathData (t, endOfPathInstruction);
             return Vector3.Lerp (GetPoint (data.previousIndex), GetPoint (data.nextIndex), data.percentBetweenIndices);
@@ -218,7 +218,7 @@ namespace PathCreation {
             return MathUtility.TransformDirection (normal, transform, space);
         }
 
-        /// Gets a rotation that will orient an object in the direction of the path at this point, with local up point along the path's normal
+        /// Gets a rotation that will orient an object in the direction of the path at this Point, with local up Point along the path's normal
         public Quaternion GetRotation (float t, EndOfPathInstruction endOfPathInstruction = EndOfPathInstruction.Loop) {
             var data = CalculatePercentOnPathData (t, endOfPathInstruction);
             Vector3 direction = Vector3.Lerp (localTangents[data.previousIndex], localTangents[data.nextIndex], data.percentBetweenIndices);
@@ -226,19 +226,19 @@ namespace PathCreation {
             return Quaternion.LookRotation (MathUtility.TransformDirection (direction, transform, space), MathUtility.TransformDirection (normal, transform, space));
         }
 
-        /// Finds the closest point on the path from any point in the world
+        /// Finds the closest Point on the path from any Point in the world
         public Vector3 GetClosestPointOnPath (Vector3 worldPoint) {
             TimeOnPathData data = CalculateClosestPointOnPathData (worldPoint);
             return Vector3.Lerp (GetPoint (data.previousIndex), GetPoint (data.nextIndex), data.percentBetweenIndices);
         }
 
-        /// Finds the 'time' (0=start of path, 1=end of path) along the path that is closest to the given point
+        /// Finds the 'time' (0=start of path, 1=end of path) along the path that is closest to the given Point
         public float GetClosestTimeOnPath (Vector3 worldPoint) {
             TimeOnPathData data = CalculateClosestPointOnPathData (worldPoint);
             return Mathf.Lerp (times[data.previousIndex], times[data.nextIndex], data.percentBetweenIndices);
         }
 
-        /// Finds the distance along the path that is closest to the given point
+        /// Finds the distance along the path that is closest to the given Point
         public float GetClosestDistanceAlongPath (Vector3 worldPoint) {
             TimeOnPathData data = CalculateClosestPointOnPathData (worldPoint);
             return Mathf.Lerp (cumulativeLengthAtEachVertex[data.previousIndex], cumulativeLengthAtEachVertex[data.nextIndex], data.percentBetweenIndices);
@@ -294,7 +294,7 @@ namespace PathCreation {
             return new TimeOnPathData (prevIndex, nextIndex, abPercent);
         }
 
-        /// Calculate time data for closest point on the path from given world point
+        /// Calculate time data for closest Point on the path from given world Point
         TimeOnPathData CalculateClosestPointOnPathData (Vector3 worldPoint) {
             float minSqrDst = float.MaxValue;
             Vector3 closestPoint = Vector3.zero;

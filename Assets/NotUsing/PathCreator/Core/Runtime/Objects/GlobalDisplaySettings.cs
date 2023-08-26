@@ -18,7 +18,7 @@ namespace PathCreation
         public bool visibleBehindObjects = true;
         [Tooltip("Should the path be drawn even when the path object is not selected?")]
         public bool visibleWhenNotSelected = true;
-        [Tooltip("If true, control points will be hidden when the control point mode is set to automatic. Otherwise they will inactive, but still visible.")]
+        [Tooltip("If true, control Points will be hidden when the control Point mode is set to automatic. Otherwise they will inactive, but still visible.")]
         public bool hideAutoControls = true;
         public HandleType anchorShape;
         public HandleType controlShape;
