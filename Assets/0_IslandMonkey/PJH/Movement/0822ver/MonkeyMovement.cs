@@ -140,14 +140,14 @@ public class MonkeyMovement : MonoBehaviour
 
     private void SetMonkeyLocation()
     {
-        if (currentMonkeyLocation.Value != MonkeyLocation.Moving)
+        switch (currentMonkeyLocation.Value)
         {
             case (MonkeyLocation.InOwnBuilding):
                 if (currentMonkeyHealth <= minHealth)
                 {
                     Debug.Log("집을 떠나자 숭숭");
                     _monkeyAnimationController.ChangeMonkeyState(MonkeyState.Walk);
-                    GoToTargetBuilding(); 
+                    GoToTargetBuilding();
                 }
                 break;
             case (MonkeyLocation.Moving):
@@ -158,7 +158,7 @@ public class MonkeyMovement : MonoBehaviour
                         currentMonkeyLocation.Value = MonkeyLocation.InOwnBuilding;
                         _monkeyAnimationController.ChangeMonkeyState(MonkeyState.ComeIn);
                     }
-                    else if ( currentMonkeyHealth <= minHealth)  // TargetBuilding에 도달했을 경우
+                    else if (currentMonkeyHealth <= minHealth)  // TargetBuilding에 도달했을 경우
                     {
                         currentMonkeyLocation.Value = MonkeyLocation.InTargetBuilding;
                         _monkeyAnimationController.ChangeMonkeyState(MonkeyState.ComeIn);
