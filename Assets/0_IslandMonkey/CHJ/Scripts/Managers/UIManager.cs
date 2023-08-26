@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UniRx;
+using Assets.IslandMonkey.Scripts.Managers;
 
 
 public class UIManager : MonoBehaviour
@@ -89,6 +90,7 @@ public class UIManager : MonoBehaviour
     {
         bulidingPanelOpened = false;
         initialRotation = _rollupBtn.transform.rotation;
+
     }
 
     void Update()
@@ -232,9 +234,15 @@ public class UIManager : MonoBehaviour
 
     public void UpgradeBuildingPanelBackBtn()
     {
-        _upgradePanel.gameObject.SetActive(false);
-
+        //_upgradePanel.gameObject.SetActive(false);
+        _upgradeBuildingFacility0Panel.gameObject.SetActive(false);
+        _upgradeBuildingVoyage0Panel.gameObject.SetActive(false);
+        _upgradeBuildingVoyage1Panel.gameObject.SetActive(false);
     }
+
+
+
+
     public void BuildingUpgradeBtn()
     {
         Building.instance.BuildingUpgrade();
