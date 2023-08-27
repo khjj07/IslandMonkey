@@ -80,11 +80,13 @@ public class GameManager : Singleton<GameManager>
             // 유학 시: 원숭이 생성
             var monkeyPrefab = _monkeyPrefabs[0];
             var monkeyObject = Instantiate(monkeyPrefab.gameObject, building.transform);
+            monkeyObject.GetComponent<MonkeyMovement>().OwnBuilding = building;  // 원숭이 ownbuilding 추가
+
             var monkey = monkeyObject.GetComponent<Monkey>();
             _totalMonkey = _totalMonkey + 1;
 
             // 원숭이 애니메이션 작동 시 제거
-            monkey.transform.localPosition = new Vector3(-1.5f, 0f, 0f); // 건물에 상대적인 위치 설정
+            //monkey.transform.localPosition = new Vector3(-1.5f, 0f, 0f); // 건물에 상대적인 위치 설정
             monkey.transform.localScale = new Vector3(1f, 1f, 1f);
 
             Observable.Interval(TimeSpan.FromSeconds(1))
@@ -157,11 +159,12 @@ public class GameManager : Singleton<GameManager>
             // 유학 시: 원숭이 생성
             var monkeyPrefab = _monkeyPrefabs[0];
             var monkeyObject = Instantiate(monkeyPrefab.gameObject, building.transform);
+            monkeyObject.GetComponent<MonkeyMovement>().OwnBuilding = building; // 원숭이 ownbuilding 추가
             var monkey = monkeyObject.GetComponent<Monkey>();
             _totalMonkey = _totalMonkey + 1;
 
             // 원숭이 애니메이션 작동 시 제거
-            monkey.transform.localPosition = new Vector3(2f, 0f, 0f); // 건물에 상대적인 위치 설정
+            //monkey.transform.localPosition = new Vector3(2f, 0f, 0f); // 건물에 상대적인 위치 설정
             monkey.transform.localScale = new Vector3(1f, 1f, 1f);
 
             Observable.Interval(TimeSpan.FromSeconds(1))
@@ -234,12 +237,15 @@ public class GameManager : Singleton<GameManager>
             // 유학 시: 원숭이 생성
             /*var monkeyPrefab = _monkeyPrefabs[1];
             var monkeyObject = Instantiate(monkeyPrefab.gameObject, building.transform);
+            monkeyObject.GetComponent<MonkeyMovement>().OwnBuilding = building; // 원숭이 ownbuilding 추가
+
+
             var monkey = monkeyObject.GetComponent<Monkey>();
             _totalMonkey = _totalMonkey + 1;*/
 
             // 원숭이 애니메이션 작동 시 제거
-            /*monkey.transform.localPosition = new Vector3(2f, 0f, 0f); // 건물에 상대적인 위치 설정
-            monkey.transform.localScale = new Vector3(1f, 1f, 1f);*/
+            ////monkey.transform.localPosition = new Vector3(2f, 0f, 0f); // 건물에 상대적인 위치 설정
+            //monkey.transform.localScale = new Vector3(1f, 1f, 1f);
 
             //바나나 재화 획득 아님!
             /*Observable.Interval(TimeSpan.FromSeconds(1))

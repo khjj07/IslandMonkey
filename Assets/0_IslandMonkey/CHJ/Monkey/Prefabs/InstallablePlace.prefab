@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 134667887}
   - component: {fileID: 134667888}
-  - component: {fileID: 1780692810}
+  - component: {fileID: 1127507765}
   m_Layer: 0
   m_Name: icon_character
   m_TagString: Untagged
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1780692810
+--- !u!114 &1127507765
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1806925964}
   - component: {fileID: 1806925965}
-  - component: {fileID: 1780692809}
+  - component: {fileID: 1127507764}
   m_Layer: 0
   m_Name: icon_facility
   m_TagString: Untagged
@@ -214,7 +214,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1780692809
+--- !u!114 &1127507764
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -304,6 +304,7 @@ GameObject:
   - component: {fileID: 5592776702470549948}
   - component: {fileID: 2516162592792017692}
   - component: {fileID: -6571535415655857326}
+  - component: {fileID: 5791060701663114608}
   m_Layer: 0
   m_Name: InstallablePlace
   m_TagString: Untagged
@@ -405,3 +406,19 @@ MonoBehaviour:
   _color: {r: 0, g: 0.13062587, b: 0.41509432, a: 1}
   _scale: {x: 3, y: 300, z: 3}
   _wireFrame: 1
+--- !u!114 &5791060701663114608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3608329303954307053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a94c83d291b0a0142b85d6c21f23c2e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingLevel: 1
+  MonkeyWithBuildingAnimatorController: {fileID: 0}
+  buildingLevelText: {fileID: 0}
+  buildingNextLevelText: {fileID: 0}

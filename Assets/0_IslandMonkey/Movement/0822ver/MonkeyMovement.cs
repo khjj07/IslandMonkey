@@ -21,13 +21,13 @@ public class MonkeyMovement : MonoBehaviour
 
     [SerializeField]
     public ReactiveProperty<MonkeyLocation> currentMonkeyLocation = new ReactiveProperty<MonkeyLocation>(MonkeyLocation.Moving);
-    private List<Building_PJH> _functionalBuildings = new List<Building_PJH>(); // 거리가 짧은 순으로 정렬, 건물 이동시 다시 정렬
+    private List<Building> _functionalBuildings = new List<Building>(); // 거리가 짧은 순으로 정렬, 건물 이동시 다시 정렬
    
-    public Building_PJH OwnBuilding; // 원숭이 instanciate될 때 함께 생성되는 건물을 할당해주어야 함.
-    private Building_PJH TargetBuilding; 
+    public Building OwnBuilding; // 원숭이 instanciate될 때 함께 생성되는 건물을 할당해주어야 함.
+    private Building TargetBuilding; 
     private NavMeshAgent AgentMonkey;
-    private static float OffsetFromBuildingCenter = 3.5f; // building 중앙으로부터 3.5만큼 떨어진 곳에서 stop, 3.5f 바꾸면 안됨.(애니메이션과 관련)
-    private static Vector3 OffsetFromBuildingCenterVector = new Vector3(OffsetFromBuildingCenter, 0, 0); // 나중에 z 축으로 바꾸기
+    private static float OffsetFromBuildingCenter = -3.5f; // building 중앙으로부터 3.5만큼 떨어진 곳에서 stop, 3.5f 바꾸면 안됨.(애니메이션과 관련)
+    private static Vector3 OffsetFromBuildingCenterVector = new Vector3(0, 0, OffsetFromBuildingCenter); // 나중에 z 축으로 바꾸기
 
     /// <summary>
     /// 원숭이 health 임의 설정) 범위: 0~5, 1초에 1씩 체력감소 or 회복
@@ -45,7 +45,7 @@ public class MonkeyMovement : MonoBehaviour
 
     private void Awake()
     {
-        _functionalBuildings = BuildingManager_PJH.instance.FunctionalBuildings.ToList(); // FunctionalBuildings리스트 가져오기
+        _functionalBuildings = BuildingManager.instance.FunctionalBuildings.ToList(); // FunctionalBuildings리스트 가져오기
         AgentMonkey = GetComponent<NavMeshAgent>();
         currentMonkeyHealth = maxHealth; // 초기 health는 max
         _monkeyAnimationController = GetComponent<MonkeyAnimationController>();
@@ -89,7 +89,7 @@ public class MonkeyMovement : MonoBehaviour
     // targetBuilding에 원숭이가 있는지 체크 => 현재 원숭이가 내부에 없는 건물 중에 가장 가까운 건물을 target으로 설정
     private bool SetTargetBuilding()
     {
-        foreach (Building_PJH functionalBuilding in _functionalBuildings)
+        foreach (Building functionalBuilding in _functionalBuildings)
         {
             if (!functionalBuilding.IsInMonkey)
             {
@@ -121,7 +121,7 @@ public class MonkeyMovement : MonoBehaviour
                 currentMonkeyLocation.Value = MonkeyLocation.Moving;
                 changeBuildingsIsInMonkey();
                 AgentMonkey.SetDestination(TargetBuilding.transform.position + OffsetFromBuildingCenterVector);
-                _monkeyAnimationController.MonkeyInBuildingAnimatorController = TargetBuilding.MonkeyWithBuildingAnimatorController;
+                //_monkeyAnimationController.MonkeyInBuildingAnimatorController = TargetBuilding.MonkeyWithBuildingAnimatorController;
             }
         }
     }
@@ -134,7 +134,7 @@ public class MonkeyMovement : MonoBehaviour
             currentMonkeyLocation.Value = MonkeyLocation.Moving;
             changeBuildingsIsInMonkey();
             AgentMonkey.SetDestination(OwnBuilding.transform.position + OffsetFromBuildingCenterVector);
-            _monkeyAnimationController.MonkeyInBuildingAnimatorController = OwnBuilding.MonkeyWithBuildingAnimatorController;
+            //_monkeyAnimationController.MonkeyInBuildingAnimatorController = OwnBuilding.MonkeyWithBuildingAnimatorController;
         }
     }
 
@@ -156,12 +156,12 @@ public class MonkeyMovement : MonoBehaviour
                     if (currentMonkeyHealth >= maxHealth)  // OwnBuilding에 도달했을 경우
                     {
                         currentMonkeyLocation.Value = MonkeyLocation.InOwnBuilding;
-                        _monkeyAnimationController.ChangeMonkeyState(MonkeyState.ComeIn);
+                        _monkeyAnimationController.ChangeMonkeyState(MonkeyState.Stand);
                     }
                     else if (currentMonkeyHealth <= minHealth)  // TargetBuilding에 도달했을 경우
                     {
                         currentMonkeyLocation.Value = MonkeyLocation.InTargetBuilding;
-                        _monkeyAnimationController.ChangeMonkeyState(MonkeyState.ComeIn);
+                        _monkeyAnimationController.ChangeMonkeyState(MonkeyState.Stand);
                     }
                 }
                 break;
