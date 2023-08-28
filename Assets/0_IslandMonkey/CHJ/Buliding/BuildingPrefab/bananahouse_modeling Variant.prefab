@@ -67,6 +67,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8644744512292778588, guid: 9276cdc63195e4f47874d79730d43a6c,
+        type: 3}
+      propertyPath: m_Carve
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9276cdc63195e4f47874d79730d43a6c, type: 3}
 --- !u!1001 &1903799916070284396
@@ -234,7 +239,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ffa428fe70571564c986f2d75c9546cd,
         type: 3}
       propertyPath: m_Name
-      value: bananahouse_modeling Variant
+      value: bananahouse_modeling
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ffa428fe70571564c986f2d75c9546cd,
         type: 3}

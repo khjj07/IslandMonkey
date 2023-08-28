@@ -38,7 +38,7 @@ public class VoyageManager : MonoBehaviour
         ShellfishItem = Shellfishes[index].GetComponent<Shellfish>();
         if (!ShellfishItem.isActiveAndEnabled)
         {
-            Debug.Log("Shellfish 积己!");
+            //Debug.Log("Shellfish 积己!");
             ShellfishItem.gameObject.SetActive(true);
         }
     }
@@ -49,9 +49,10 @@ public class VoyageManager : MonoBehaviour
         {
             VoyageTime -= (Time.deltaTime);
             VoyageBar.value = VoyageTime;
-            if ((VoyageTime <= VoyageBar.maxValue / 2) && !isReturn)
+            if ((VoyageTime < VoyageBar.maxValue / 2) && !isReturn)
             {
-                Boat.transform.Rotate(0, 180, 0);
+                //Boat.transform.Rotate(0, 180, 0);
+                Debug.Log("倒酒倒酒");
                 isReturn = true;
             }
         }

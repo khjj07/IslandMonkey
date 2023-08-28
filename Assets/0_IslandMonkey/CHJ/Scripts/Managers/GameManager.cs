@@ -70,7 +70,7 @@ public class GameManager : Singleton<GameManager>
         var availableGroundSlots = _InstallablePlaceSlots.Where(slot => !slot.IsOccupied.Value).ToList();
         if (availableGroundSlots.Count > 0)
         {
-            //var randomSlotIndex = UnityEngine.Random.Range(0, availableGroundSlots.Count);
+            //var randomSlotIndex = UnityEngine.Rando   m.Range(0, availableGroundSlots.Count);
             var randomSlotIndex = 2;
             var selectedSlot = availableGroundSlots[randomSlotIndex];
             building.transform.position = selectedSlot.transform.position + new Vector3(0f, 0.15f, -1.5f);
@@ -78,7 +78,7 @@ public class GameManager : Singleton<GameManager>
             selectedSlot.SetOccupied(false);
 
             // 유학 시: 원숭이 생성
-            var monkeyPrefab = _monkeyPrefabs[0];
+            var monkeyPrefab = _monkeyPrefabs[1]; //////////PJH수정
             var monkeyObject = Instantiate(monkeyPrefab.gameObject, building.transform);
             monkeyObject.GetComponent<MonkeyMovement>().OwnBuilding = building;  // 원숭이 ownbuilding 추가
 
@@ -157,7 +157,7 @@ public class GameManager : Singleton<GameManager>
             selectedSlot.SetOccupied(false);
 
             // 유학 시: 원숭이 생성
-            var monkeyPrefab = _monkeyPrefabs[0];
+            var monkeyPrefab = _monkeyPrefabs[1]; ///////////PJH수정
             var monkeyObject = Instantiate(monkeyPrefab.gameObject, building.transform);
             monkeyObject.GetComponent<MonkeyMovement>().OwnBuilding = building; // 원숭이 ownbuilding 추가
             var monkey = monkeyObject.GetComponent<Monkey>();
@@ -287,8 +287,8 @@ public class GameManager : Singleton<GameManager>
         var buildingObject = Instantiate(buildingPrefab.gameObject);
         var building = buildingObject.GetComponent<Building>();
 
-        // BuildingManager의 인스턴스르 찾아서 리스트에 추가
-        //BuildingManager.instance.AddBuildingToList(building);
+        //BuildingManager의 인스턴스르 찾아서 리스트에 추가
+        //BuildingManager.instance.FunctionalBuildings.Add(buildingObject.GetComponent<Building>());
 
         var availableGroundSlots = _InstallablePlaceSlots.Where(slot => !slot.IsOccupied.Value).ToList();
         if (availableGroundSlots.Count > 0)
@@ -332,7 +332,7 @@ public class GameManager : Singleton<GameManager>
 
     public void CreateMonkey()
     {
-        var monkeyPrefab = _monkeyPrefabs[0];
+        var monkeyPrefab = _monkeyPrefabs[1]; //////PJH수정
         var monkeyObject = Instantiate(monkeyPrefab.gameObject);
         var monkey = monkeyObject.GetComponent<Monkey>();
 

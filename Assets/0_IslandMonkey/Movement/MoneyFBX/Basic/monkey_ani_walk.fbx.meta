@@ -3,7 +3,22 @@ guid: 17e9bfc23c33f47469cdf713a3be610a
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: monkey_ear.005
+    second: {fileID: 2100000, guid: 92d7495c8f5e5a44884e89d8d0224f5d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: monkey_hair.005
+    second: {fileID: 2100000, guid: 92d7495c8f5e5a44884e89d8d0224f5d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: monkey_uv.008
+    second: {fileID: 2100000, guid: 92d7495c8f5e5a44884e89d8d0224f5d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

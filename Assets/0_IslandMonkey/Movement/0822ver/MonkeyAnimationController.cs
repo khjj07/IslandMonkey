@@ -54,13 +54,13 @@ public class MonkeyAnimationController : MonoBehaviour
                 break;
             case MonkeyState.Walk:
                 MonkeyAnimator.runtimeAnimatorController = MonkeyAnimatorController;
-                Debug.Log("걸어라");
+                //Debug.Log("걸어라");
                 MonkeyAnimator.SetBool("isWalk", true);
                 MonkeyAnimator.SetTrigger("Walk");
                 break;
             case MonkeyState.ComeIn:
                 MonkeyAnimator.runtimeAnimatorController = MonkeyInBuildingAnimatorController; // 여기서 controller 바꾸기
-                Debug.Log("건물 안");
+                //Debug.Log("건물 안");
                 MonkeyAnimator.SetBool("inFacility", true);
                 MonkeyAnimator.SetTrigger("Facility");
                 // 여기서 BuildingwithMonkey 애니메이션 true로 변환!!

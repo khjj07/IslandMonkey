@@ -144,9 +144,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 457140244227105180}
-  - component: {fileID: 5816463196303457254}
   - component: {fileID: 2885105668829367886}
+  - component: {fileID: 5816463196303457254}
   - component: {fileID: 1237593045318990213}
+  - component: {fileID: 1734530039632175475}
   - component: {fileID: 8243279051944901127}
   m_Layer: 0
   m_Name: monkeyPJH
@@ -164,7 +165,7 @@ Transform:
   m_GameObject: {fileID: 942314509794638630}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8856544118807654658}
@@ -172,27 +173,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &5816463196303457254
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 942314509794638630}
-  m_Enabled: 0
-  m_Avatar: {fileID: 9000000, guid: 89c418c7b346ad341b1ae0da55e3f5f3, type: 2}
-  m_Controller: {fileID: 9100000, guid: 8922a9d1dbee316469567520745931a0, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &2885105668829367886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,6 +187,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monkeyLevel: 1
   monkeyLevelText: {fileID: 0}
+--- !u!95 &5816463196303457254
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942314509794638630}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 89c418c7b346ad341b1ae0da55e3f5f3, type: 2}
+  m_Controller: {fileID: 9100000, guid: c9a02b44d9b0fa240a0a329415df26fb, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1237593045318990213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,15 +220,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f60a72cc9255a41a9d9fef2392b5b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OwnFacilityEntracne: {fileID: 0}
-  TargetFacilityEntracne: {fileID: 0}
-  DistancefromOwnFacility: 0
-  DistancefromTargetFacility: 0
+  currentMonkeyLocation:
+    value: 1
+  _functionalBuildings: []
+  OwnBuilding: {fileID: 0}
+  TargetBuilding: {fileID: 0}
   currentMonkeyHealth: 0
-  currentMonkeyPosition: 0
-  maxHealth: 3
-  minHealth: 0
-  healthUpdatePerSecond: 1
+--- !u!114 &1734530039632175475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942314509794638630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbc1f0d9da95f624b870ee6f789fa2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MonkeyInBuildingAnimatorController: {fileID: 0}
 --- !u!195 &8243279051944901127
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -238,11 +249,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 10000
-  m_StoppingDistance: 1
+  m_AngularSpeed: 100
+  m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
@@ -528,7 +539,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2887847916715504191}
   m_LocalRotation: {x: 0.000000015454313, y: 0.70710677, z: -0.000000015454312, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 2.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -555,9 +566,10 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4594317822328811546, guid: 17e9bfc23c33f47469cdf713a3be610a, type: 3}
-  - {fileID: 1698643261739688834, guid: 17e9bfc23c33f47469cdf713a3be610a, type: 3}
-  - {fileID: -1924384507083669957, guid: 17e9bfc23c33f47469cdf713a3be610a, type: 3}
+  - {fileID: 2100000, guid: 92d7495c8f5e5a44884e89d8d0224f5d, type: 2}
+  - {fileID: 2100000, guid: 92d7495c8f5e5a44884e89d8d0224f5d, type: 2}
+  - {fileID: 2100000, guid: 92d7495c8f5e5a44884e89d8d0224f5d, type: 2}
+  - {fileID: 2100000, guid: 59510d4575266894db5c85291c94da67, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

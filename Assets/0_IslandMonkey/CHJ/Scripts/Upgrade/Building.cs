@@ -15,6 +15,7 @@ namespace Assets._0_IslandMonkey.CHJ.Scripts.Upgrade
         public IObservable<Unit> OnUpgradeAsObservable() => _upgradeSubject;
         public int buildingLevel = 1;
 
+        [SerializeField]
         public bool IsInMonkey { get { return _isInMonkey; } set { _isInMonkey = value; } }
         private bool _isInMonkey = false;
 
@@ -50,11 +51,11 @@ namespace Assets._0_IslandMonkey.CHJ.Scripts.Upgrade
         {
             if (_isInMonkey)
             {
-                _isInMonkey = true;
+                _isInMonkey = false;
             }
             else
             {
-                _isInMonkey = false;
+                _isInMonkey = true;
             }
         }
 

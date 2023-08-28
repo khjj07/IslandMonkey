@@ -380,13 +380,13 @@ Avatar:
         m_X: []
     m_RootMotionSkeletonIndexArray: 
   m_TOS:
-    2104266162: Armature
-    2509321217: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm/mixamorig:LeftForeArm
+    124217959: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1
     2079976957: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm/mixamorig:RightForeArm/mixamorig:RightHand
     3887241153: Armature/mixamorig:Hips/mixamorig:Hips.002
     33052115: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm/mixamorig:LeftForeArm/mixamorig:LeftHand
     1126126988: Armature/mixamorig:Hips/mixamorig:LeftUpLeg
     1139793341: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head
+    2509321217: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm/mixamorig:LeftForeArm
     748179792: Armature/mixamorig:Hips/mixamorig:RightUpLeg
     248591092: Armature/mixamorig:Hips/mixamorig:Hips.004
     198118164: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2
@@ -414,7 +414,7 @@ Avatar:
     28713038: Armature/mixamorig:Hips/mixamorig:RightUpLeg/mixamorig:RightLeg/mixamorig:RightFoot
     1814948745: Armature/mixamorig:Hips
     2427823959: Armature/mixamorig:Hips/mixamorig:Hips.003
-    124217959: Armature/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1
+    2104266162: Armature
   m_HumanDescription:
     serializedVersion: 3
     m_Human: []
