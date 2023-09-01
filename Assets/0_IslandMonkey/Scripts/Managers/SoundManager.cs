@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
+using static UnityEngine.Rendering.PostProcessing.HistogramMonitor;
 
 namespace Assets.IslandMonkey.Scripts.Managers
 {
@@ -89,6 +90,11 @@ namespace Assets.IslandMonkey.Scripts.Managers
         public void Stop(Channel channel) => channel.Stop();
 
         public void SetVolume(Channel channel, float volume) => channel.SetVolume(volume);
+
+        public void SetBgmVolume(float volume)
+        {
+            _bgmChanel.SetVolume(volume);
+        }
     }
 
 
