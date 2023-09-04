@@ -1,4 +1,7 @@
 using System;
+using Assets._0_IslandMonkey.Scripts.Extension;
+using DG.Tweening;
+using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.Events;
@@ -19,13 +22,21 @@ namespace Assets._0_IslandMonkey.Scripts.Abstract
         public float goldEarnInterval = 1.0f;
         public float bananaEarnInterval = 1.0f;
         public float clamEarnInterval = 1.0f;
+        public GameObject model;
+        public TextMeshPro goldEarningLabel;
+        public TextMeshPro bananaEarningLabel;
+        public TextMeshPro clamEarningLabel;
+
         public UnityEvent goldEarnEvent;
         public UnityEvent bananaEarnEvent;
         public UnityEvent clamEarnEvent;
 
         #endregion
 
-
+        public void Start()
+        {
+            CreateEarnStream();
+        }
         public void CreateEarnStream()
         {
             if (goldIncome > 0)
@@ -33,6 +44,7 @@ namespace Assets._0_IslandMonkey.Scripts.Abstract
                 Observable.Interval(TimeSpan.FromSeconds(goldEarnInterval)).Subscribe(_ =>
                 {
                     GameManager.instance.EarnGold(goldIncome);
+                    AnimateGoldEarningText(goldIncome.FormatLargeNumber());
                     goldEarnEvent.Invoke();
                 }).AddTo(gameObject);
             }
@@ -52,6 +64,26 @@ namespace Assets._0_IslandMonkey.Scripts.Abstract
                     clamEarnEvent.Invoke();
                 }).AddTo(gameObject);
             }
+        }
+
+        public void SqueezeModel()
+        {
+            model.transform.DOShakeScale(0.2f, Vector3.one*0.02f);
+        }
+
+        public void AnimateGoldEarningText(string content)
+        {
+            var instance = Instantiate(goldEarningLabel);
+            instance.SetText("+"+content+"°ñµå");
+            instance.transform.localScale=Vector3.zero;
+            
+            instance.transform.DOScale(1, 1)
+                .SetRelative();
+
+            instance.transform.DOMoveY(1.5f, 1)
+                .SetRelative()
+                .OnComplete(()=> instance.DOColor(new Vector4(instance.color.r, instance.color.g, instance.color.b, 0f), 0.5f)
+                    .OnComplete(()=>Destroy(instance.gameObject)));
         }
 
         public void SetPlace(Place place)

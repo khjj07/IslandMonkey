@@ -11,11 +11,11 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: d7b0192b9bf19c949900035fa781fdc4,
     type: 3}
   m_ValidKeywords:
+  - _ADVANCED_SHADING
   - _ENVIRONMENTREFLECTIONS_OFF
   - _FOAM
-  - _NORMALMAP
   - _RECEIVE_SHADOWS_OFF
-  - _SHARP_INERSECTION
+  - _SMOOTH_INTERSECTION
   - _UNLIT
   - _WAVES
   m_InvalidKeywords:
@@ -27,7 +27,7 @@ Material:
   - _WORLDSPACEUV_ON
   - _ZCLIP_ON
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -158,8 +158,8 @@ Material:
     - _EnvironmentReflectionsOn: 0
     - _FlatShadingOn: 0
     - _FlowSpeed: 1
-    - _FoamBaseAmount: 1
-    - _FoamClipping: 0.98
+    - _FoamBaseAmount: 0.372
+    - _FoamClipping: 0
     - _FoamDistortion: 0.1
     - _FoamOn: 1
     - _FoamOpacity: 0.253
@@ -167,7 +167,7 @@ Material:
     - _FoamSpeed: 0.030000014
     - _FoamSubSpeed: -0.25
     - _FoamSubTiling: 0.5
-    - _FoamTiling: 0.049999908
+    - _FoamTiling: 0.0799999
     - _FoamWaveAmount: 0
     - _FoamWaveMask: 0
     - _FoamWaveMaskExp: 1
@@ -175,16 +175,16 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _HorizonDistance: 7.6
-    - _IntersectionClipping: 0.428
-    - _IntersectionFalloff: 1
-    - _IntersectionLength: 1.79
+    - _IntersectionClipping: 0.291
+    - _IntersectionFalloff: 0.473
+    - _IntersectionLength: 1.68
     - _IntersectionRippleDist: 64
-    - _IntersectionRippleStrength: 0.355
+    - _IntersectionRippleStrength: 0.394
     - _IntersectionSize: 0.944
     - _IntersectionSource: 0
-    - _IntersectionSpeed: 0.06000001
-    - _IntersectionStyle: 1
-    - _IntersectionTiling: 0.16999984
+    - _IntersectionSpeed: 0.1
+    - _IntersectionStyle: 2
+    - _IntersectionTiling: 0.38999975
     - _IntersectionWaveDist: 33.28
     - _LightingMode: 0
     - _LightingOn: 0
@@ -192,7 +192,7 @@ Material:
     - _Metallicness: 0.1
     - _NORMALMAPOn: 1
     - _NormalMap: 1
-    - _NormalMapOn: 1
+    - _NormalMapOn: 0
     - _NormalSpeed: 0.2
     - _NormalStrength: 0.556
     - _NormalSubSpeed: -0.5
@@ -222,7 +222,7 @@ Material:
     - _RimTiling: 0.025
     - _RiverModeOn: 0
     - _SHARP_INERSECTIONOn: 1
-    - _ShadingMode: 0
+    - _ShadingMode: 1
     - _ShadowStrength: 1
     - _ShoreLineLength: 0
     - _ShoreLineWaveDistance: 23
@@ -240,9 +240,9 @@ Material:
     - _SpecularReflectionsOn: 1
     - _Speed: 1
     - _SrcBlend: 1
-    - _SunReflectionDistortion: 0.49
+    - _SunReflectionDistortion: 0.73
     - _SunReflectionPerturbance: 0.548
-    - _SunReflectionSize: 0.943
+    - _SunReflectionSize: 0.941
     - _SunReflectionStrength: 3
     - _Surface: 0
     - _TEXTURE_INTERSECTIONOn: 0
@@ -259,11 +259,11 @@ Material:
     - _VertexColorDepth: 0
     - _VertexColorFoam: 0
     - _VertexColorWaveFlattening: 0
-    - _WaveCount: 1
+    - _WaveCount: 3
     - _WaveDistance: 0.763
-    - _WaveHeight: 0.1
+    - _WaveHeight: 0.5
     - _WaveNormalStr: 0.291
-    - _WaveSpeed: 2
+    - _WaveSpeed: 1
     - _WaveSteepness: 0
     - _WaveTint: 0.029
     - _WavesOn: 1

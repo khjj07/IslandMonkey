@@ -13,14 +13,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    public class Unit
-    {
-        public char suffix ;
-        public int value;
-    }
-    public int banana =0;
-    public int gold = 0;
-    public int clam =0;
+    public int banana;
+    public int gold;
+    public int clam;
   
     public void Start()
     {

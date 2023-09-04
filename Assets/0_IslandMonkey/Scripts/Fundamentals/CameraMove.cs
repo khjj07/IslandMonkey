@@ -35,8 +35,8 @@ public class CameraMove : MonoBehaviour
             {
                 Vector3 pos = transform.position;
 
-                pos.x -= Input.GetAxis("Mouse X") * panSpeed * Time.deltaTime;
-                pos.z -= Input.GetAxis("Mouse Y") * panSpeed * Time.deltaTime;
+                pos.x -= Input.GetAxis("Mouse X") * panSpeed * camera.orthographicSize * Time.deltaTime;
+                pos.z -= Input.GetAxis("Mouse Y") * panSpeed * camera.orthographicSize * Time.deltaTime;
 
                 // 카메라 이동 범위 제한
                 pos.x = Mathf.Clamp(pos.x, minX, maxX);

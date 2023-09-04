@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Assets._0_IslandMonkey.Scripts.Extension;
 
 namespace Assets._0_IslandMonkey.Scripts.Managers
 {
@@ -51,17 +52,17 @@ namespace Assets._0_IslandMonkey.Scripts.Managers
 
         public void SetGold(int gold)
         {
-
+            this.gold.SetText(gold.FormatLargeNumber());
         }
 
-        public void SetClam(int gold)
+        public void SetClam(int clam)
         {
-
+            this.clam.SetText(clam.FormatLargeNumber());
         }
 
-        public void SetBanana(int gold)
+        public void SetBanana(int banana)
         {
-
+            this.banana.SetText(banana.FormatLargeNumber());
         }
     }
 }

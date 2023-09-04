@@ -8,7 +8,7 @@ public class Panel : MonoBehaviour
     public UnityEvent onEnableEvent;
     public UnityEvent onDisableEvent;
 
-    public void React()
+    public virtual void React()
     {
         if (gameObject.activeSelf)
         {

@@ -102,10 +102,10 @@ Material:
     - _Parallax: 0.02
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RampOffset: 0
-    - _RampSmooth: 1
-    - _RimLightBrightness: 0.268
-    - _RimPower: 10
+    - _RampOffset: 0.252
+    - _RampSmooth: 0.202
+    - _RimLightBrightness: 0.321
+    - _RimPower: 1.35
     - _SmoothnessTextureChannel: 1
     - _SpecularEnable: 0
     - _SpecularHighlights: 1
