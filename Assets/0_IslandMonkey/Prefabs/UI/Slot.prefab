@@ -171,6 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStudy: 0
   isLocked: 0
+  icon: {fileID: 8774352475329222101}
   facilityName: {fileID: 8774352474415793551}
   facilityExplanation: {fileID: 8774352474011282953}
   cost: {fileID: 8774352475402251802}

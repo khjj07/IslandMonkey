@@ -22,5 +22,4 @@ public class TabPanel<T> : Panel where T : Panel
             current = this;
         }
     }
-
 }

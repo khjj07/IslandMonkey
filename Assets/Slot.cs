@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Assets._0_IslandMonkey.Scripts.Extension;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class Slot : MonoBehaviour
 {
@@ -14,6 +14,7 @@ public class Slot : MonoBehaviour
     public TextMeshProUGUI facilityExplanation;
     public TextMeshProUGUI cost;
     public TextMeshProUGUI duration;
+
     public void Build(BuildingPurchaseDataAsset.BuildingPurchaseData data)
     {
         isStudy = data.isStudy;

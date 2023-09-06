@@ -11,6 +11,7 @@ public class BuildingTabPanel : TabPanel<BuildingTabPanel>
     public Sprite inActiveImage;
     public Slot slotPrefab;
     public BuildingPurchaseDataAsset purchaseData;
+    public RectTransform origin;
 
     public void Start()
     {
@@ -19,9 +20,11 @@ public class BuildingTabPanel : TabPanel<BuildingTabPanel>
 
     private void BuildItem()
     {
-        var instance = Instantiate(slotPrefab);
+      
         foreach (var data in purchaseData.data)
         {
+            var instance = Instantiate(slotPrefab);
+            instance.transform.SetParent(origin, false);
             instance.Build(data);
         }
 
@@ -31,7 +34,6 @@ public class BuildingTabPanel : TabPanel<BuildingTabPanel>
        //    //row.data.Find(x=>x.key == "facility_name");
        //    //row.data.Find(x=>x.key == "facility_explanation");
        //    //row.data.Find(x=>x.key == "study_cost"); // cost로 묶을 필요 있음
-       //    
        //}
     }
 
