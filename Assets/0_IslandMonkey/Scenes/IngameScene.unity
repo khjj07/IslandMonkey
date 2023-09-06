@@ -37379,6 +37379,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1014535620705285779, guid: a583c406eef78dd43bab54ba9a6db5fe,
+        type: 3}
+      propertyPath: m_Name
+      value: VoyageBuildingPanel(PurchaseData)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1014535621049077015, guid: a583c406eef78dd43bab54ba9a6db5fe,
+        type: 3}
+      propertyPath: m_Name
+      value: FunctionalBuildingPanel(PurchaseData)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1014535621920624400, guid: a583c406eef78dd43bab54ba9a6db5fe,
+        type: 3}
+      propertyPath: m_Name
+      value: SpecialBuildingPanel(PurchaseData)
+      objectReference: {fileID: 0}
     - target: {fileID: 6217299726367740474, guid: a583c406eef78dd43bab54ba9a6db5fe,
         type: 3}
       propertyPath: m_AnchoredPosition.y
