@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5162059151115914927
 RectTransform:
   m_ObjectHideFlags: 0
@@ -169,6 +169,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e0ac1235f283d409b5fc6aa339ade5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStudy: 0
+  isLocked: 0
+  facilityName: {fileID: 8774352474415793551}
+  facilityExplanation: {fileID: 8774352474011282953}
+  cost: {fileID: 8774352475402251802}
+  duration: {fileID: 8774352474018827921}
 --- !u!1 &8774352473955410556
 GameObject:
   m_ObjectHideFlags: 0

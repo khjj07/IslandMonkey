@@ -1,0 +1,85 @@
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Networking;
+using System.Collections;
+using System;
+using Newtonsoft.Json.Linq;
+using UnityEditor.ShaderGraph;
+using System.Linq;
+using UnityEngine.Assertions;
+
+[Serializable]
+public class KeyValue
+{
+    public string key;
+    public string value;
+}
+
+[Serializable]
+public class RowData
+{
+    public List<KeyValue> data;
+}
+
+[Serializable]
+public class GoogleSheetLoader
+{
+    [SerializeField]
+    private string spreadsheetId = "YOUR_SPREADSHEET_ID";
+
+    [SerializeField]
+    private string sheetName = "YOUR_SHEET_NAME";
+
+    [SerializeField]
+    private string apiKey = "YOUR_GOOGLE_API_KEY";
+
+    [SerializeField]
+    private List<RowData> dataList = new List<RowData>();
+
+    [SerializeField]
+    private List<string> keyList = new List<string>();
+
+    public void LoadGoogleSheetData()
+    {
+        string url = $"https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetId}/values/{sheetName}?key={apiKey}";
+
+        UnityWebRequest www = UnityWebRequest.Get(url);
+
+        if (www.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError("Failed to load Google Spreadsheet data: " + www.error);
+        }
+        else
+        {
+            // Parse the JSON response
+            JObject response = JObject.Parse(www.downloadHandler.text);
+            JArray rows = response["values"] as JArray;
+            JArray headerRow = rows[0] as JArray;
+
+            // Iterate through the header row to initialize dictionary keys
+            foreach (var key in headerRow)
+            {
+                keyList.Add(key.ToString());
+            }
+            for (int i = 1; i < rows.Count; i++)
+            {
+                JArray rowData = rows[i] as JArray;
+                var row = new RowData();
+
+                for (int j = 0; j < headerRow.Count; j++)
+                {
+                    var keyVal = new KeyValue();
+                    keyVal.key = keyList[j].ToString();
+                    keyVal.value = rowData[j].ToString();
+                    row.data.Add(keyVal);
+                }
+                dataList.Add(row);
+            }
+        }
+    } //비동기로 돌릴 의향 있음
+
+    public List<RowData> GetRowDataList()
+    {
+        return dataList;
+    }
+}
