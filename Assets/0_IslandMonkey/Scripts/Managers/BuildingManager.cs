@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Assets._0_IslandMonkey.Scripts.Abstract;
@@ -5,6 +6,18 @@ using UnityEngine;
 
 public class BuildingManager : Singleton<BuildingManager>
 {
+    [Serializable]
+    public class InstalledBuilding
+    {
+        public Vector2Int index;
+        public Building building;
+        public InstalledBuilding(Vector2Int index, Building building)
+        {
+            this.index = index;
+            this.building = building;
+        }
+    }
+
     public enum Type
     {
         BananaHouse,
@@ -18,21 +31,29 @@ public class BuildingManager : Singleton<BuildingManager>
     private List<Building> _buildingPrefabs;
 
     [SerializeField]
-    private List<Building> _buildings;
+    public List<InstalledBuilding> _buildings;
 
     [SerializeField]
     private Transform origin;
 
+    public float offset = 1.0f;
+
     void Start()
     {
-        _buildings = new List<Building>();
+        _buildingPrefabs = new List<Building>();
+        _buildings = new List<InstalledBuilding>();
     }
 
-    public void CreateBuilding(Type type,Place place)
+    public void CreateBuilding(Type type, Vector2Int index)
     {
         var building = Instantiate(_buildingPrefabs[(int)type], origin);
-        building.SetPlace(place);
-        _buildings.Add(building);
+        building.transform.position = GetIndexPosition(index);
+        _buildings.Add(new InstalledBuilding(index, building));
+    }
+
+    public Vector3 GetIndexPosition(Vector2Int index)
+    {
+        return new Vector3(offset / 2 * index.x, 0, offset * index.y);
     }
 
 }

@@ -1,33 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using Assets._0_IslandMonkey.Scripts.ScriptableObject;
 using UnityEngine;
 
-
-[CreateAssetMenu(fileName = "NewBuildingPurchaseData", menuName = "IslandMonkey/BuildingPurchaseData")]
 public class BuildingPurchaseDataAsset : ScriptableObject
 {
-    [Serializable]
-    public class BuildingPurchaseData
+    public virtual List<BuildingPurchaseData> GetData()
     {
-        [Header("유학 여부")]
-        public bool isStudy;
-
-        [Header("시설 아이콘")]
-        public Sprite iconImage;
-
-        [Header("시설 이름")]
-        public string facilityName;
-
-        [TextArea, Header("시설 설명")]
-        public string facilityExplanation;
-
-        [Header("구매 비용")]
-        public int cost;
-
-        [Header("소요 시간")]
-        public int duration;
+        return new List<BuildingPurchaseData>();
     }
-
-    public List<BuildingPurchaseData> data;
 }

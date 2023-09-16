@@ -414,7 +414,7 @@ MonoBehaviour:
   inActiveImage: {fileID: 21300000, guid: e69a6298130dbff4db587c9dd31bf6de, type: 3}
   slotPrefab: {fileID: -4189576545896644148, guid: 0a4f2825d8102114fb8a66aa884f0938,
     type: 3}
-  purchaseData: {fileID: 11400000, guid: 7b8a6cdf5afa65d4ab442c998682f12b, type: 2}
+  purchaseData: {fileID: 11400000, guid: 239b0e36348b0ef4789a156953647949, type: 2}
   origin: {fileID: 6217299726367740474}
 --- !u!1 &1014535620847189595
 GameObject:
@@ -655,7 +655,7 @@ MonoBehaviour:
   inActiveImage: {fileID: 21300000, guid: e69a6298130dbff4db587c9dd31bf6de, type: 3}
   slotPrefab: {fileID: -4189576545896644148, guid: 0a4f2825d8102114fb8a66aa884f0938,
     type: 3}
-  purchaseData: {fileID: 11400000, guid: 7b8a6cdf5afa65d4ab442c998682f12b, type: 2}
+  purchaseData: {fileID: 11400000, guid: 239b0e36348b0ef4789a156953647949, type: 2}
   origin: {fileID: 6179961344284587314}
 --- !u!1 &1014535621050776374
 GameObject:
@@ -1824,7 +1824,7 @@ MonoBehaviour:
   inActiveImage: {fileID: 21300000, guid: e69a6298130dbff4db587c9dd31bf6de, type: 3}
   slotPrefab: {fileID: -4189576545896644148, guid: 0a4f2825d8102114fb8a66aa884f0938,
     type: 3}
-  purchaseData: {fileID: 11400000, guid: 7b8a6cdf5afa65d4ab442c998682f12b, type: 2}
+  purchaseData: {fileID: 11400000, guid: 239b0e36348b0ef4789a156953647949, type: 2}
   origin: {fileID: 6357286743810333826}
 --- !u!1 &1014535622059776522
 GameObject:

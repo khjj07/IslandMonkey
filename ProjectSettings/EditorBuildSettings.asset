@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/0_IslandMonkey/Scenes/Splash.unity
+    path: Assets/0_IslandMonkey/Scenes/InitialSplash.unity
     guid: 9b60a9871ec579f48a7181bcf228ef2e
   - enabled: 1
     path: Assets/0_IslandMonkey/Scenes/IngameScene.unity
