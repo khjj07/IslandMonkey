@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "299435675954",
+    "firebase_url": "https://monkeyislandgameserver-default-rtdb.firebaseio.com",
+    "project_id": "monkeyislandgameserver",
+    "storage_bucket": "monkeyislandgameserver.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:299435675954:android:c2bf43d2d4f491d004072b",
+        "android_client_info": {
+          "package_name": "com.Mongs.IslandMonkey"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "299435675954-ll9b91rftbr0gpkqvc3a79qi82bcpqrv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.Mongs.IslandMonkey",
+            "certificate_hash": "fd0c851bb548d179781e4d27fbb933e5c1b9f9ee"
+          }
+        },
+        {
+          "client_id": "299435675954-urpbhnb5t4in8rmhbfmh34pd4q5t9b5g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYB5Y50Xp5pgJk3KH0LtSxdh-wpaFmMJg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "299435675954-a738euoakn0s1i590ueq5af2gevjtl4e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
