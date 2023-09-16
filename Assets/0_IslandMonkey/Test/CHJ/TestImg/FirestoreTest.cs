@@ -1,4 +1,4 @@
-using Firebase;
+/*using Firebase;
 using Firebase.Extensions;
 using Firebase.Firestore;
 using System.Collections.Generic;
@@ -68,4 +68,4 @@ public class FirestoreTest : MonoBehaviour
             Debug.LogError($"Firebase 의존성을 모두 해결할 수 없습니다: {dependencyStatus}");
         }
     }
-}
+}*/
