@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028328, g: 0.22571322, b: 0.30692163, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -460,7 +460,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2117262425}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: FirestoreTest, Assembly-CSharp
         m_MethodName: ReadData
         m_Mode: 1
@@ -969,7 +969,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2117262424}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: FirebaseGoogleAuth, Assembly-CSharp
         m_MethodName: TryGoogleLogout
         m_Mode: 1
@@ -1353,7 +1353,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2117262424}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: FirebaseGoogleAuth, Assembly-CSharp
         m_MethodName: TryGoogleLogin
         m_Mode: 1
@@ -1487,7 +1487,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2117262425}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: FirestoreTest, Assembly-CSharp
         m_MethodName: WriteData
         m_Mode: 1
@@ -1694,8 +1694,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2117262423}
-  - component: {fileID: 2117262424}
-  - component: {fileID: 2117262425}
   m_Layer: 0
   m_Name: FirebaseTest
   m_TagString: Untagged
@@ -1718,27 +1716,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2117262424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2117262422}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfde80fb39e904740897b4e1e615022d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2117262425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2117262422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38766de5bd4c1784a9d859b234ece771, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
@@ -41,4 +41,4 @@ public class GooglePlayLoginSample : MonoBehaviour
         // ·Î±×¾Æ¿ô
         ((PlayGamesPlatform)Social.Active).SignOut();
     }
-}
+}*/
