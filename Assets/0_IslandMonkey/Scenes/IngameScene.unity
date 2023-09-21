@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.31105658, g: 0.6764875, b: 0.94235826, a: 1}
+  m_IndirectSpecularColor: {r: 0.31104752, g: 0.6757746, b: 0.94239855, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -840,7 +840,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31908413}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.88, z: 0}
+  m_LocalPosition: {x: 0, y: -0.88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -29307,7 +29307,7 @@ PrefabInstance:
     - target: {fileID: 7045629095658454679, guid: e0a7660fcb816d142aef31824e4159f9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7045629095658454679, guid: e0a7660fcb816d142aef31824e4159f9,
         type: 3}
@@ -33600,9 +33600,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b077b34a6c5f5944fbfe2a8e3fdde4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buildingPrefabs: []
-  _buildings: []
-  origin: {fileID: 31908414}
+  _buildingPrefabs:
+  - {fileID: 2874595948434970574, guid: e0a7660fcb816d142aef31824e4159f9, type: 3}
+  _buildings:
+  - index: {x: 0, y: 0}
+    building: {fileID: 2012869023}
+  _origin: {fileID: 31908414}
+  _placePrefab: {fileID: 8473384150166045541, guid: eb55410c116a6ce4d98eba18b739c3b5,
+    type: 3}
+  expandedLevel: 2
+  offset: 1
 --- !u!114 &1953255374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34738,6 +34745,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2012835082}
   m_CullTransparentMesh: 1
+--- !u!114 &2012869023 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2874595948434970574, guid: e0a7660fcb816d142aef31824e4159f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1716721983}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a94c83d291b0a0142b85d6c21f23c2e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2018086361
 GameObject:
   m_ObjectHideFlags: 0
