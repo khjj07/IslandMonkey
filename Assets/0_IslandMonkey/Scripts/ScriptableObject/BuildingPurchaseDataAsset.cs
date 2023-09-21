@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class BuildingPurchaseDataAsset : ScriptableObject
 {
+    public List<BuildingPurchaseData> data;
     public virtual List<BuildingPurchaseData> GetData()
     {
-        return new List<BuildingPurchaseData>();
+        return data;
     }
 }
