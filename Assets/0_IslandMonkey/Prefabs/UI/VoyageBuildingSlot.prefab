@@ -87,9 +87,9 @@ GameObject:
   - component: {fileID: 8774352473636775791}
   - component: {fileID: 8774352473636775789}
   - component: {fileID: 8774352473636775788}
-  - component: {fileID: -4189576545896644148}
+  - component: {fileID: -214518644394663362}
   m_Layer: 5
-  m_Name: Slot
+  m_Name: VoyageBuildingSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,7 +157,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8774352473636775790}
   m_CullTransparentMesh: 1
---- !u!114 &-4189576545896644148
+--- !u!114 &-214518644394663362
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,16 +166,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 8774352473636775790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40e0ac1235f283d409b5fc6aa339ade5, type: 3}
+  m_Script: {fileID: 11500000, guid: c8d6ad16ff052264d9133676f371518d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isStudy: 0
+  type: 0
   isLocked: 0
   icon: {fileID: 8774352475329222101}
   facilityName: {fileID: 8774352474415793551}
   facilityExplanation: {fileID: 8774352474011282953}
   cost: {fileID: 8774352475402251802}
   duration: {fileID: 8774352474018827921}
+  lockSlot: {fileID: 3641035234636528788}
 --- !u!1 &8774352473955410556
 GameObject:
   m_ObjectHideFlags: 0

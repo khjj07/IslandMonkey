@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Assets._0_IslandMonkey.Scripts.Abstract;
 using UnityEngine;
 
@@ -80,7 +81,6 @@ public class BuildingManager : Singleton<BuildingManager>
             var instance = Instantiate(_placePrefab,_origin);
             instance.transform.localPosition = GetIndexPosition(index);
         }
-
     }
 
     public  Vector3 GetIndexPosition(Vector2Int index)

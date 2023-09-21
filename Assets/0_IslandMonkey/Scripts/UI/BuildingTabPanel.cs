@@ -20,7 +20,6 @@ namespace Assets._0_IslandMonkey.Scripts.UI
 
         private void BuildItem()
         {
-      
             foreach (var data in purchaseData.GetData())
             {
                 var instance = Instantiate(slotPrefab);
@@ -36,6 +35,7 @@ namespace Assets._0_IslandMonkey.Scripts.UI
                 var buildingTab = (BuildingTabPanel)current;
                 buildingTab.tabButton.sprite = inActiveImage;
             }
+            
             base.React();
             tabButton.sprite= activeImage;
         }
