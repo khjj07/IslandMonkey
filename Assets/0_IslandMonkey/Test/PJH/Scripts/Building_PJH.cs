@@ -7,16 +7,18 @@ using UnityEngine.UIElements;
 public class Building_PJH : MonoBehaviour
 {
     public bool isOccupied { get { return _isOccupied; } set { _isOccupied = value; } }
-    public bool _isOccupied = false;
+    public bool _isOccupied;
 
     public bool isInMonkey { get { return _isInMonkey.Value; } set { _isInMonkey.Value = value; } }
-    private ReactiveProperty<bool> _isInMonkey = new ReactiveProperty<bool>(false);
+    private ReactiveProperty<bool> _isInMonkey;
 
     private Animator _animator;
     public Transform entrance;
 
     public void Awake()
     {
+        _isOccupied = false;
+        _isInMonkey = new ReactiveProperty<bool>(false);
         _animator = GetComponentInChildren<Animator>();
         entrance = transform.Find("Entrance");
         PlayAnimation();

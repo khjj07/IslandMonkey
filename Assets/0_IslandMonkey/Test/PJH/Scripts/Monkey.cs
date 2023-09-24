@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UniRx.Triggers;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,181 +13,158 @@ public class Monkey : MonoBehaviour
     // 원숭이의 현재 위치
     public enum State
     {
-        InOwnBuilding,
+        Entering,
+        InBuilding,
+        Exiting,
         Moving,
-        InTargetBuilding,
     }
 
-    [SerializeField]
-    private ReactiveProperty<State> _currentState;
+    [SerializeField] private ReactiveProperty<State> _currentState;
 
     public Building_PJH ownBuilding; // 원숭이 instanciate될 때 함께 생성되는 건물을 할당해주어야 함.
-    private Building_PJH _targetBuilding;
-    public Building_PJH _currentBuilding;
+    private Building_PJH _currentBuilding;
+    public Building_PJH _targetBuilding;
     private NavMeshAgent _agentMonkey;
+    [SerializeField] private Animator _animator;
 
-    /// <summary>
-    /// 원숭이 health 임의 설정) 범위: 0~8, 1초에 1씩 체력감소 or 회복
-    /// </summary>
-    const float MAX_HEALTH = 8.0f;
-    const float MIN_HEALTH = 0.0f;
-    const float UPDATE_PER_SECOND_HEALTH = 1.0f;
-    [SerializeField]
-    private float _currentHealth;
-
-    private Animator _animator;
-
-    public float remain_dist;
+    const float MAX_COUNT = 8.0f;
+    const float UPDATE_PER_SECOND_COUNT = 1.0f;
+    [SerializeField] private float _currentCount;
 
     private void Awake()
     {
-        _currentState = new ReactiveProperty<State>(State.InOwnBuilding); // 초기상태 Moving
+        _currentState = new ReactiveProperty<State>(State.Entering); // 초기상태
         _agentMonkey = GetComponent<NavMeshAgent>();
-        _currentHealth = MAX_HEALTH; // 초기 health는 max
-        ownBuilding.isOccupied = true;
-        ownBuilding.isInMonkey = true;
+        _currentCount = MAX_COUNT; // 초기 health는 max
+        //ownBuilding.isOccupied = true;
+        //ownBuilding.isInMonkey = true;
         _animator = GetComponentInChildren<Animator>();
     }
 
     private void Start()
     {
-        DontDestroyOnLoad(gameObject);
         // 원숭이 초기위치 및 방향 설정
         transform.position = ownBuilding.transform.position;
         transform.rotation = ownBuilding.entrance.rotation;
 
+        _currentBuilding = ownBuilding;
+
         // 1초마다 health update
         Observable.Interval(TimeSpan.FromSeconds(1))
-                        .Subscribe(_ => HealthUpdate())
-                        .AddTo(this);
+            .Subscribe(_ => HealthUpdate())
+            .AddTo(this);
 
-        _currentState
-            .DistinctUntilChanged()
-            .Subscribe(newState => HandleAnimation(newState))
-            .AddTo(gameObject);
-
-        this.UpdateAsObservable()
-            .Where(_ => _currentState.Value == State.InOwnBuilding)
-            .Subscribe(_ =>
-            {
-                _currentBuilding = ownBuilding;
-                if (_currentHealth <= MIN_HEALTH)
-                {
-                    GoToTargetBuilding();
-                }
-            });
-
-        this.UpdateAsObservable()
-            .Where(_ => _currentState.Value == State.Moving)
-            .Subscribe(_ =>
-            {
-                if (_currentHealth >= MAX_HEALTH)
-                {
-                    if (_agentMonkey.remainingDistance <= _agentMonkey.stoppingDistance) // OwnBuilding에 도달했을 경우
-                    {
-                        InOwnBuilding();
-                    }
-                }
-                else if (_currentHealth <= MIN_HEALTH)
-                {
-                    if (_agentMonkey.remainingDistance <= _agentMonkey.stoppingDistance) // TargetBuilding에 도달했을 경우
-                    {
-                        InTargetBuilding();
-
-                    }
-                }
-            });
-
-        this.UpdateAsObservable()
-            .Where(_ => _currentState.Value == State.InTargetBuilding)
-            .Subscribe(_ =>
-            {
-                _currentBuilding = _targetBuilding;
-                if (_currentHealth >= MAX_HEALTH)
-                {
-                    ComeBackHome();
-                }
-            });
+        //_currentState
+        //    .DistinctUntilChanged()
+        //    .Subscribe(_ => ChangeState())
+        //    .AddTo(gameObject);
 
     }
+
     private void Update()
-    { 
-        remain_dist = _agentMonkey.remainingDistance;
+    {
+        ChangeState();
+        CheckState();
     }
 
     private void HealthUpdate()
     {
         switch (_currentState.Value)
         {
-            case (State.InOwnBuilding):
-                _currentHealth -= UPDATE_PER_SECOND_HEALTH;
+            case (State.Entering):
+                _currentCount = MAX_COUNT;
                 break;
-            case (State.InTargetBuilding):
-                _currentHealth += UPDATE_PER_SECOND_HEALTH;
+            case (State.InBuilding):
+                _currentCount -= UPDATE_PER_SECOND_COUNT;
                 break;
         }
     }
 
-    private void ChangePosition(Building_PJH building)
+    private void ChangeState()
     {
-        if (this.transform.position == building.transform.position)
+        switch (_currentState.Value)
         {
-            this.transform.position = building.entrance.position;
+            case (State.Entering):
+                Debug.Log("Entering");
+                _currentState.Value = State.InBuilding;
+                _currentCount = MAX_COUNT;
+                _animator.SetTrigger("Cafe"); 
+                _animator.SetBool("inBuilding", true);
+                break;
+            case (State.InBuilding):
+                if(_currentCount <= 0)
+                {
+                    Debug.Log("InBuilding");
+                    _currentState.Value = State.Exiting;
+                }
+                break;
+            case (State.Exiting):
+                Debug.Log("Exiting");   
+                if (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+                {
+                    _animator.SetBool("inBuilding", false);
+                    _currentState.Value = State.Moving;
+                    
+                }
+                
+                _animator.SetTrigger("Exit");
+
+                break;
+            case (State.Moving):
+                if (Vector3.Distance(this.transform.position, _targetBuilding.entrance.transform.position) <= 0.1)
+                {
+                    Debug.Log("Moving");
+                    _currentState.Value = State.Entering;
+                }
+                break;
         }
+    }
+
+    private void CheckState()
+    {
+        switch (_currentState.Value)
+        {
+            case (State.Entering):
+                _agentMonkey.updatePosition = false;
+                _agentMonkey.updateRotation = false;
+                _currentBuilding = _targetBuilding;
+                this.transform.position = _currentBuilding.transform.position;
+                
+
+                break;
+            case (State.InBuilding):
+                break;
+            case (State.Exiting):
+                _agentMonkey.updatePosition = true;
+                _agentMonkey.updateRotation = true;
+                
+                break;
+            case (State.Moving):
+                Move();
+                break;
+
+
+        }
+    }
+
+    private void Move()
+    {
+        // 기능 시설로 이동
+        if (_currentBuilding == ownBuilding)
+        {
+            GoToTargetBuilding();
+        }
+        // ownbuilding으로 이동
         else
         {
-            this.transform.position = building.transform.position;
+            GoToOwnBuilding();
         }
     }
 
-    private void ChangePosition()
+    private void GoToOwnBuilding()
     {
-        if (this.transform.position == ownBuilding.transform.position)
-        {
-            ChangePosition(ownBuilding);
-        }
-        else
-        {
-            ChangePosition(_targetBuilding);
-        }
-    }
-
-    private void HandleAnimation(State newState)
-    {
-        switch (newState)
-        {
-            case State.Moving:
-                //ChangePosition();
-                _animator.SetTrigger("OutBuilding");
-                _animator.SetBool("building", false);
-                break;
-            case State.InOwnBuilding:
-                //ChangePosition();
-                _animator.SetBool("building", true);
-                _animator.SetTrigger("InBuilding");
-                break;
-            case State.InTargetBuilding:
-                //ChangePosition();
-                //_animator.SetTrigger("InBuilding");
-                //_animator.SetBool("building", true);
-                break;
-        }
-    }
-
-    private void ChangeBuildingsIsOccupied()
-    {
-        ownBuilding.ChangeIsOccupied();
-        _targetBuilding.ChangeIsOccupied();
-    }
-
-    private void Move(Transform targetTramsform)
-    {
-        _agentMonkey.SetDestination(targetTramsform.position);
-    }
-
-    private void SetRotation(Transform targetTramsform)
-    {
-        this.transform.rotation = targetTramsform.rotation;
+        _agentMonkey.SetDestination(ownBuilding.entrance.transform.position);
+        _targetBuilding = ownBuilding;
     }
 
     // 원숭이 체력충전하러 targetBuilding으로 이동
@@ -196,40 +174,8 @@ public class Monkey : MonoBehaviour
         bool isThereEmptyBuilding = FindClosestBuilding();
         if (isThereEmptyBuilding)
         {
-            if (_currentState.Value != State.Moving)
-            {
-                _currentState.Value = State.Moving;
-                ChangeBuildingsIsOccupied();
-                ownBuilding.ChangeIsInMonkey();
-                Move(_targetBuilding.entrance);
-            }
+            _agentMonkey.SetDestination(_targetBuilding.entrance.transform.position);
         }
-    }
-
-    // 원숭이 ownBuilding으로 이동
-    public void ComeBackHome()
-    {
-        if (_currentState.Value != State.Moving)
-        {
-            _currentState.Value = State.Moving;
-            ChangeBuildingsIsOccupied();
-            _targetBuilding.ChangeIsInMonkey();
-            Move(ownBuilding.entrance);
-        }
-    }
-
-    public void InOwnBuilding()
-    {
-        SetRotation(ownBuilding.entrance.transform);
-        ownBuilding.ChangeIsInMonkey();
-        _currentState.Value = State.InOwnBuilding;
-    }
-
-    public void InTargetBuilding()
-    {
-        SetRotation(_targetBuilding.entrance.transform);
-        _targetBuilding.ChangeIsInMonkey();
-        _currentState.Value = State.InTargetBuilding;
     }
 
     private bool FindClosestBuilding()
@@ -243,7 +189,7 @@ public class Monkey : MonoBehaviour
             foreach (Building_PJH _building in BuildingManager_PJH.instance.functionalBuildings)
             {
                 if (_building == null) break;
-                if (_building.isOccupied == false) 
+                if (_building.isOccupied == false)
                 {
                     Vector3 buildingPosition = _building.transform.position;
                     float distance = Vector3.Distance(monkeyCurrentPosition, buildingPosition);
@@ -251,7 +197,6 @@ public class Monkey : MonoBehaviour
                     if (distance < minDistance)
                     {
                         minDistance = distance;
-                        closestBuilding = new Building_PJH();
                         closestBuilding = _building;
                     }
                 }
@@ -260,7 +205,7 @@ public class Monkey : MonoBehaviour
             if (closestBuilding != null)
             {
                 _targetBuilding = closestBuilding;
-                Debug.Log("비어있는 빌딩 찾았습니다.");
+                //Debug.Log("비어있는 빌딩 찾았습니다.");
                 return true;
             }
             Debug.Log("비어있는 빌딩이 없습니다.");
