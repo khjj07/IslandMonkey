@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.31104752, g: 0.6757746, b: 0.94239855, a: 1}
+  m_IndirectSpecularColor: {r: 0.31045997, g: 0.6728751, b: 0.9403254, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -33603,13 +33603,8 @@ MonoBehaviour:
   _buildingPrefabs:
   - {fileID: 2874595948434970574, guid: e0a7660fcb816d142aef31824e4159f9, type: 3}
   _buildings:
-  - index: {x: 0, y: 0}
-    building: {fileID: 2012869023}
-  _origin: {fileID: 31908414}
-  _placePrefab: {fileID: 8473384150166045541, guid: eb55410c116a6ce4d98eba18b739c3b5,
-    type: 3}
-  expandedLevel: 2
-  offset: 1
+  - {fileID: 0}
+  origin: {fileID: 0}
 --- !u!114 &1953255374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34745,18 +34740,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2012835082}
   m_CullTransparentMesh: 1
---- !u!114 &2012869023 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2874595948434970574, guid: e0a7660fcb816d142aef31824e4159f9,
-    type: 3}
-  m_PrefabInstance: {fileID: 1716721983}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a94c83d291b0a0142b85d6c21f23c2e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2018086361
 GameObject:
   m_ObjectHideFlags: 0
@@ -37403,16 +37386,52 @@ PrefabInstance:
       propertyPath: m_Name
       value: VoyageBuildingPanel(PurchaseData)
       objectReference: {fileID: 0}
+    - target: {fileID: 1014535620705285783, guid: a583c406eef78dd43bab54ba9a6db5fe,
+        type: 3}
+      propertyPath: slotPrefab
+      value: 
+      objectReference: {fileID: -4189576545896644148, guid: d1a84031340ab514fa22abe81fa11a9f,
+        type: 3}
+    - target: {fileID: 1014535620705285783, guid: a583c406eef78dd43bab54ba9a6db5fe,
+        type: 3}
+      propertyPath: purchaseData
+      value: 
+      objectReference: {fileID: 11400000, guid: 7b8a6cdf5afa65d4ab442c998682f12b,
+        type: 2}
     - target: {fileID: 1014535621049077015, guid: a583c406eef78dd43bab54ba9a6db5fe,
         type: 3}
       propertyPath: m_Name
       value: FunctionalBuildingPanel(PurchaseData)
       objectReference: {fileID: 0}
+    - target: {fileID: 1014535621049077016, guid: a583c406eef78dd43bab54ba9a6db5fe,
+        type: 3}
+      propertyPath: slotPrefab
+      value: 
+      objectReference: {fileID: -4189576545896644148, guid: d1a84031340ab514fa22abe81fa11a9f,
+        type: 3}
+    - target: {fileID: 1014535621049077016, guid: a583c406eef78dd43bab54ba9a6db5fe,
+        type: 3}
+      propertyPath: purchaseData
+      value: 
+      objectReference: {fileID: 11400000, guid: 7bd8be289c08b4d4283b0e9e4fbe6957,
+        type: 2}
     - target: {fileID: 1014535621920624400, guid: a583c406eef78dd43bab54ba9a6db5fe,
         type: 3}
       propertyPath: m_Name
       value: SpecialBuildingPanel(PurchaseData)
       objectReference: {fileID: 0}
+    - target: {fileID: 1014535621920624404, guid: a583c406eef78dd43bab54ba9a6db5fe,
+        type: 3}
+      propertyPath: slotPrefab
+      value: 
+      objectReference: {fileID: -4189576545896644148, guid: d1a84031340ab514fa22abe81fa11a9f,
+        type: 3}
+    - target: {fileID: 1014535621920624404, guid: a583c406eef78dd43bab54ba9a6db5fe,
+        type: 3}
+      propertyPath: purchaseData
+      value: 
+      objectReference: {fileID: 11400000, guid: c1b3e2d0d12b6794dbf534c77166da3c,
+        type: 2}
     - target: {fileID: 6217299726367740474, guid: a583c406eef78dd43bab54ba9a6db5fe,
         type: 3}
       propertyPath: m_AnchoredPosition.y

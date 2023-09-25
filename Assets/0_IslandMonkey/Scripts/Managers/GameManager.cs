@@ -13,23 +13,14 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    public enum State
-    {
-        Play,
-        Place,
-        Menu
-    }
-
     public int banana;
     public int gold;
     public int clam;
-    public State currentState = State.Play;
-    public Place selectedPlace;
-
+  
     public void Start()
     {
         //아마도 여기서 firebase 연동
-        this.UpdateAsObservable().Select(_ => banana).DistinctUntilChanged().Subscribe(_ =>
+        this.UpdateAsObservable().Select(_=>banana).DistinctUntilChanged().Subscribe(_ =>
         {
             UIManager.instance.SetBanana(banana);
         });
@@ -41,17 +32,9 @@ public class GameManager : Singleton<GameManager>
         {
             UIManager.instance.SetClam(clam);
         });
-
-        var currentStateStream = this.UpdateAsObservable().Select(_ => currentState);
-
-        currentStateStream.Where(x => x == State.Place)
-            .Where(_ => selectedPlace);
-        //.Subscribe(_ => { BuildingManager.instance.CreateBuilding();});
     }
 
-   
-
-    public void EarnGold(int income)
+    public  void EarnGold(int income)
     {
         gold += income;
     }

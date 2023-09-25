@@ -7,16 +7,16 @@ public class TabPanel<T> : Panel where T : Panel
     public static TabPanel<T> current;
     public override void React()
     {
-        if (gameObject.activeSelf && current != this)
+        if (gameObject.activeSelf)
         {
             gameObject.SetActive(false);
             current = null;
         }
         else
         {
-            if (current && current != this)
+            if (current)
             {
-                current.gameObject.SetActive(false);
+               current.gameObject.SetActive(false);
             }
             gameObject.SetActive(true);
             current = this;

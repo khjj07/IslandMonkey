@@ -1,12 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-using System.Collections;
-using System;
 using Newtonsoft.Json.Linq;
-using UnityEditor.ShaderGraph;
-using System.Linq;
-using UnityEngine.Assertions;
+using System;
+
 
 [Serializable]
 public class KeyValue
@@ -21,17 +19,16 @@ public class RowData
     public List<KeyValue> data;
 }
 
-[Serializable]
-public class GoogleSheetLoader
+public class GoogleSheetLoader : MonoBehaviour
 {
     [SerializeField]
-    private string spreadsheetId = "YOUR_SPREADSHEET_ID";
+    private string spreadsheetId = "2PACX-1vQjG-GjPsOy5S4XrNhA3c9OTboup_TQ0Bs5ycw9HaWx_FHDwBsaQtuiuhyi4aIypod0StZZQIo65lUe";
 
     [SerializeField]
-    private string sheetName = "YOUR_SHEET_NAME";
+    private string sheetName = "facility_list";
 
     [SerializeField]
-    private string apiKey = "YOUR_GOOGLE_API_KEY";
+    private string apiKey = "AIzaSyAvMJ301rf4TgoZ2hT0H3CfLCrPpW_9ioE";
 
     [SerializeField]
     private List<RowData> dataList = new List<RowData>();
@@ -39,11 +36,17 @@ public class GoogleSheetLoader
     [SerializeField]
     private List<string> keyList = new List<string>();
 
-    public void LoadGoogleSheetData()
+    void Start()
+    {
+        StartCoroutine(LoadGoogleSheetData());
+    }
+
+    public IEnumerator LoadGoogleSheetData()
     {
         string url = $"https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetId}/values/{sheetName}?key={apiKey}";
-
         UnityWebRequest www = UnityWebRequest.Get(url);
+
+        yield return www.SendWebRequest();
 
         if (www.result != UnityWebRequest.Result.Success)
         {
@@ -65,11 +68,12 @@ public class GoogleSheetLoader
             {
                 JArray rowData = rows[i] as JArray;
                 var row = new RowData();
+                row.data = new List<KeyValue>();  // 초기화 부분
 
                 for (int j = 0; j < headerRow.Count; j++)
                 {
                     var keyVal = new KeyValue();
-                    keyVal.key = keyList[j].ToString();
+                    keyVal.key = keyList[j];
                     keyVal.value = rowData[j].ToString();
                     row.data.Add(keyVal);
                 }
