@@ -16,12 +16,11 @@ public class GameManager : Singleton<GameManager>
     public int banana;
     public int gold;
     public int clam;
-
-
+  
     public void Start()
     {
         //아마도 여기서 firebase 연동
-        this.UpdateAsObservable().Select(_ => banana).DistinctUntilChanged().Subscribe(_ =>
+        this.UpdateAsObservable().Select(_=>banana).DistinctUntilChanged().Subscribe(_ =>
         {
             UIManager.instance.SetBanana(banana);
         });
@@ -33,12 +32,9 @@ public class GameManager : Singleton<GameManager>
         {
             UIManager.instance.SetClam(clam);
         });
-    
     }
 
-   
-
-    public void EarnGold(int income)
+    public  void EarnGold(int income)
     {
         gold += income;
     }
