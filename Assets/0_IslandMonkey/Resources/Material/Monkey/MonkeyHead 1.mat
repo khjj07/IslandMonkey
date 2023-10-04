@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MonkeyBody
+  m_Name: MonkeyHead 1
   m_Shader: {fileID: -6465566751694194690, guid: 5cba6c3e7f43e5843900a9e3e1f68441,
     type: 3}
   m_ValidKeywords: []
@@ -39,7 +39,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture:
-        m_Texture: {fileID: 2800000, guid: 37b0448b75df15c419ea4300c650e8e6, type: 3}
+        m_Texture: {fileID: 2800000, guid: cee59de4854b69f4f8bc972bf5329d92, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
