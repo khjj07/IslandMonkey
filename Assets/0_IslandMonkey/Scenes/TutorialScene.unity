@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 173703d425db29a49872fa147219b72f,
+    type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -12512,12 +12513,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 605848124}
   m_CullTransparentMesh: 1
---- !u!1 &607777958 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5372656376448483934, guid: f46b753e0d1caa64fb43997c6625e239,
-    type: 3}
-  m_PrefabInstance: {fileID: 5372656377049839352}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &607777959 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5372656376448483935, guid: f46b753e0d1caa64fb43997c6625e239,
@@ -18890,12 +18885,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963309654}
   m_CullTransparentMesh: 1
---- !u!1 &970068217 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1441531576261613847, guid: 1bbbdb83b00d7794c942b7b0a747879a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1441531575300196846}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &970068218 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1441531576261613844, guid: 1bbbdb83b00d7794c942b7b0a747879a,
@@ -35123,7 +35112,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2874595948434970574, guid: e0a7660fcb816d142aef31824e4159f9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e0a7660fcb816d142aef31824e4159f9, type: 3}
 --- !u!1 &1779930982
 GameObject:
@@ -39482,9 +39472,7 @@ MonoBehaviour:
   RadialCircle6: {fileID: 1180566066}
   RadialCircle7: {fileID: 436199210}
   BuildingLevel: 1
-  BuildingLevelText: {fileID: 607777958}
   ExBuildingLevel: 0
-  ExBuildingLevelText: {fileID: 970068217}
 --- !u!1 &1953787585
 GameObject:
   m_ObjectHideFlags: 0

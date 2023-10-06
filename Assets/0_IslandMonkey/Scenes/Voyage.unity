@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.31104738, g: 0.6757746, b: 0.94239855, a: 1}
+  m_IndirectSpecularColor: {r: 0.31045997, g: 0.6728751, b: 0.9403254, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3422,6 +3422,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TutorialController_voyage
+      objectReference: {fileID: 0}
+    - target: {fileID: 2972337685939534275, guid: adaa090ac4633124b9c9905387f836e5,
+        type: 3}
+      propertyPath: nextSceneName
+      value: TutorialScene
       objectReference: {fileID: 0}
     - target: {fileID: 3041469557197923249, guid: adaa090ac4633124b9c9905387f836e5,
         type: 3}
