@@ -15,6 +15,7 @@ TagManager:
   - TutorialBuilding
   - iconBuilding
   - iconMonkey
+  - iconPresent
   layers:
   - Default
   - TransparentFX

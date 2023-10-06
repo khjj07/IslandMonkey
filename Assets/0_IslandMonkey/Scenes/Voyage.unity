@@ -286,8 +286,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4280106327
+  m_fontColor: {r: 0.33962262, g: 0.23923104, b: 0.11374155, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3426,7 +3426,7 @@ PrefabInstance:
     - target: {fileID: 2972337685939534275, guid: adaa090ac4633124b9c9905387f836e5,
         type: 3}
       propertyPath: nextSceneName
-      value: TutorialScene
+      value: TutorialNextScene
       objectReference: {fileID: 0}
     - target: {fileID: 3041469557197923249, guid: adaa090ac4633124b9c9905387f836e5,
         type: 3}

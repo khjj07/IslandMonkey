@@ -34,7 +34,7 @@ namespace Assets._0_IslandMonkey.Scripts.Abstract
         public GameObject iconBuilding;
         public GameObject iconMonkey;
 
-       
+        public GameObject buildingUpgradePanel;
         #endregion
 
         private void Start()
@@ -76,7 +76,7 @@ namespace Assets._0_IslandMonkey.Scripts.Abstract
                     }
                     else if (hit.transform.CompareTag("iconBuilding"))
                     {
-
+                        buildingUpgradePanel.SetActive(true);
                     }
                     else if (hit.transform.CompareTag("iconMonkey"))
                     {

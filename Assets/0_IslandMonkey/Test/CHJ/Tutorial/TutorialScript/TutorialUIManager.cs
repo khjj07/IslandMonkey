@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TutorialUIManager : MonoBehaviour
@@ -97,16 +98,29 @@ public class TutorialUIManager : MonoBehaviour
         RadialCircle7.SetActive(false);
         MyRoomPanel.SetActive(false);
 
+        //#8~#9
         PopUpVoyageStartPanel.SetActive(true);
+        StartCoroutine(HideAfterDelay());
+        StartCoroutine(DelayedLoad());
     }
-    //#8~#9
-    public void GoToTutorialVoyageScene()
+    
+    /*public void GoToTutorialVoyageScene()
     {
         PopUpVoyageStartPanel.SetActive(false);
+        
         // 튜토리얼 항해 씬으로 가기
+    }*/
+
+    private IEnumerator DelayedLoad()
+    {
+        yield return new WaitForSeconds(2f);  // 2초 대기
+        SceneManager.LoadScene("Voyage");
     }
-
-
+    private IEnumerator HideAfterDelay()
+    {
+        yield return new WaitForSeconds(2f);  // 2초 대기
+        PopUpVoyageStartPanel.SetActive(false);
+    }
 
 
 

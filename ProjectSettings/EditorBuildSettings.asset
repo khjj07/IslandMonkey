@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/0_IslandMonkey/Scenes/Voyage.unity
     guid: 2a3c5498ef8096143a67ce6af6712232
+  - enabled: 1
+    path: Assets/0_IslandMonkey/Scenes/TutorialStoryScene.unity
+    guid: f873ca10a3608e149a4daa668c71a6bb
+  - enabled: 1
+    path: Assets/0_IslandMonkey/Scenes/TutorialNextScene.unity
+    guid: 6ca6c239d17721c4f94a9589c2f00ff6
   m_configObjects: {}
