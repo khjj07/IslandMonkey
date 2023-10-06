@@ -174,7 +174,7 @@ MonoBehaviour:
   - {fileID: 1240152342987281560}
   - {fileID: 3549793323293740912}
   - {fileID: 1429528808388578797}
-  nextSceneName: Tutorial_PJH
+  nextSceneName: TutorialScene
 --- !u!1 &3812179238986928393
 GameObject:
   m_ObjectHideFlags: 0
