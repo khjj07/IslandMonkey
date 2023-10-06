@@ -16,6 +16,7 @@ public class TutorialStay : TutorialBase
         monkeyAnimator.SetTrigger(animationName);
         buildingAnimator.SetTrigger(animationName);
         StartCoroutine(nameof(Stay));
+        fire.GetComponent<AudioSource>().Play();
     }
 
     public override void Execute(TutorialController controller)
@@ -41,7 +42,10 @@ public class TutorialStay : TutorialBase
             fire.SetActive(true);
         }
         yield return new WaitForSeconds(5.0f);
-
+        if (fire != null)
+        {
+            fire.GetComponent<AudioSource>().Stop();
+        }
         isCompleted = true;
     }
 }

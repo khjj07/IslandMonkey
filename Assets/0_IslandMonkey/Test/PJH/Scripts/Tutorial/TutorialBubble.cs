@@ -11,6 +11,7 @@ public class TutorialBubble : TutorialBase
     {
         bubble.SetActive(true);
         bubble.GetComponent<Animator>().SetTrigger("Bubble");
+        bubble.GetComponent<AudioSource>().Play();
         StartCoroutine(nameof(Stay));
     }
 

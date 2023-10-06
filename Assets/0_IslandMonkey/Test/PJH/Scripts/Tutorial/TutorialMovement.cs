@@ -9,14 +9,13 @@ public class TutorialMovement : TutorialBase
     [SerializeField] private string animationName;
     [SerializeField] private Animator monkeyAnimator;
     [SerializeField] private GameObject icon;
-    [SerializeField] private float moveSpeed = 1.0f;
+    [SerializeField] private float moveSpeed;
 
     private bool isMoved = false;
 
     private void Update()
     {
         Vector3 direction = endPosition.transform.position - monkey.transform.position;
-        Debug.Log(direction);
         if (isMoved)
         {
             if (direction.magnitude <= 0.1f)
@@ -24,15 +23,17 @@ public class TutorialMovement : TutorialBase
                 isMoved = false;
             }
             monkey.transform.position += direction.normalized * moveSpeed * Time.deltaTime;
-            //monkey.transform.rotation = Quaternion.Lerp(monkey.transform.rotation, Quaternion.LookRotation(direction - new Vector3(0,0,180)), Time.deltaTime * moveSpeed);
         }
     }
 
     public override void Enter()
     {
-        isMoved = true;
-        monkeyAnimator.SetTrigger(animationName);
         icon.SetActive(true);
+        icon.GetComponent<AudioSource>().Play();
+
+        monkeyAnimator.SetTrigger(animationName);
+        monkey.GetComponent<AudioSource>().Play();
+        isMoved = true;
     }
 
     public override void Execute(TutorialController controller)
@@ -46,5 +47,6 @@ public class TutorialMovement : TutorialBase
     public override void Exit()
     {
         monkeyAnimator.SetTrigger("Stand");
+        monkey.GetComponent<AudioSource>().Stop();
     }
 }
