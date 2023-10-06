@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fire: {fileID: 0}
+  broom: {fileID: 0}
   animationName: BananaHouse
   monkeyAnimator: {fileID: 0}
   buildingAnimator: {fileID: 0}

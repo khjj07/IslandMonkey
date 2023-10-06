@@ -5,6 +5,7 @@ using UnityEngine;
 public class TutorialStay : TutorialBase
 {
     [SerializeField] private GameObject fire;
+    [SerializeField] private GameObject broom;
     [SerializeField] private string animationName;
     [SerializeField] private Animator monkeyAnimator;
     [SerializeField] private Animator buildingAnimator;
@@ -27,6 +28,10 @@ public class TutorialStay : TutorialBase
 
     public override void Exit()
     {
+        if (broom != null)
+        {
+            broom.SetActive(false);
+        }
     }
 
     private IEnumerator Stay()
