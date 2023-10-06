@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,11 @@ public class TutorialUIManager : MonoBehaviour
 
     private bool isStep5Completed = false;
     private bool isStep6Completed = false;
+
+    public int BuildingLevel = 1;
+    //public TextMeshPro BuildingLevelText;
+    public int ExBuildingLevel;
+    //public TextMeshPro ExBuildingLevelText;
 
     private void Start()
     {
@@ -100,5 +106,14 @@ public class TutorialUIManager : MonoBehaviour
         // 튜토리얼 항해 씬으로 가기
     }
 
-   
+
+
+
+
+    //#10을 위한 UI 요소
+    public void OnBuildingUpgradeButtonClick()
+    {
+        BuildingLevel += 1;
+        ExBuildingLevel = BuildingLevel - 1;
+    }
 }
