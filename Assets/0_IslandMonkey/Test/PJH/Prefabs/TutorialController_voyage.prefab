@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7572282551809778811}
   - component: {fileID: 3549793323293740912}
   m_Layer: 0
-  m_Name: TutorialClick (1)
+  m_Name: 06_TutorialClick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
+  clickPanel: {fileID: 0}
 --- !u!1 &2972337685683729661
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,7 +58,7 @@ GameObject:
   - component: {fileID: 2972337685683729662}
   - component: {fileID: 2972337685683729663}
   m_Layer: 0
-  m_Name: TutorialDialog
+  m_Name: 02_TutorialDialog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,6 +100,7 @@ MonoBehaviour:
   textDialogues: {fileID: 0}
   objectArrows: {fileID: 0}
   typingSpeed: 0.1
+  audioSoure: {fileID: 0}
   keyCodeSkip: 32
 --- !u!114 &2972337685683729663
 MonoBehaviour:
@@ -164,8 +166,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e758caa9e7916e47ae1e838f07daf93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorials: []
-  nextSceneName: 
+  tutorials:
+  - {fileID: 7502391797558189368}
+  - {fileID: 2972337685683729663}
+  - {fileID: 5785310289161990784}
+  - {fileID: 7707630204226986907}
+  - {fileID: 1240152342987281560}
+  - {fileID: 3549793323293740912}
+  - {fileID: 1429528808388578797}
+  nextSceneName: Tutorial_PJH
 --- !u!1 &3812179238986928393
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,7 +186,7 @@ GameObject:
   - component: {fileID: 8309862623839408479}
   - component: {fileID: 7707630204226986907}
   m_Layer: 0
-  m_Name: TutorialIcon (1)
+  m_Name: 04_TutorialIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -222,7 +231,7 @@ GameObject:
   - component: {fileID: 2897248477922684179}
   - component: {fileID: 1429528808388578797}
   m_Layer: 0
-  m_Name: TutorialIcon (2)
+  m_Name: 07_TutorialIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -267,7 +276,7 @@ GameObject:
   - component: {fileID: 8450327712192540123}
   - component: {fileID: 5785310289161990784}
   m_Layer: 0
-  m_Name: TutorialClick
+  m_Name: 03_TutorialClick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -301,6 +310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
+  clickPanel: {fileID: 0}
 --- !u!1 &7316906400892034553
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,7 +322,7 @@ GameObject:
   - component: {fileID: 8688806228901018489}
   - component: {fileID: 7502391797558189368}
   m_Layer: 0
-  m_Name: TutorialIcon
+  m_Name: 01_TutorialIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -358,7 +368,7 @@ GameObject:
   - component: {fileID: 3041469557197923249}
   - component: {fileID: 1240152342987281560}
   m_Layer: 0
-  m_Name: TutorialDialog (1)
+  m_Name: 05_TutorialDialog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -394,12 +404,13 @@ MonoBehaviour:
   dialogs:
   - speaker: 0
     dialogue: "\uB204\uAD70\uAC00 \uBB3C\uC5D0 \uBE60\uC838\uC788\uB098\uBD10!\nHELP\uB97C
-      \uB20C\uB7EC\uBCF4\uC790"
+      \uB20C\uB7EC\uBCF4\uC790 "
   speakerImage: {fileID: 0}
   textNames: {fileID: 0}
   textDialogues: {fileID: 0}
   objectArrows: {fileID: 0}
   typingSpeed: 0.1
+  audioSoure: {fileID: 0}
   keyCodeSkip: 32
 --- !u!114 &1240152342987281560
 MonoBehaviour:
