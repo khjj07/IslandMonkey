@@ -11,6 +11,11 @@ TagManager:
   - BuildingVoyage0
   - BuildingVoyage1
   - BuildingSpeical0
+  - GoldPopup
+  - TutorialBuilding
+  - iconBuilding
+  - iconMonkey
+  - iconPresent
   layers:
   - Default
   - TransparentFX

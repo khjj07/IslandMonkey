@@ -3,11 +3,13 @@ using UnityEngine;
 [RequireComponent(typeof(DialogSystem))]
 public class TutorialDialog : TutorialBase
 {
+    [SerializeField] private GameObject dialogArea;
     // 캐릭터들의 대사를 진행하는 DialogSystem
     private DialogSystem dialogSystem;
 
     public override void Enter()
     {
+        dialogArea.SetActive(true);
         dialogSystem = GetComponent<DialogSystem>();
         dialogSystem.Setup();
     }
@@ -20,7 +22,7 @@ public class TutorialDialog : TutorialBase
         // 현재 분기의 대사 진행이 완료되면
         if (isCompleted == true)
         {
-            // 다음 튜토리얼로 이동
+            dialogArea.SetActive(false);
             controller.SetNextTutorial();
         }
     }

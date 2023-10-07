@@ -3,14 +3,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public enum Speaker { FireMonkey = 0, BuilbuildingOwner }
+public enum Speaker { FireMonkey = 0, BuilbuildingOwner = 1 }
 
 public class DialogSystem : MonoBehaviour
 {
     [SerializeField]
     private Dialog[] dialogs;                       // 현재 분기의 대사 목록
     [SerializeField]
-    private Image[] imageDialogs;                   // 대화창 Image UI
+    private GameObject speakerImage;                   // 대화창 Image UI
     [SerializeField]
     private TextMeshProUGUI textNames;                        // 현재 대사중인 캐릭터 이름 출력 Text UI
     [SerializeField]
@@ -19,6 +19,8 @@ public class DialogSystem : MonoBehaviour
     private GameObject objectArrows;                  // 대사가 완료되었을 때 출력되는 커서 오브젝트
     [SerializeField]
     private float typingSpeed;                  // 텍스트 타이핑 효과의 재생 속도
+    [SerializeField]
+    private AudioSource audioSoure;             // 텍스트 타이핑 효과의 재생 속도
     [SerializeField]
     private KeyCode keyCodeSkip = KeyCode.Space;    // 타이핑 효과를 스킵하는 키
 
@@ -85,22 +87,36 @@ public class DialogSystem : MonoBehaviour
 
         // 현재 화자 설정
         currentSpeaker = dialogs[currentIndex].speaker;
-
-        // 대화창 활성화
-        imageDialogs[(int)currentSpeaker].gameObject.SetActive(true);
+        speakerImage.gameObject.SetActive(true);
 
         // 현재 화자 이름 텍스트 활성화 및 설정
         textNames.gameObject.SetActive(true);
-        textNames.text = dialogs[currentIndex].speaker.ToString();
+        textNames.text = GetSpeakerName(dialogs[currentIndex].speaker);
 
         // 화자의 대사 텍스트 활성화 및 설정 (Typing Effect)
         textDialogues.gameObject.SetActive(true);
         StartCoroutine(nameof(TypingText));
     }
 
+    private string GetSpeakerName(Speaker speaker)
+    {
+        string name = "";
+        switch (speaker)
+        {
+            case Speaker.BuilbuildingOwner:
+                name = "숭물주";
+                break;
+            case Speaker.FireMonkey:
+                name = "소방숭";
+                break;
+        }
+
+        return name;
+    }
+
     private void InActiveObjects(int index)
     {
-        imageDialogs[index].gameObject.SetActive(false);
+        speakerImage.gameObject.SetActive(false);
         textNames.gameObject.SetActive(false);
         textDialogues.gameObject.SetActive(false);
         objectArrows.SetActive(false);
@@ -111,7 +127,7 @@ public class DialogSystem : MonoBehaviour
         int index = 0;
 
         isTypingEffect = true;
-
+        audioSoure.Play();
         // 텍스트를 한글자씩 타이핑치듯 재생
         while (index < dialogs[currentIndex].dialogue.Length)
         {
@@ -123,7 +139,7 @@ public class DialogSystem : MonoBehaviour
         }
 
         isTypingEffect = false;
-
+        audioSoure.Stop();
         // 대사가 완료되었을 때 출력되는 커서 활성화
         objectArrows.SetActive(true);
     }
